@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>查看任务</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="content-type" content="text/html" ; charset="utf-8">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--流程图 gojs-->
+	<script src="js/go.js"></script>
+	<!--表格js-->
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<script src="js/bootstrap-table.js"></script>
+	<!-- form中选择 -->
+	<script src="js/bootstrap-select.js"></script>
+	<link href="css/bootstrap-select.css" rel="stylesheet">
+	<!-- 拖拽模块 -->
+	<script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/jquery-ui-1.9.2.custom.css" />
+	<!--遮罩-->
+	<script src="js/jquery.blockUI.js" type="text/javascript"></script>
+	<!-- 引入通用的文件 -->
+	<script src="js/common.js"></script>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/soda_common.css">
+
+</head>
+
+<body style="background-color:#f8f8f8;">
+<!--导航条-->
+<div class="top" style="float:left;width:100%;">	
+	<div class="main_nav1">
+		<div class="change_box">
+			<ul class="main_nav1_left">
+				<li class="dodo"><a  href="#">DODOGENE</a></li>
+				<li class="nav_b1"><a href="#">云中漫步</a></li>
+				<li class="nav1_list1 other_nav">
+					<a href="#" style="padding-left:15px;padding-right:15px;">新闻快讯<img src="img/01.png" alt=""></a>
+					<ul class="" >
+						<li><a href="">前沿研究</a></li>
+						<li><a href="">市场活动</a></li>
+					</ul>
+				</li>			
+			</ul>
+			
+			<ul class="main_nav1_right">
+				<li><a href="#"><img src="img/分析报告_03.png" alt="通知" /></a></li>
+				<li><a href="#"><img src="img/分析报告_05.png" alt="帮助" /></a></li>
+				<li><a href="#"><img src="img/分析报告_07.png" alt="个人中心" /></a></li>
+			</ul>
+		</div>
+	</div>
+
+
+	<div class="main_nav2">
+		<div class="change_box">
+			<ul class="main_nav2_left">
+				<li style="width:110px;text-align:center;"><img src="img/nav_cloud.png" alt="" /></li>
+				<li class="nav2_list1" style="margin-right:0px;" >
+					<a href="#" style="padding-left:15px;padding-right:15px;color:#000;">分析流程<img src="img/02.png" alt=""></a>
+					<ul class="">
+						<li><a href="">DNA流程</a></li>
+						<li><a href="">RNA流程</a></li>
+						<li><a href="">健康医学流程</a></li>
+					</ul>				
+				</li>
+				<li class="nav2_list2" style="margin-right:0px;">
+					<a href="#" style="padding-left:15px;padding-right:15px;">小工具<img src="img/02.png" alt=""></a>
+					<ul class="">
+						<li><a href="">计算统计</a></li>
+						<li><a href="">绘图软件</a></li>
+					</ul>
+				</li>
+				<li class=""><a href="#">我的项目</a></li>
+				<li class=""><a href="#">我的目录</a></li>
+				<li class=""><a href="#">回收站</a></li>
+			</ul>
+
+		</div>
+	</div>
+
+	<div class="nav_line"></div>
+
+	<div class="main_nav3" style="box-shadow:-2px 3px 9px 0px #ccc;">
+		<div class="change_box">
+			<ul class="main_nav3_left_report">
+				<li><span><a href="report.html">查看报告</a></span></li>
+				<li><span><a href="#">下载报告</a></span></li><!--云超，下载报告的链接-->
+				<li><span><a id="taskRerun" href="#">重跑一次</a></span></li>
+			</ul>
+			<ul class="main_nav3_right_report">
+				<li class="report_success"><span><a href="#">任务已完成</a></span></li>
+				<!--
+				<li class="report_running"><span><a href="#">任务运行中</a></span></li>
+				<li class="report_end"><span><a href="#">任务已终止</a></span></li>
+				-->
+				<li id="refresh"><a href="#"><img src="img/分析报告_18.png" alt="刷新" /></a></li>
+				<li id="stop"><a href="#"><img src="img/分析报告_20.png" alt="停止" /></a></li>
+				<li id="delete"><a href="#"><img src="img/分析报告_22.png" alt="删除" /></a></li>
+	
+			</ul>
+		</div>
+	</div>
+</div>	
+
+	<input style="display:none;" id="taskId" />
+	<!--该任务的ID-->
+	
+	<div style="float:left;width:100%;margin-bottom: 30px;padding-top: 160px;">
+			<div class="change_box" style="padding-left: 0px; padding-right:0px;padding-bottom:50px;">
+				<!--
+					<button id="changeModule" class="btn btn-primary">切换到模块</button>
+				-->
+					<!--第一部分 流程图 -->
+					<div class="part_box" style=" padding-top:0px; ">
+
+						<div class="task_form_height" >
+							<label class="task_label" style="width:100%;"><span>1</span>有参转录组分析流程V1.0</label>
+						</div>
+
+						<!--流程图的div-->
+						<div id="myDiagramDiv">
+						</div>
+								
+						<!--运行状态-->
+						<div class="task_form_height">
+							<div class="task_label">&nbsp;</div>
+							
+							<div id="modStatus">
+								<div>
+									<div style="padding: 0px;">
+										<!-- ================================================================== -->
+
+										<table data-toggle="table" data-height="200" data-show-footer="false" data-sort-name="id" id="modStatusTable">
+											<thead>
+												<tr>
+													<th data-field="flow_mod" data-sortable="true">模块名称</th>
+													<th data-field="task_name" data-sortable="true">程序名称</th>
+													<th data-field="status" data-sortable="true" data-align="center" data-formatter="taskState">状态</th>
+													<th data-field="submit_time" data-sortable="true" data-align="center">任务提交时间</th>
+													<th data-field="done_time" data-sortable="true" data-align="center">任务结束时间</th>
+													<th data-field="consume_time" data-sortable="true" data-align="center">时长</th>
+												</tr>
+											</thead>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--第二部分表格的填写-->
+					<div class="part_box">
+						<form class="form-horizontal" id="creatTask" role="form" style="margin-top: 30px;" action="newTask" method="post" onsubmit="return submitForm(this)">
+							<input type='hidden' id='task_type' name='task_type' value='ref' />
+							<input type='hidden' id='id' name="id" value="{$id} "></input>
+							
+							<div class=" task_form_height">						
+								<label class="task_label"><span>2</span>任务名称</label>
+								<div class="task_box" >
+									<input type="text" class="form-control" required id="task_name" name="task_name" readonly>
+								</div>
+							</div>
+
+							<div class="task_form_height">
+								<label class="task_label"><span>3</span>所属项目</label>
+								<div class="task_box">
+									<input type="text" class="form-control" id="project_name" name="project_name" readonly>
+								</div>
+
+							</div>
+
+							<div class="task_form_height">
+								<label class="task_label"><span>4</span>任务目录</label>
+								<div class="task_box" >
+									<input type="url" class="form-control" id="dir_path" name="dir_path" readonly>
+								</div>
+							</div>
+
+
+							<div class="task_form_height">
+								<label class="task_label"><span>5</span>物种名称</label>
+
+								<div class="task_box">
+									<input type="url" class="form-control" id="species" name="species" readonly>
+								</div>
+							</div>
+
+							<div class="task_form_height">
+								<label class="task_label"><span>6</span>群体类型</label>
+
+								<div class="task_box">
+									<input type="url" class="form-control" id="popty" name="popty" readonly>
+								</div>
+							</div>
+
+							<div class="task_form_height">
+								<label class="task_label"><span>7</span>突变类型</label>
+
+								<div class="task_box">
+									<input type="url" class="form-control" id="method" name="method" readonly>
+								</div>
+							</div>
+
+
+							<div class="task_form_height">
+								<label class="task_label"><span>8</span>测序类型</label>
+								
+								<div class="task_box">
+									<input type="url" class="form-control" id="seq_type" name="seq_type" readonly>
+								</div>
+							</div>
+
+							<!--数据目录-->
+							<div class="task_form_height">
+								<label class="task_label"><span>9</span>数据目录</label>
+								<div class="task_box" >
+									<input type="url" class="form-control " required id="data_dir" name="data_dir" readonly>
+								</div>
+							</div>
+
+						</form>
+
+					<!--第二部分 选择sample的表格 -->
+					<div class="task_form_height">
+					<div class="task_label">&nbsp;</div>
+					<div class="task_box">
+						<table data-toggle="table" data-show-footer="false" data-height="250" data-click-to-select="true" id="sampleTable">
+							<thead>
+								<tr>
+									<th data-field="sample" data-align="center" data-sortable="true">样本名称</th>
+									<th data-field="fq" data-align="center" data-sortable="true">FastQ文件 </th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					</div>
+
+					</div>
+
+					<!-- ---------------------------------------------------------------------- -->
+					<!--第四部分 模块参数设置-->
+
+					<div class="part_box">
+
+						<div class="task_form_height">
+							<label class="task_label"><span>10</span>模块参数设置</label>
+							<!--点击展开参数-->
+							<div class="panel-group params_part" id="parasPanel">
+							</div>							
+						</div>
+						
+
+						
+					</div>
+
+
+
+			</div>
+	</div>
+<!--页脚-->
+<div id="footer_style">
+	<footer class="footerstyle">
+		<p>版权所有 © 2016 京ICP备15033925号</p>
+		<p>北京拓美科基因科技有限公司</p>
+	</footer>
+</div>
+
+
+
+
+
+
+			
+	<script>
+	$(function(){
+		//波波，这是删除，终止和重跑的地址
+    var delete_url = "";
+    var stop_url = "";
+	var rerun_url = "";
+
+//与后台交互时冻结
+	$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
+//------按钮们--------
+//刷新
+	$("#refresh").click(function(){
+		window.location.reload();
+    });
+//终止
+	$("#stop").click(function(){
+		var r=confirm("您确定要终止该任务吗？");
+		if(r==true){
+			 var id = $("#taskId").val();
+			 $.ajax({
+				    url:stop_url,  
+				    type:'post',
+				    data:{id:id},
+				    dataType: "json",
+				    success:function(data) {
+				    	if(data['status']=='ERROR'){    //请求成功但没有执行成功
+				    		alert(data['data']);
+				    	}else{
+							alert("任务终止成功！");	
+				    	};
+				     },    
+				     error : function(XMLHttpRequest) {
+				       alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);    
+				     }
+				});  
+		  };
+    });    
+//删除
+	$("#delete").click(function(){
+		var r=confirm("您确定要删除该任务吗？");
+		if(r==true){
+
+			 var id = $("#taskId").val();
+			 $.ajax({
+				    url:delete_url,  
+				    type:'post',
+				    data:{id:id},
+				    dataType: "json",
+				    success:function(data) {
+				    	if(data['status']=='ERROR'){    //请求成功但没有执行成功
+				    		alert(data['data']);
+				    	}else{
+							alert("删除成功！");	
+				    	};
+				     },    
+				     error : function(XMLHttpRequest) {
+				       alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);    
+				     }
+				});  
+		  };
+    });
+
+	//rerun
+	$("#taskRerun").click(function(){
+		var r=confirm("您确定要rerun该任务吗？");
+		if (r==true)
+			{
+				var id = $("#taskId").val();
+				$.ajax({
+					url:rerun_url,    //甄伟波，rerun的地址  
+					type:'post',
+					data:{id:id},
+					dataType: "json",
+					success:function(data) {
+						if(data['status']=='ERROR'){    //请求成功但没有执行成功
+							alert(data['data']);
+						}else{
+							alert("rerun成功！");	
+						}
+						},    
+						error : function(XMLHttpRequest) {
+						alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);    
+						}
+				});  
+			};
+	});
+	
+});
+
+//页面加载完成之后，填充数据
+$(document).ready(function(e) {
+    getTaskData("json/taskDetail.1.json");
+	
+});
+function openSftp(user,ip,port, eid){
+	window.open('sftp://'+user+'@'+ip+':'+port+$("#"+eid).text());
+}
+	
+function stopTask(taskid){
+	if (typeof(taskStatus)=='undefined' || taskStatus == 'finished' || taskStatus =='failed' ){
+		return false;
+	}
+	
+	if(!confirm("您确定要终止任务吗？")){
+		return false;
+	}
+	
+	$.ajax({
+		url:"__MODULE__/Task/stopTasks",
+		type:'post',
+		data:{id:taskid},
+		dataType: "json",
+		success:function(data){
+			if(data['status']=='SUCCESS'){    
+	    		$("#taskStatus").removeClass('btn-primary').addClass("btn-warning").text("任务已终止");
+	    	}
+			alert(data['data']);
+			window.location.reload();
+		},
+		error : function(XMLHttpRequest) {
+	       	alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);   
+	    }
+	});
+}
+
+function getTaskData(url){
+	 $.ajax({
+			url:url,  
+			type:'post',
+			dataType: "json",
+			success:function(data) {
+				if(data['status']=='ERROR'){    //请求成功但没有执行成功
+					alert(data['data']);
+				}else{
+					
+					for(var key in data){
+						if(key == "samples"){   
+							//根据样本名填入table
+							var dataJson = [];   //用来存放填写样本表格的数据
+							var arr = data[key].split(",");
+
+							if(data["taskSeqType"] == "PE"){    //判断是双端   （注意：必须是PE）
+								for(var i=0;i<arr.length;i++){
+									var one = {};
+									one["sample"]=arr[i];
+									one["fq"]= arr[i]+"_1.fq.gz"
+									
+									var two = {}
+									two["sample"]=arr[i];
+									two["fq"]= arr[i]+"_2.fq.gz"
+								//	console.log(two)
+									dataJson.push(one);
+									dataJson.push(two);
+								};
+								
+							}
+							else{								//不是双端
+								for(var i=0;i<arr.length;i++){
+									var one = {};
+									one["sample"]=arr[i];
+									one["fq"]= arr[i]+".fq.gz"
+									dataJson.push(one);
+								};	
+							};
+
+							$('#sampleTable').bootstrapTable('load',dataJson);   //载入数据
+							
+							
+						}
+						
+						else if(key == "unselectNode"){
+							var unselectNode = data.unselectNode.split(",");
+							for(var i=0;i<unselectNode.length;i++){
+								if(!diagram.findNodeForKey(unselectNode[i])){
+									continue;
+								}
+								diagram.findNodeForKey(unselectNode[i]).elt(0).fill=unselectColor;	//未选中模块变成灰色
+								nodeStatus[unselectNode[i]] = 0;
+							};
+
+							var runMod = data.runMod.split(",");
+							for(var i=0;i<runMod.length;i++){
+								if(!diagram.findNodeForKey(runMod[i])){
+									continue;
+								}
+								diagram.findNodeForKey(runMod[i]).elt(0).fill=runningColor;	//运行中模块变成绿色
+							};
+							var failedMod = data.failedMod.split(",");
+							for(var i=0;i<failedMod.length;i++){
+								if(!diagram.findNodeForKey(failedMod[i])){
+									continue;
+								}
+								diagram.findNodeForKey(failedMod[i]).elt(0).fill=failedColor;	//失败模块变成红色
+							};
+							selectedNode(); 
+
+							var nodePara = data.nodePara   //填充模块参数
+							for(var i=0;i<nodePara.length;i++){
+								$("#"+nodePara[i].name).val(nodePara[i].value)
+								};
+							 }
+						else if(key == "modStatus"){  //填充任务状态table
+							$('#modStatusTable').bootstrapTable('load',data[key]);
+							}
+							/* 波波，这是之前的判断状态的，现在暂时去掉了
+						else if(key == "status"){
+							taskStatus = data.status;
+							if(data.status == "finished"){
+								$("#showReport").attr("onclick","window.open('__MODULE__/Report/showReport/id/{$id}')");
+								$("#downloadReport").attr("onclick","window.open('__MODULE__/Report/downReport/id/{$id}')");
+								$("#taskStatus").removeClass("btn-success");
+								$("#taskStatus").addClass("btn-primary").text('任务已完成');
+								
+							}else if(data.status == "failed"){
+								$("#taskStatus").addClass("btn-warning").text('任务已终止');
+								$("#showReport").hide();
+								$("#downloadReport").hide();
+								$("#taskReport h4").after('<p>任务终止，报告未生成。</p>');
+							}
+							else{
+									$("#showReport").hide();
+									$("#downloadReport").hide();
+									$("#taskReport h4").after('<p>报告尚未生成，请耐心等待</p>');
+								}
+							}
+							*/
+						else{
+								$("#"+key).val(data[key])
+							};
+					};
+				};
+			 },    
+			 error : function(XMLHttpRequest) {
+			   alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);    
+			 }
+		}); 
+	};
+
+
+//任务的状态
+
+function taskState(State) {
+	
+    if ( State == 'done'){
+			return  '<button class="btn btn-primary btn-xs" style="width:100px;">完成</button>';
+		}else	if ( State == 'failed'){
+			return '<button class="btn btn-warning btn-xs" style="width:100px;">中止</button>';
+		}else if (State == 'ready'){
+			return '<button class="btn  btn-xs" style="width:100px;">就绪/重运行</button>';
+		}else if (State == 'pending'){
+			return '<button class="btn btn-xs" style="width:100px;">等待中</button>';
+		}
+		else{
+			return '<button class="btn btn-success btn-xs" style="width:100px;">运行中</button>';
+		}
+};	
+	
+//判断是否是草稿，加载任务参数填写时option的值
+var nodeStatus=
+{
+	'QC':1,
+	'Alignment':1,
+	'SNP_calling':1,
+	"SNP_index":1,
+	"TraitLoca":1,
+	"Reports":1
+};
+//各种默认参数的url
+var nodeParaUrl="__MODULE__/Task/getTaskInfo/id/{$id}";  // 节点参数的默认值的url
+var samplesDataUrl = "__MODULE__/Data/remoteDirView"; //像后台发送目录的地址
+
+//设置每个节点的状态
+var selectColor="rgb(142,217,255)";
+var unselectColor="lightgray";
+var runningColor="rgb(68,157,68)";
+var failedColor="rgb(255,0,0)"
+var arrowColor="rgb(100,100,100)";
+var nodeNameColor="rgb(255,255,255)";
+var nodeBorderColor="rgb(167,167,167)";
+$(function() {
+
+	 var $ = go.GraphObject.make;  // for conciseness in defining templates
+//---------------
+
+diagram =
+      $(go.Diagram, "myDiagramDiv",  // must name or refer to the DIV HTML element
+        {
+          initialContentAlignment: go.Spot.Center,
+          allowDrop: false,  // must be true to accept drops from the Palette
+ //         "LinkDrawn": showLinkLabel,  // this DiagramEvent listener is defined below
+//          "LinkRelinked": showLinkLabel,
+          "animationManager.duration": 800, // slightly longer than default (600ms) animation
+          "undoManager.isEnabled": false  // enable undo & redo
+        });
+
+//----------------
+	
+//节点的样式
+		diagram.nodeTemplate =
+			$(go.Node, "Auto",
+ 
+			  new go.Binding("location", "loc", go.Point.parse),
+			  $(go.Shape, "RoundedRectangle", { fill: selectColor ,
+			  									parameter1: 5,  // the corner has a large radius
+			  									stroke:nodeBorderColor,
+												
+												},
+												new go.Binding("fill", "color")
+												),     
+										
+			  {
+				  selectionAdornmentTemplate:
+				  $(go.Adornment, "Auto",
+					$(go.Shape, "RoundedRectangle",
+					{ fill: null, stroke: selectColor, strokeWidth: 1 }),
+					$(go.Placeholder)
+				  )  // end Adornment
+			  },
+				
+				
+			  $(go.TextBlock,{ font: "bold 14px sans-serif",
+							   stroke: nodeNameColor,
+							   margin: 10 },
+				new go.Binding("text", "key"))
+			);
+
+		
+//连线的样式
+	   diagram.linkTemplate =
+		  $(go.Link,  // the whole link panel
+			{ curve: go.Link.Bezier, reshapable: true },
+			// don't need to save Link.points, so don't need TwoWay Binding on "points"
+			new go.Binding("curviness", "curviness").makeTwoWay(),  // but save "curviness" automatically
+			$(go.Shape,  // the link shape
+			  { strokeWidth: 2 ,stroke:arrowColor }),
+	//		  new go.Binding("stroke", "color"),
+			$(go.Shape,  // the arrowhead
+			  { toArrow: "standard", stroke: null, fill:arrowColor })
+			
+		  );  
+
+
+		
+  var nodeDataArray = [
+		{key: "QC", loc:"0 0"},
+		{key: "Alignment", loc:"-25 80"},
+		{key: "SNP_calling", loc:"-28 160"},
+		{key: "SNP_index", loc:"-23 240"},
+		{key: "TraitLoca", loc:"-18 320"},
+		{key: "Reports", loc:"-13 400"}
+	  ];
+  
+  var linkDataArray = [
+		{from: "QC", to:"Alignment", "curviness":0},
+		{from: "Alignment", to:"SNP_calling", "curviness":0},
+		{from: "SNP_calling", to:"SNP_index", "curviness":0},
+		{from: "SNP_index", to:"TraitLoca", "curviness":0},
+		{from: "TraitLoca", to: "Reports", "curviness":0}
+	  ];
+ 
+	 diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);	
+	 diagram.initialContentAlignment = go.Spot.Center; //整个图居中		
+	});
+
+
+//选定的模块参数
+function selectedNode(){
+	$("#parasPanel").html(""); //清空现有的参数
+	for(var key in nodeStatus){
+		//console.log(key)
+		if (nodeStatus[key] == 1){
+			//添加该模块的面板
+			if(! defaultRefParams[key]){
+				continue;
+			}
+			
+			$("#parasPanel").append('<div class="panel panel-default"  id="' + key + '"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#' + key + '" href="#' + key + '_panel_body">' + key + ' 参数设置</a></h4></div><div id="' + key + '_panel_body" class="panel-collapse collapse in"><div class="panel-body"><form class="form-horizontal" role="form"></form></div></div></div>');
+			addPara(key); //添加面板中的参数
+
+		};
+	};
+	
+};
+//在参数设置中 给node名字为key的模块 添加input或dropdown参数
+function addPara(key){
+				var data = defaultRefParams;
+				items = data[key];   //找到参数中键为key的node项目
+				if(typeof(items)=='undefined'){
+					return false;
+				}
+					
+				for (var i=0; i < items.length; i++){   //遍历其中的许多参数
+				   //添加一个input框
+						var name = items[i]["name"]
+						var id = items[i]["id"]
+						var value = items[i]["value"]
+						var info = items[i]["illustration"]
+						//添加input的代码
+						$("#" + key + " form").append('<div class="form-group"><label class="col-sm-3 control-label">' + name + '</label><div class="col-sm-7"><input type="text"  class="form-control" readonly id="'+ id +'" name="'+ id +'" title="' + info + '"></div></div>');
+				
+				};					
+	
+	};
+//与后台交互时冻结
+//$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+</script>
+
+
+</body>
+
+</html>

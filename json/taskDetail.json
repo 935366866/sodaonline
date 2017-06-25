@@ -1,0 +1,141 @@
+{
+    "taskName": "Mouse_transcript",
+    "taskProject": "Mouse_transcript",
+    "taskMan": "tempo",
+    "taskCreatTime": "04.20.2016",
+    "taskFlowApp": "Mouse_transcript",
+    "taskSubmitTime": "02:39",
+    "taskRunTime": "02:39",
+    "taskInfo": "Chimpanzees (sometimes called chimps) are one of two exclusively African species of extant great ape. Native to subsaharan Africa, both are currently found in the Congo jungle. Classified in the genus Pan, they were once considered to be one species.However, since 1928, they have been recognized as two distinct species: the common chimpanzee (P. troglodytes)",
+    "taskUrl": "proj/tempo/mouse/tras",
+    "taskSpecies": "小鼠",
+    "taskFa": "ref/xx.fa",
+    "taskAnnotation": "ref/xx.gtf",
+    "taskSeqType": "PE",
+    "taskLibrary": "普通文库",
+	"samples":"s1,s2,s3",
+	"groupCompareVenn": {
+        "groupSamples": {
+            "ga1": [
+                "s1","s2"
+            ],
+            "g2": [
+                "s3","s4"
+            ],
+            "g3": [
+                "s5","s6"
+            ],
+            "g4": [
+                "s7","s8"
+            ]
+        },
+        "compareGroups": {
+            "c1": [
+                "ga1",
+                "g2"
+            ],
+            "c2": [
+                "g3",
+                "g4"
+            ]
+        },
+        "vennCompares": [
+            [
+                "c1",
+                "c2"
+            ],
+			[
+                "c3",
+                "c4"
+            ]
+        ]
+    },
+	"nodePara": [
+        {
+            "name": "qcpara2",
+            "value": "no"
+        },
+        {
+            "name": "qcpara3",
+            "value": "001"
+        },
+        {
+            "name": "Assemblepara2",
+            "value": "yes"
+        },
+        {
+            "name": "Assemblepara3",
+            "value": "002"
+        },
+        {
+            "name": "Novelpara2",
+            "value": "no"
+        },
+        {
+            "name": "Novelpara3",
+            "value": "003"
+        },
+        {
+            "name": "DEpara2",
+            "value": "no"
+        },
+        {
+            "name": "DEpara3",
+            "value": "001"
+        },
+        {
+            "name": "qcpara1",
+            "value": "QC"
+        },
+        {
+            "name": "Assemblepara1",
+            "value": "Assemble"
+        },
+        {
+            "name": "Novelpara1",
+            "value": "kiara"
+        },
+        {
+            "name": "DEpara1",
+            "value": "test"
+        }
+    ],
+    "unselectNode": "Density,Saturation,SNP_INDEL,AS,PPI,GO,KEGG",
+	"runningNode":"QC,Assemble",
+	"taskStatus":
+		[
+			{
+				"flow_mod": "QC",
+				"task_name": "abc",
+				"status":1,
+				"submit_time":"16:30 16/03/2016",
+				"done_time":"16:30 16/03/2016",
+				"consume_time":"30:20"
+			},
+			{
+				"flow_mod": "Assemble",
+				"task_name": "abc",
+				"status":1,
+				"submit_time":"16:30 16/03/2016",
+				"done_time":"16:30 16/03/2016",
+				"consume_time":"30:20"
+			},
+			{
+				"flow_mod": "Novel",
+				"task_name": "abc",
+				"status":0,
+				"submit_time":"16:30 16/03/2016",
+				"done_time":"16:30 16/03/2016",
+				"consume_time":"30:20"
+			},
+			{
+				"flow_mod": "DE",
+				"task_name": "abc",
+				"status":-1,
+				"submit_time":"16:30 16/03/2016",
+				"done_time":"16:30 16/03/2016",
+				"consume_time":"30:20"
+			}
+		],
+	"report":"job.html"
+}

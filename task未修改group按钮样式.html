@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>新建项目</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="content-type" content="text/html" ; charset="utf-8">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--流程图 gojs-->
+	<script src="js/go.js"></script>
+	<!--表格js-->
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<script src="js/bootstrap-table.js"></script>
+	<!-- form中选择 -->
+	<script src="js/bootstrap-select.js"></script>
+	<link href="css/bootstrap-select.css" rel="stylesheet">
+	<!-- 拖拽模块 -->
+	<script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/jquery-ui-1.9.2.custom.css" />
+	<!--遮罩-->
+	<script src="js/jquery.blockUI.js" type="text/javascript"></script>
+	<!-- 引入通用的文件 -->
+	<script src="js/common.js"></script>
+	<link rel="stylesheet" href="css/soda_common.css">
+
+</head>
+
+<body style="background-color:#f8f8f8;">
+	<div class="top" style="float:left;width:100%;">
+		<div class="main_nav1">
+			<div class="change_box">
+				<ul class="main_nav1_left">
+					<li class="dodo"><a  href="#">DODOGENE</a></li>
+					<li class="nav_b1"><a href="#">云中漫步</a></li>
+					<li class="other_nav nav1_list1">
+						<a href="#" style="padding-left:15px;padding-right:15px;">新闻快讯<img src="img/01.png" alt=""></a>
+						<ul class="" >
+							<li><a href="#">前沿研究</a></li>
+							<li><a href="#">市场活动</a></li>
+						</ul>
+					</li>			
+				</ul>
+				
+				<ul class="main_nav1_right">
+					<li><a href="#"><img src="img/分析报告_03.png" alt="通知" /></a></li>
+					<li><a href="#"><img src="img/分析报告_05.png" alt="帮助" /></a></li>
+					<li><a href="#"><img src="img/分析报告_07.png" alt="个人中心" /></a></li>
+				</ul>
+			</div>
+		</div>
+	
+		<div class="main_nav2"  style="box-shadow:-2px 3px 9px 0px #ccc;">
+			<div class="change_box">
+				<ul class="main_nav2_left">
+					<li style="width:110px;text-align:center;"><img src="img/nav_cloud.png" alt="" /></li>
+					<li class="nav2_list1" style="margin-right:0px;" >
+						<a href="#" style="padding-left:15px;padding-right:15px;color:#000;">分析流程<img src="img/02.png" alt=""></a>
+						<ul class="">
+							<li><a href="">DNA流程</a></li>
+							<li><a href="">RNA流程</a></li>
+							<li><a href="">健康医学流程</a></li>
+						</ul>				
+					</li>
+					<li class="nav2_list2" style="margin-right:0px;">
+						<a href="#" style="padding-left:15px;padding-right:15px;">小工具<img src="img/02.png" alt=""></a>
+						<ul class="">
+							<li><a href="">计算统计</a></li>
+							<li><a href="">绘图软件</a></li>
+						</ul>
+					</li>
+					<li class=""><a href="#">我的项目</a></li>
+					<li class=""><a href="#">我的目录</a></li>
+					<li class=""><a href="#">回收站</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+	<div class="center_box" style="float:left;width:100%;">
+		<div class="flow_title">
+			<p>有参转录组分析流程V1.0</p>
+			<button class="btn btn_title round_Button" onclick="javascrtpt:window.location.href='../flowIntroduction_report/video.html'">使用说明</button>
+		</div>
+			<div class=" change_box" style="padding-left: 0px; padding-right:0px;padding-bottom:50px;">
+				<!--
+					<button id="changeModule" class="btn btn-primary">切换到模块</button>
+				-->
+					<!--第一部分 流程图 -->
+					<div class="part_box" style=" padding-top:0px; ">
+
+						<div class="task_form_height">
+							<label class="task_label"><span>1</span>流程分析</label>
+						</div>
+
+						<!--流程图的div-->
+						<div id="myDiagramDiv">
+						</div>
+						<div style="margin:0 auto ;width:360px;">
+							<button type="button" class="btn btn_orange round_Button" id="lockNode" onclick="selectedNode()">锁定模块</button>
+							<button type="button" class="btn btn_white round_Button" id="unlockNode" style="margin-left:20px;float:right;" onclick="unlock()">解除锁定</button>
+						</div>
+						
+					</div>
+
+					<!--第二部分表格的填写-->
+					<div class="part_box">
+						<form class="form-horizontal" id="creatTask" role="form" style="margin-top: 30px;" action="newTask" method="post" onsubmit="return submitForm(this)">
+							<input type='hidden' id='task_type' name='task_type' value='ref' />
+							<input type='hidden' id='id' name="id" value="{$id} "></input>
+							
+							<div class=" task_form_height">						
+								<label class="task_label"><span>2</span>任务名称</label>
+								<div class="task_box" >
+									<input type="text" class="form-control" required id="task_name" name="task_name" placeholder="请填写任务名称">
+								</div>
+							</div>
+
+							<div class="task_form_height">
+								<label class="task_label"><span>3</span>所属项目</label>
+								<div class="task_box">
+									<select id="project_id" name="project_id" class="selectpicker select_width" data-live-search="true" >
+		
+										<optgroup label="可选项目">
+										<foreach name='projList' item='proj'>
+										<option value="{$proj.id}">{$proj.project_name}</option>
+										</foreach>
+										</optgroup>
+				
+									</select>
+								</div>
+
+							</div>
+
+							<div class="task_form_height">
+								<label class="task_label"><span>4</span>任务目录</label>
+								<div class="task_box" >
+									<input type="url" class="form-control" id="dir_path" name="dir_path" placeholder="请选择任务目录" readonly>
+
+								</div>
+								<a onclick="opendir_path()">
+									<span class="glyphicon glyphicon-folder-open" style="font-size:20px; top: 5px; cursor:pointer; "></span>
+								</a>							
+
+							</div>
+
+
+							<div class="task_form_height">
+								<label class="task_label"><span>5</span>物种名称</label>
+
+								<div class="task_box">
+									<select id="species" name="species" class="selectpicker select_width" data-live-search="true">
+				
+										<optgroup label="可选物种">
+											<foreach name='speciesList' item='speciesItem'>
+										<option value="{$speciesItem.latin_name}">{$speciesItem.latin_name} ({$speciesItem.name})</option>
+										</foreach>
+										</optgroup>
+				
+									</select>
+								</div>
+							</div>
+
+							<div class="task_form_height">
+								<label class="task_label"><span>6</span>链特异性文库</label>
+								<div class="task_box">
+									<select id="is_sslib" name="is_sslib" class="selectpicker select_width">
+				
+										<option value="no">NO</option>
+										<option value="yes">YES</option>
+				
+									</select>
+								</div>
+							</div>
+
+							<div class="task_form_height">
+								<label class="task_label"><span>7</span>测序类型</label>
+								<div class="task_box">
+									<select id="seq_type" name="seq_type" class="selectpicker select_width">
+		
+									<option value="pe">PE(Pair-End)</option>
+									<option value="se">SE(Single-End)</option>
+			
+								</select>
+								</div>
+							</div>
+
+							<!--数据目录-->
+							<div class="task_form_height">
+								<label class="task_label"><span>8</span>数据目录</label>
+								<div class="task_box" >
+									<input type="url" class="form-control " required id="data_dir" name="data_dir" placeholder="请选择数据目录" readonly>
+								</div>
+								<a onclick="openDataUrl()">
+									<span class="glyphicon glyphicon-folder-open" style="font-size:20px; cursor:pointer;"></span>
+								</a>
+							</div>
+
+						</form>
+
+					<!--第二部分 选择sample的表格 -->
+					<div class="task_form_height">
+					<div class="task_label">&nbsp;</div>
+					<div class="task_box">
+						<div id="toolbar">
+							<button id="removeDataTable" class="btn btn-default">删除行</button>
+						</div>
+						<table data-toggle="table" data-toolbar="#toolbar" data-click-to-select="true" data-show-footer="false" data-height="250" 						id="sampleTable">
+							<thead>
+								<tr>
+									<th data-field="state" data-checkbox="true"></th>
+									<th data-field="sample" data-align="left" data-sortable="true">样本名称</th>
+									<th data-field="fq" data-align="center" data-sortable="true">FastQ文件 </th>
+									<th data-field="adap" data-align="center" data-sortable="true">Adaptor文件</th>
+
+								</tr>
+							</thead>
+						</table>
+						<div style="width:360px;margin:0 auto;padding-top:40px;padding-bottom:40px;">
+							<button id="getSamples" class="btn btn_orange round_Button" style="margin-top: 10px;">锁定样本</button>
+							<button class="btn btn_white round_Button" id="unlockSamples" style="margin-top: 10px; margin-left:20px;">清空样本</button>
+						</div>
+					</div>
+					</div>
+
+					</div>
+					<!-- ------------------------------------------------------------------------------------------------- -->
+					<!-- 添加选择目录的模态框 -->
+					<div class="modal fade" id="selectUrl" tabindex="-1" aria-labelledby="选择路径" aria-hidden="true">
+
+						<div class="modal-dialog" style="top:50px; width:800px;">
+							<div class="modal-content ">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+										&times;
+									</button>
+									<h4 class="modal-title">
+										路径
+									</h4>
+									<div class="input-group">
+										<input type="text" class="form-control" id="inputUrl">
+										<span class="input-group-btn">
+											<button class="btn btn-default glyphicon glyphicon-arrow-left" id="back" type="button" style="top: 0px;"></button>
+											<button class="btn btn-default glyphicon glyphicon-arrow-right" id="search" type="button" style="top: 0px;"></button>
+										</span>
+									</div>
+								</div>
+								<!-- ---------------data-single-select="true"-------------------------------------------------------------------- -->
+								<div class="modal-body" style="text-align:center; ">
+									<table data-toggle="table" data-minimum-count-columns="2" data-id-field="id" data-show-footer="false" data-height="300" data-sort-name="id"
+										data-click-to-select="true"  id="jobUrlTable" style="bottom:20px;">
+
+										<thead>
+											<tr>
+
+												<th data-field="state" data-checkbox="true"></th>
+												<th data-field="icon" data-formatter="addIcon"></th>
+												<th data-field="name" data-align="left" data-sortable="true">name</th>
+												<th data-field="type" data-align="center" data-sortable="true">attribute</th>
+												<th data-field="inodeNum" data-align="center" data-visible="false" data-sortable="true">inodeNum</th>
+												<th data-field="size" data-align="center" data-sortable="true">size</th>
+												<th data-field="owner" data-align="center" data-sortable="true">owner</th>
+												<th data-field="group" data-align="center">group</th>
+												<th data-field="mtime" data-align="center" data-sortable="true">time</th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+								<!-- ----------------------------------------------------------------------------------- -->
+								<div class="modal-footer">
+									<button type="button" id="selected" class="btn btn-primary">
+									选择
+									</button>
+									<button type="button" id="cancel" class="btn btn-default" data-dismiss="modal">
+									关闭
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ---------------------------------------------------------------------- -->
+					<!--第四部分 模块参数设置-->
+
+					<div class="part_box">
+
+						<div class="task_form_height">
+							<label class="task_label"><span>9</span>模块参数设置</label>
+							<!--点击展开参数-->
+							<div class="panel-group params_part" id="parasPanel">
+							</div>							
+						</div>
+						
+
+						
+					</div>
+					<!-- ------------------------------参数设置结束-------------------------------- -->
+					<!--第五部分 样本分组、比较、维恩图 -->
+					<!-- 样本分组、比较、维恩图 -->
+					<div class="part_box">
+						<!--带星 分组比较标题-->
+						<div class="task_form_height">
+							<label class="task_label"><span>10</span>分组比较</label>
+								<!--带有拖拽内容的面板-->
+						<div class="sample_part">
+							<div class="panel panel-default" style="padding:0px;">
+								<div class="panel-heading">
+									<h4><span class="glyphicon glyphicon-edit"></span> Sample Group</h4>
+								</div>
+								<div class="panel-body">
+                  
+									<div>
+									<div style="float:left;width:18%;margin-right:15px;">
+										<div>
+										<label class='control-label'><b>样本名称：</b></label>
+										</div>
+									</div>
+									<div style="float:left;width:25%;margin-right:14px;">
+										<div>
+											<button data-target='#groupModal' data-toggle='modal'style="border-radius: 4px;outline: none;">
+												<span class="glyphicon glyphicon-plus ">Group</span>
+											</button>
+										</div>
+									</div>
+									<div style="float:left;width:25%;margin-right:14px;">
+										<div>
+											<button data-target='#compareModal' data-toggle='modal'style="border-radius: 4px;outline: none;">
+												<span class="glyphicon glyphicon-plus ">Compare</span>
+											</button>
+										</div>
+									</div>
+									<div style="float:left;width:25%">
+										<div>
+											<button id='addVenn' style="border-radius: 4px;outline: none;">
+												<span class="glyphicon glyphicon-plus ">Venn</span>
+											</button>
+										</div>
+									</div>
+									</div>
+									<div >
+									<div style="width:100%;">
+										<div>
+										<div style="float:left;width:18%;margin-right:15px;">
+											<br>
+											<div>
+											<ol id="sampleNames" class="list-group sampleNames ui-helper-reset ui-helper-clearfix">
+											</ol>
+											</div>
+										</div>
+										<div id='groupList' style="float:left;width:25%;margin-right:14px;"><br></div>
+										<div id='compareList' style="float:left;width:25%;margin-right:14px;"><br></div>
+										<div id='vennList' style="float:left;width:25%"><br></div>
+										</div>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>						
+
+					
+
+					<!-- group modal -->
+					<div class="row">
+						<div style="width:100%;">
+							<div class="row">
+								<div class="modal fade " id="groupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="row">
+										<div id='list_model' class="modal-dialog " style='width:20%'>
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+													<h4 class="modal-title" id="myModalLabel">组名</h4>
+													<div class="input-group">
+														<input id="groupName" class="form-control" value='' />
+
+														<span id='addGroup' class='glyphicon glyphicon-circle-arrow-right input-group-addon'></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /.modal end -->
+							</div>
+						</div>
+					</div>
+					<!-- venn modal -->
+					<div class="row">
+						<div style="width:100%;">
+							<div class="row">
+								<div class="modal fade " id="compareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="row">
+										<div id='list_model' class="modal-dialog " style='width:20%'>
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+													<h4 class="modal-title" id="myModalLabel">组间比较</h4>
+													<div class="input-group">
+														<input id="compareName" class="form-control" value='' />
+														<span id='addCompare' class='glyphicon glyphicon-circle-arrow-right input-group-addon'></span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /.modal end -->
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+					<!-- --------------------------------------------------------------------------------------- -->
+					<!-- --运行-- -->
+					<!--			<img src="image/run.png" style="height:40px; width:40px; float:right; cursor:pointer ;" id="taskRun"></img>   -->
+					<div class="task_form_height">
+						<label class="task_label"><span style=" background-image:url('img/bg_02.png');">&nbsp;</span>提交任务</label>
+						<div class="run_style">
+							<button type="submit" class="btn submitBut" id="taskRun" style="float:left;padding: 0px; border-width: 0px;">
+								<img src="img/go_01.png" alt="">
+							</button>
+						</div>
+
+					</div>
+					<!--  old button
+					<div style="margin:0 auto ;width:360px;">
+						<button type="button" class="btn btn-info submitBut" id="saveDraft">保存草稿</button>
+						<button type="submit" class="btn btn-primary submitBut" id="taskRun" style="float:right;">运行任务</button>
+					</div>
+					-->
+
+			</div>
+	</div>
+<!--页脚-->
+<div id="footer_style">
+	<footer class="footerstyle">
+		<p>版权所有 © 2016 京ICP备15033925号</p>
+		<p>北京拓美科基因科技有限公司</p>
+	</footer>
+</div>
+	<script>
+$(function(){
+	$('#creatTask label').addClass('label_width');   //含有任务名称等基本信息的表格中label
+});
+
+//判断是否是草稿，加载任务参数填写时option的值
+var nodeStatus=
+{
+	'Basic_QC':1,
+	'Alignment':1,
+	'Advanced_QC':1,
+	"SNP_INDEL":1,
+	"Assemble":1,
+	"AS":1,
+	"DE":1,
+	"PPI":1,
+	"GO":1,
+	"KEGG":1
+};
+var  requiredNode=new Array("Basic_QC"); //必选模块
+//各种默认参数的url
+var nodeParaUrl="json/draft.json";  // 节点参数的默认值的url
+var samplesDataUrl = "json/jobUrl.json"; //像后台发送目录的地址
+$(document).ready(function(){ 
+//调出默认数据存为变量
+	var id = $("#id").val().replace(' ','');
+	if(id==null || id==''){
+		return ;
+	}
+	draftTask(nodeParaUrl,samplesDataUrl);   //传入草稿的数据,发送数据目录的地址
+	});
+
+//设置每个节点的状态
+$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
+var requiredColor="#137aaf";
+var selectColor="rgb(142,217,255)";
+var unselectColor="lightgray";
+var arrowColor="rgb(100,100,100)";
+var nodeNameColor="rgb(255,255,255)";
+var nodeBorderColor="rgb(167,167,167)";
+
+$(function (){
+	 var $ = go.GraphObject.make;  // for conciseness in defining templates
+//	var diagram = new go.Diagram("myDiagramDiv");
+//---------------
+
+diagram =
+      $(go.Diagram, "myDiagramDiv",  // must name or refer to the DIV HTML element
+        {
+          initialContentAlignment: go.Spot.Center,
+          allowDrop: false,  // must be true to accept drops from the Palette
+ //         "LinkDrawn": showLinkLabel,  // this DiagramEvent listener is defined below
+//          "LinkRelinked": showLinkLabel,
+          "animationManager.duration": 800, // slightly longer than default (600ms) animation
+          "undoManager.isEnabled": false  // enable undo & redo
+        });
+
+//----------------
+	
+
+//节点的样式
+		diagram.nodeTemplate =
+			$(go.Node, "Auto",
+ 
+			  new go.Binding("location", "loc", go.Point.parse),
+			  $(go.Shape, "RoundedRectangle", { fill: selectColor ,
+			  									parameter1: 5,  // the corner has a large radius
+			  									stroke:nodeBorderColor,
+												
+												},
+												new go.Binding("fill", "color")
+												),     
+										
+			  {
+				  selectionAdornmentTemplate:
+				  $(go.Adornment, "Auto",
+					$(go.Shape, "RoundedRectangle",
+					{ fill: null, stroke: selectColor, strokeWidth: 1 }),
+					$(go.Placeholder)
+				  )  // end Adornment
+			  },
+				
+				
+			  $(go.TextBlock,{ font: "bold 14px sans-serif",
+							   stroke: nodeNameColor,
+							   margin: 10 },
+				new go.Binding("text", "key"))
+			);
+
+		
+//连线的样式
+	   diagram.linkTemplate =
+		  $(go.Link,  // the whole link panel
+			{ curve: go.Link.Bezier, reshapable: true },
+			// don't need to save Link.points, so don't need TwoWay Binding on "points"
+			new go.Binding("curviness", "curviness").makeTwoWay(),  // but save "curviness" automatically
+			$(go.Shape,  // the link shape
+			  { strokeWidth: 2 ,stroke:arrowColor }),
+	//		  new go.Binding("stroke", "color"),
+			$(go.Shape,  // the arrowhead
+			  { toArrow: "standard", stroke: null, fill:arrowColor })
+			
+		  );  
+
+//单击元素，直接获得 key
+		diagram.addDiagramListener("ObjectSingleClicked",
+			      function(e) {
+					  if(nodeLockStatus == 1){
+							var part = e.subject.part;
+							var color = part.elt(0).fill;
+							obj = part
+							
+					     if(  jQuery.inArray(obj.data.key, requiredNode) == -1 ){   //单击的节点不在必选的节点当中
+							 if(color == selectColor){
+								part.elt(0).fill = unselectColor;
+								nodeStatus[obj.data.key] = 0;
+						//		nodeStatus[nodeName] = 0;
+								findChildren(obj);
+						//		console.log(nodeStatus[nodeName])
+						
+								}
+								
+							if(color == unselectColor){
+								part.elt(0).fill = selectColor;
+								nodeStatus[obj.data.key] = 1;
+						//		nodeStatus[nodeName] = 1;
+								findParents(obj);
+						//		console.log(nodeStatus[nodeName])
+								}
+						  };
+					  };
+					  if(nodeLockStatus == 0){
+						  alert("无法编辑，请先解锁模块")
+						  };
+			      });
+			//找到选中节点的子节点
+			function findChildren(obj){
+				var it = obj.findTreeChildrenNodes();    //找到所有的子节点
+			    for(var i=0;i<it.count;i++){             //遍历子节点
+					if(it.next()){   
+						var cObj=it.value;   
+						if(  jQuery.inArray(cObj.data.key, requiredNode) == -1 ){   //单击的节点不在必选的节点当中
+							it.value.elt(0).fill=unselectColor;//变成灰色
+							nodeStatus[cObj.data.key] = 0;
+						};
+						       
+						var cNum= cObj.findTreeChildrenNodes().count;//console.log(cNum);
+						if(cNum != 0){
+							findChildren(cObj);
+							}; 
+					};
+				}	
+			}
+			//找到父节点
+			function findParents(obj){
+				var it = obj.findNodesInto();
+			    for(var i=0;i<it.count;i++){  
+					if(it.next()){
+						var pObj=it.value;
+						if(  jQuery.inArray(pObj.data.key, requiredNode) == -1 ){   //单击的节点不在必选的节点当中 
+							it.value.elt(0).fill=selectColor
+							nodeStatus[pObj.data.key] = 1;
+						};
+						var pNum=pObj.findNodesInto().count;//console.log(cNum);
+						if(pNum != 0){
+							findParents(pObj);
+							}; 
+					};
+					
+					}	
+//				while(it.next())(it.value.elt(0).fill=unselectColor)
+				}
+					
+		
+  var nodeDataArray = [
+		{key: "Basic_QC", loc:"0 0"},
+		{key: "Alignment", loc:"-5 100"},
+		{key: "Advanced_QC", loc:"150 100"},
+		{key: "SNP_INDEL", loc:"160 200"},
+		{key: "Assemble", loc:"0 200"},
+		{key: "AS", loc:"-100 200"},
+		{key: "DE", loc:"25 300"},
+		{key: "PPI", loc:"-70 400"},
+		{key: "GO", loc:"25 400"},
+		{key: "KEGG", loc:"120 400"}
+	  ];
+  
+  var linkDataArray = [
+		{from: "Basic_QC", to:"Alignment", "curviness":0},
+		{from: "Alignment", to:"Advanced_QC", "curviness":0},
+		{from: "Advanced_QC", to:"SNP_INDEL", "curviness":0},
+		{from: "Alignment", to:"Assemble", "curviness":0},
+		{from: "Assemble", to: "AS", "curviness":0},
+		{from: "Assemble", to: "DE", "curviness":0},
+		{from: "DE", to: "PPI", "curviness":-20},
+		{from: "DE", to: "GO", "curviness":0},
+		{from: "DE", to: "KEGG", "curviness":20}
+	  ];
+ 
+	 diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);	
+	 diagram.initialContentAlignment = go.Spot.Center; //整个图居中	
+//	 diagram.toolManager.mouseWheelBehavior = false ;  //控制放大缩小
+//	 diagram.allowDrop = false;
+//	 diagram.animationManager.isEnabled = false ;
+	
+	});
+
+
+//选定的模块
+
+var nodeLockStatus=1  //可编辑
+//解锁
+function unlock(){
+	nodeLockStatus=1;
+	$("#lockNode").attr("class","btn btn_orange round_Button");
+	$("#unlockNode").attr("class","btn btn_white round_Button");
+	$("#parasPanel").html("");  //清空现有的参数
+	};
+//点击锁定模块
+function selectedNode(){
+	$("#unlockNode").attr("class","btn btn_orange round_Button");
+	$("#lockNode").attr("class","btn btn_white round_Button");
+	if(nodeLockStatus == 1){  //判断是否是解锁状态
+		$("#parasPanel").html(""); //清空现有的参数
+	for(var key in nodeStatus){
+		if (nodeStatus[key] == 1){
+//加载json相应模块的数据到模块参数设置当中
+			
+			//添加该模块的面板
+			if(! defaultRefParams[key]){
+				continue;
+			}
+			$("#parasPanel").append('<div class="panel panel-default"  id="' + key + '"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#' + key + '" href="#' + key + '_panel_body">' + key + ' 参数设置</a></h4></div><div id="' + key + '_panel_body" class="panel-collapse collapse in"><div class="panel-body"><form class="form-horizontal" role="form"></form></div></div></div>');
+			addPara(key); //添加面板中的参数
+
+		};
+	};
+	};
+	nodeLockStatus=0; 
+
+};
+//在参数设置中 给node名字为key的模块 添加input或dropdown参数
+function addPara(key){
+				var data = defaultRefParams;
+				items = data[key];   //找到参数中键为key的node项目
+				if(typeof(items)=='undefined' || items==null){
+					return;
+				}	
+				for (var i=0; i < items.length; i++){   //遍历其中的许多参数
+					if(items[i]["type"] == "input"){   //添加一个input框
+						
+						var name = items[i]["name"]
+						var id = items[i]["id"]
+						var value = items[i]["value"]
+						var info = items[i]["illustration"]
+						//添加input的代码
+					
+						$("#" + key + " form").append('<div class="form-group"><label class="col-sm-3 control-label">' + name + '</label><div class="col-sm-7"><input type="text"  class="form-control" required id="'+ id +'" name="'+ id +'" title="' + info + '"></div><a class="col-sm-2 control-label"  style=" text-align:left;" onclick="paraDefult('+key+','+id+')">默认值</a></div>');
+						
+						//向input中添加默认值
+						$("#" + id).val(value);
+						};
+
+					if(items[i]["type"] == "dropdown"){   //添加一个下拉框
+						var name = items[i]["name"]
+						var id = items[i]["id"]
+						var value = items[i]["value"].split(";")
+						var info = items[i]["illustration"]
+						var opts = ""
+						for (var j=0;j < value.length; j++){
+							var tmpArr = value[j].split(',');
+							if (tmpArr.length <2){
+								tmpArr[1] = tmpArr[0];
+							}
+							opts += '<option value="'+tmpArr[0]+'">' + tmpArr[1] + '</option>';   //给option添加一个value
+							};
+					
+						//添加dropdown的代码
+						$("#" + key + " form").append('<div class="" ><label title="'+info+'" class="col-sm-3 control-label">' + name + '</label><div class="col-sm-7" ><select class="form-control" id="'+ id +'" name="'+ id +'"  title="">' + opts + '</select></div></div>');
+						};	
+						$("#"+id).selectpicker({
+							  liveSearch: true,
+						});
+					};
+	
+			
+	};
+//点击恢复默认值
+function paraDefult(key,id){
+	var key = key.id;
+	var id = id.id;	
+//	$.getJSON(nodeParaUrl,function(data){  //始终从json文件中读取默认值
+		var data = constDefaultRefParams;
+
+		var items = data[key];
+		for (var i=0; i < items.length; i++){ 
+			if(items[i]["id"] == id){
+				
+				$("#"+id).val(items[i]["value"]);
+				};
+				
+			};
+//	});
+
+	};
+	
+//-----------------------------------点击打开目录--------------------------------------------	
+//打开任务目录
+function opendir_path(){
+	var inputValue = $("#dir_path").val();  //当前input的值
+	$("#inputUrl").val(inputValue);
+	//console.log(inputValue)
+	$('#selectUrl').modal('show');
+    $("#selected").attr("onClick","geturl('#dir_path','dir')")
+};
+
+//打开数据目录
+function openDataUrl(){
+	if(samplesLock == 1){
+		var inputValue = $("#data_dir").val();  //当前input的值
+		$("#inputUrl").val(inputValue);
+		//console.log(inputValue)		
+		$('#selectUrl').modal('show');   //显示模态框
+		$("#selected").attr("onClick","geturl('#data_dir','dir')")
+	};
+	if(samplesLock == 0){
+		alert("样本已经锁定，请先解锁")
+	}
+};
+//选择目录时添加文件或者目录的图标
+function addIcon(State, row) {
+	var typeChr = row.type.charAt(0);
+		
+	if(typeChr == 'd'){
+		return '<span class="glyphicon glyphicon-folder-open"></span>';
+		}
+	else{
+		return '<span class="glyphicon glyphicon-file"></span> ';
+		}
+};
+
+//当模态框加载完成后给input中添加当前用户的根目录
+$(function(){
+		  dblCilck('jobUrlTable','inputUrl',samplesDataUrl);
+		  $('#selectUrl').on('shown.bs.modal', function () {    //模态框完全显示之后把根目录放入
+//	      	$("#inputUrl").val("/home/agloom");
+		  	if($("#inputUrl").val()==''){
+		  		$("#inputUrl").val('/');
+		  	}
+		  	checkUrl($("#inputUrl").val(), samplesDataUrl, 'inputUrl','jobUrlTable');
+		  });
+});
+
+
+//回车查目录是否存在
+$(function(){
+	$('#inputUrl').bind('keypress',function(event){
+		if(event.keyCode == "13")    
+		{
+			newUrl = $("#inputUrl").val();
+			checkUrl(newUrl,samplesDataUrl,"inputUrl","jobUrlTable"); //参数依次为需要检查的URL， 后台的地址， 需要更新的输入框id， 需要刷新的bootstrap table
+		}
+	});
+//点击右边箭头，检查	
+	$("#search").click(function(){  
+    	  newUrl = $("#inputUrl").val();
+		  checkUrl(newUrl,samplesDataUrl,"inputUrl","jobUrlTable");
+    });  
+//后退按钮
+	$("#back").click(function(){  
+    	   Url= $("#inputUrl").val();
+		   
+		   lastLen =Url.split('/').pop().length
+		   newUrl = Url.substring(0,Url.length - lastLen-1);
+		   checkUrl(newUrl,samplesDataUrl,"inputUrl","jobUrlTable");
+    }); 
+	
+});
+//点击选择关闭模态框，将当前模态框input中的路径取出放入表单中
+/*
+function geturl(formInputId){
+	var singleName = ""   //选择一个文件夹或者文件的名字，单选
+	$.map($('#jobUrlTable').bootstrapTable('getSelections'), function (row) {
+		singleName = row.name
+	});
+	
+	var newUrl = $("#inputUrl").val() + singleName;    //点击选择时取input中当前的路径，在加上此时选择的
+	var sequencingType = $("#seq_type").val();
+	$("#selected").removeAttr("onClick");
+	$("#selectUrl").modal('hide');
+	$(formInputId).val(newUrl);
+	if(formInputId == "#data_dir"){
+		$.ajax({
+				url:samplesDataUrl,  
+				type:'post',
+				data:{url:newUrl},
+				dataType: "json",
+				success:function(data,textStatus) {
+					if(data['status']=='ERROR'){    //请求成功但没有执行成功
+						alert(data['data']);
+					}else{
+						var data1 = data['data'];
+						objData = dataTableGet(data1,sequencingType);   //向后台传输数据，返回值组成Json
+						
+						$('#sampleTable').bootstrapTable('load',objData);  //填入table中
+					}
+				  },    
+				error : function(XMLHttpRequest) {
+					alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);   
+				 }
+			}); 
+		
+		};
+};
+*/
+//点击选择关闭模态框，将当前模态框input中的路径取出放入表单中,type 的类型 暂时有两种，dir和 file
+function geturl(formInputId,type){
+
+	var selected_num = checkedNum("jobUrlTable");
+	if(type == "dir"){
+		//只能选择文件夹，单选
+		var newUrl = ""
+		
+		if(selected_num == 1){
+			//此时选中了一项，判断是否是目录
+			
+			var singleName = ""   //选择一个文件夹或者文件的名字，单选
+			$.map($('#jobUrlTable').bootstrapTable('getSelections'), function (row) {
+				var d_f_type = "";
+				d_f_type = row.type.charAt(0);
+				if(d_f_type == "d"){
+					singleName = row.name;
+					newUrl = $("#inputUrl").val() + "/"+ singleName;    //点击选择时取input中当前的路径，在加上此时选择的
+					newUrl = newUrl.replace('//','/');
+					$("#selected").removeAttr("onClick");   //选择按钮
+					$("#selectUrl").modal('hide');          //隐藏目录选择的模态框
+					$(formInputId).val(newUrl);	
+					if(formInputId == "#data_dir"){
+
+						var sequencingType = $("#seq_type").val();
+						$.ajax({
+								url:samplesDataUrl,  
+								type:'get',
+								data:{url:newUrl},
+								dataType: "json",
+								success:function(data,textStatus) {
+									if(data['status']=='ERROR'){    //请求成功但没有执行成功
+										alert(data['data']);
+									}else{
+										var data1 = data['data'];
+
+										objData = dataTableGet(data1,sequencingType);   //向后台传输数据，返回值组成Json
+										
+										$('#sampleTable').bootstrapTable('load',objData);  //填入table中
+									}
+								},    
+								error : function(XMLHttpRequest) {
+									alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);   
+								}
+						}); 
+					
+					};
+				}else{
+					alert("对不起，您选择的必须是目录文件！");
+				
+				};
+						
+			});
+			
+		
+		}else if(selected_num == 0){
+			//没有选中任何项，将此时的url传到前面
+
+			newUrl = $("#inputUrl").val();    //点击选择时取input中当前的路径，在加上此时选择的
+			newUrl = newUrl.replace('//','/');
+			$("#selected").removeAttr("onClick");
+			$("#selectUrl").modal('hide');
+			$(formInputId).val(newUrl);
+
+			var sequencingType = $("#seq_type").val();
+			$.ajax({
+					url:samplesDataUrl,  
+					type:'post',
+					data:{url:newUrl},
+					dataType: "json",
+					success:function(data,textStatus) {
+						if(data['status']=='ERROR'){    //请求成功但没有执行成功
+							alert(data['data']);
+						}else{
+							var data1 = data['data'];
+							objData = dataTableGet(data1,sequencingType);   //向后台传输数据，返回值组成Json
+							
+							$('#sampleTable').bootstrapTable('load',objData);  //填入table中
+						}
+					},    
+					error : function(XMLHttpRequest) {
+						alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);   
+					}
+			}); 
+		}
+		else{
+			//选择了多项，直接报错
+			alert("对不起，只能选择一个目录文件！");
+		};
+		
+	}
+	else if(type == "file"){
+		//只能选择文件，多选
+		var newUrl = ""
+		var files = [];
+		var have_dir = 0
+		$.map($('#jobUrlTable').bootstrapTable('getSelections'), function (row) {
+			var d_f_type = "";
+			d_f_type = row.type.charAt(0);
+			if(d_f_type == "d"){
+				have_dir = 1;
+			}else{
+				files.push(row.name);
+			}
+			
+		});
+		if(have_dir == 1){
+			alert("对不起，不能选择文件夹，只能选择文件！");
+		}else{
+			if(files.length == 0){
+				alert("请选择文件！")
+			}else{
+				//获得当前的目录，取消绑定，关闭模态框，在外面填写
+				newUrl = $("#inputUrl").val();
+				newUrl = newUrl.replace('//','/');
+				$("#selected").removeAttr("onClick");
+				$("#selectUrl").modal('hide');
+				$(formInputId).val(newUrl);
+				//清空样本
+				$(formInputId).nextAll().remove();
+				for(var i=0; i< files.length; i++){
+					$(formInputId).after('<span class="label label-default span_sample">'+files[i]+'<a href="javascript:void(0);" onclick="remover_this_sample(this)" class="glyphicon glyphicon-remove"></a></span>');
+				};
+			};
+		};
+
+	}
+	else{
+		return false;
+	}
+
+};
+//删除选中的行
+    $(function () {
+        $('#removeDataTable').click(function () {
+			if(samplesLock == 1){
+				var ids = $.map($('#sampleTable').bootstrapTable('getSelections'), function (row) {
+					return row.fq;
+				});
+				$('#sampleTable').bootstrapTable('remove', {
+					field: 'fq',
+					values: ids
+				});
+			};
+			if(samplesLock == 0){
+				alert("样本已经锁定，请先解锁")
+				}
+        });
+    });
+
+</script>
+	<!-- ##################　样本分组、比较、维恩图　################## -->
+	<script>
+
+//锁定样本的状态
+var samplesLock=1 //没有锁定
+var samples = []
+//点击锁定样本，获得样本名称
+bindGroupClick()
+$("#getSamples").click(function(){
+	if(samplesLock == 1){
+		var data = $("#sampleTable").bootstrapTable('getData');
+		if(data.length == 0){
+			alert("还没有选择样本")
+			}
+		else{
+			var array = new Array()    //用来去重
+			for(var i=0;i<data.length;i++){
+				var name = data[i]["sample"]
+				if($.inArray(name, array) == -1){
+					array.push(name)
+					add='<li class="list-group-item ui-widget-content ui-corner-tr">'+name+'</li>'
+					$(add).appendTo('#sampleNames')
+				};
+			samples = array;
+				
+			};
+			dragInit();
+			samplesLock = 0;
+			$("#unlockSamples").attr("class","btn btn_orange round_Button");
+			$("#getSamples").attr("class","btn btn_white round_Button");
+		};
+	};
+}); 
+//解锁样本
+$("#unlockSamples").click(function(){
+	samplesLock = 1;
+	$("#unlockSamples").attr("class","btn btn_white round_Button");
+	$("#getSamples").attr("class","btn btn_orange round_Button");
+//	$("#sampleTable").bootstrapTable('removeAll');
+	$('#sampleNames').html("");
+	$('#groupList').html("");
+	$('#compareList').html("");
+	$('#vennList').html("");
+	});
+
+
+
+//var curCont=null;
+function dragInit() {
+	var $sampleNames = $( "#sampleNames" ),
+    		$sampleGroup = $( ".sampleGroup" ),
+    		$compareGroup = $(".goupCompare")
+    		$venn = $(".venn");
+	//样本拖动
+	$( "li", $sampleNames ).draggable({
+	      cancel: "a.ui-icon", // 点击一个图标不会启动拖拽
+	      revert: "invalid", // 当未被放置时，条目会还原回它的初始位置
+	      containment: "document",
+	      helper: "clone",
+	      cursor: "move"
+	    });
+	//分组拖动
+	$( ".ui-widget-header", $sampleGroup ).draggable({
+	      cancel: "a.ui-icon", 
+	      revert: "invalid", 
+	      containment: "document",
+	      helper: "clone",
+	      cursor: "move"
+	    });
+	//比较组拖动
+	$( ".ui-widget-header", $compareGroup ).draggable({
+	      cancel: "a.ui-icon", 
+	      revert: "invalid", 
+	      containment: "document",
+	      helper: "clone",
+	      cursor: "move"
+	    });
+	//维恩图接收比较组名
+	$venn.droppable({
+	      accept: ".goupCompare  span",
+	      activeClass: "ui-state-highlight",
+	      drop: function( event, ui ) {
+	        dropItem( ui.draggable ,$(this),'red', 5);
+	      }
+	    });
+	//比较组接收组名
+	$compareGroup.droppable({
+	      accept: ".sampleGroup  span",
+	      activeClass: "ui-state-highlight",
+	      drop: function( event, ui ) {
+	        dropItem( ui.draggable ,$(this),'green',2);
+	      }
+	    });
+	//分组接收样本
+	$sampleGroup.droppable({
+	      accept: "#sampleNames > li, .sampleGroup li",
+	      activeClass: "ui-state-highlight",
+	      drop: function( event, ui ) {
+	        deleteItem( ui.draggable ,$(this));
+	      }
+	    });
+	 
+	    // 可以接收从样品组中拖回的样品
+	    $sampleNames.droppable({
+	      accept: ".sampleGroup li",
+	      activeClass: "custom-state-active",
+	      drop: function( event, ui ) {
+	        recycleItem( ui.draggable );
+	      }
+	    });
+	    function deleteItem( $item ,$container) {
+	        $item.fadeOut(function() {
+	          var $list = $( "ul", $container ).length ?
+	            $( "ul", $container ) :
+	            $( "<ul class='sampleNames ui-helper-reset'/>" ).appendTo($container );
+
+	          $item.find( "a.ui-icon-sampleGroup" ).remove();
+	          $item.appendTo( $list ).fadeIn(function() {
+	            $item
+	              .animate({ width: "90px" })
+	              .find( "img" )
+	                .animate({ height: "36px" });
+	          });
+	        });
+	      }
+	    curcontainer= null;
+	    function dropItem($item ,$container,$color,maxNum){
+	    	var itemName = $item.text();
+	    	//遍历container查看已包含哪些元素
+	    	var containItems= new Array();
+	    	var items = $container.find('li');
+	    	if(items.length>=maxNum){
+	    		alert("超出了最大允许数目"+maxNum);
+	    		return false;
+	    	}
+	    	for (var i=0; i<items.length; i++){
+	    		if($(items[i]).text()==itemName){
+	    			alert("有重复的条目"+itemName+"！");
+	    			return false;
+	    		}
+	    	}
+	    	
+	    	var $list = $( "ul", $container ).length ?
+		            $( "ul", $container ) :
+		            $( "<ul class='goupCompare ui-helper-reset'/>" ).appendTo($container);
+		    $('<li class="list-group-item ui-widget-content ui-corner-tr ui-draggable" style="display: block; width: 90px;color:'+$color+'">'
+		    	+itemName+'</li>').appendTo($list).fadeIn(function() {
+		            $item
+		              .animate({ width: "90px" })
+		              .find( "img" )
+		                .animate({ height: "36px" });
+		          });;
+	    }
+	    
+	    function recycleItem( $item ) {
+	      $item.fadeOut(function() {
+	        $item
+	          .find( "a.ui-icon-refresh" )
+	            .remove()
+	          .end()
+	          .css( "width", "96px")
+	          .find( "img" )
+	            .css( "height", "72px" )
+	          .end()
+	          .appendTo( $sampleNames )
+	          .fadeIn();
+	      });
+	    }
+	    
+	    $("#groupList .glyphicon-remove").each(function(){
+			$(this).click(function(){
+				$(this).parent('div').remove();
+				var value=$(this).siblings("span").text();
+				var index=$.inArray(value,allgroups);
+				allgroups.splice(index,1);
+			})
+		});
+		$("#compareList .glyphicon-remove").each(function(){
+			$(this).click(function(){
+				$(this).parent('div').remove();
+				var value=$(this).siblings("span").text();
+				var index=$.inArray(value,allCompares);
+				allCompares.splice(index,1);
+			})
+		});
+		$("#vennList .glyphicon-remove").each(function(){
+			$(this).click(function(){
+				$(this).parent('div').remove();
+			})
+		});
+};
+
+var allgroups = new Array();	//all groups
+function addGroup(){
+	var gname= $("#groupName").val();
+	if(gname=='' ||gname==null){
+		return false;
+	}
+	if(-1!=allgroups.indexOf(gname,0)){
+		alert('分组名'+gname+"已存在！");
+		return false;
+	}
+	
+	if($('#sampleNames li').length <= allgroups.length){
+		alert("分组数不能超过样本数！");
+		return false;
+	}
+	$("#groupName").val('');
+	var html='<div name="sampleGroup" class="ui-widget-content ui-state-default sampleGroup" style=border-radius:3px;><span class="ui-widget-header">'+gname+'</span><button class="ui-widget-header glyphicon glyphicon-remove pull-right closeBorder" ></span></div>';
+	$(html).appendTo('#groupList');
+	allgroups.push(gname);
+	dragInit();
+}
+
+//增加比较组
+var allCompares = new Array(); 
+function addCompare(){
+	if(allgroups.length <2){
+		alert('此为组间比较，至少需要两个样本组，请先填写样本组信息！');
+		return false;
+	}
+	var cname= $('#compareName').val().replace(/(^\s*)|(\s*$)/g, "");
+	if(cname=='' ||cname==null){
+		return false;
+	}
+	if(-1!=allCompares.indexOf(cname,0)){
+		alert('比较组'+cname+"已存在！");
+		return false;
+	}
+	$('#compareName').val('');
+	var html='<div name="goupCompare" class="ui-widget-content ui-state-default goupCompare" style=border-radius:3px;><span class="ui-widget-header" style="color:green" >'+cname+'</span><span class="ui-widget-header glyphicon glyphicon-remove pull-right closeBorder" ></span></div>';
+	$(html).appendTo('#compareList');
+	allCompares.push(cname);
+	dragInit();
+}
+function addVenn(){
+	if(allCompares.length ==0){
+		alert("维恩图至少需要两个比较组，请先填写比较组信息！");
+		return false;
+	}
+	var html='<div name="venn" class="ui-widget-content ui-state-default venn" style=border-radius:3px;><span class="ui-widget-header glyphicon glyphicon-remove closeBorder" style="left: 90%;"></span></div>'
+	$(html).appendTo('#vennList');
+	dragInit();
+}
+
+function bindGroupClick(){
+	dragInit();
+	$("#groupName").keydown(function(k){
+		if(k.keyCode==13 ){
+			addGroup();
+		}
+	});
+	$("#addGroup").click(function(){
+		addGroup();
+	});
+	$("#compareName").keydown(function(k){
+		if(k.keyCode==13 ){
+			addCompare();
+		}
+	});
+	$("#addCompare").click(function(){
+		addCompare();
+	});
+	$("#addVenn").click(function(){
+		addVenn();
+	});
+
+
+//保存草稿
+$("#saveDraft").click(function(){
+		var taskPara = $("#creatTask").serializeArray();
+	//	taskPara = JSON.stringify(taskPara);
+//选中的模块参数
+		var selectPara = $("#parasPanel select[name]").serializeArray();  //选择框
+		var inputPara = $("#parasPanel input[name]").serializeArray();   //下拉框
+		var nodePara= $.merge(selectPara,inputPara); //合并
+	//	nodePara = JSON.stringify(nodePara);
+//没选中的模块名字
+		var unselectNode="";
+		for (var i in nodeStatus){
+		  if(nodeStatus[i] == 0){
+			if(unselectNode==""){
+				unselectNode += i
+				}
+			else{
+				unselectNode += ","+i
+				}
+		  };
+		};
+		
+		var samplesStr=""
+		for(var j=0;j<samples.length;j++ ){  
+			if(samplesStr == ""){
+				samplesStr += samples[j];
+				}
+			else{
+				samplesStr += ","+samples[j];
+				}
+		};
+		
+		var draft={"taskPara":taskPara,
+				"nodePara":nodePara,
+				"unselectNode":unselectNode,
+				"samples":samplesStr
+				}; 
+		draft = JSON.stringify(draft);
+//console.log(draft)
+		 $.ajax({
+				    url:"__MODULE__/Task/addUpdateTask/submitType/draft",  
+				    type:'post',
+				    data:{parameter:draft},
+				    dataType: "json",
+				    success:function(data) {
+				    	if(data['status']=='ERROR'){    //请求成功但没有执行成功
+				    		alert(data['data']);
+				    	}else{
+							alert("草稿保存成功！");	
+				    	}
+				     },    
+				     error : function(XMLHttpRequest) {
+				       alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);    
+				     }
+				});  
+				
+});
+//检查参数填写情况
+function checkInput(){
+	
+	var checkTask=$("#creatTask input[name]");
+	var checkNode=$("#parasPanel input[name]");
+
+	var count=0; //计数
+	for(var i=0;i<checkTask.length;i++){
+	  if(checkTask[i].value==""){
+		$($("#creatTask input[name]")[i]).attr("style","border-color:red;")
+		count += 1;
+	  }
+	  else{
+		$($("#creatTask input[name]")[i]).attr("style","border-color:#ccc;") 
+		  };
+	};
+	
+	for(var i=0;i<checkNode.length;i++){
+	  if(checkNode[i].value==""){
+		$($("#parasPanel input[name]")[i]).attr("style","border-color:red;")
+		count += 1;
+	  }
+	  else{
+		$($("#parasPanel input[name]")[i]).attr("style","border-color:#ccc;")  
+		  };
+	}; 
+
+	if(count != 0){
+		alert("还有未填写的参数！");
+		};
+	if(samplesLock == 1){
+		alert("未锁定样本！");
+		count += 1;
+		}
+	/*
+	if($("#parasPanel").children().length == 0){
+		alert("缺少模块和模块参数！");
+		count += 1;
+		}
+	*/
+	return count
+	};
+
+//任务运行，提交参数
+$("#taskRun").click(function(){
+	var nullNum = checkInput()
+	if(nullNum==0){
+		var groupCompareVenn={};	//发向服务器的json数据
+//任务参数有关的信息
+		
+		var taskPara = $("#creatTask").serializeArray();
+	//	taskPara = decodeURIComponent(taskPara,true);
+		//taskPara = JSON.stringify(taskPara);
+		
+//选中的模块参数
+		var selectPara = $("#parasPanel select[name]").serializeArray();  //选择框
+		
+		var inputPara = $("#parasPanel input[name]").serializeArray();   //下拉框
+		
+		var nodePara= $.merge(selectPara,inputPara); //合并
+	//	nodePara = JSON.stringify(nodePara);
+
+//没选中的模块名字
+		var unselectNode=""
+		for (var i in nodeStatus){
+		  if(nodeStatus[i] == 0){
+			if(unselectNode==""){
+				unselectNode += i
+				}
+			else{
+				unselectNode += ","+i
+				}
+		  };
+		}
+
+		//检查数据
+		//检查样本是否已全部分组，非强制
+		if($("#sampleNames").find('li').length>0){
+			if(!confirm("发现有未分组的样品，确定不分组?")){
+				return false;
+			}
+		}
+		//检查是否有分组，每个分组下的样品名
+		var groups =$('#groupList').find('div');
+		if(groups.length>0){
+			var groupSamples= {};
+			for(var i=0; i<groups.length; i++){
+				var sampleItems = $($(groups[i]).find('ul')[0]).find('li');
+				if(sampleItems.length==0){
+					continue;
+				}
+				//组名
+				var curGroup =$($(groups[i]).find('span')).text().replace(/(^\s*)|(\s*$)/g, "");  //空格开头或者结尾
+				var curGroupSamples = new Array();
+				for(var j=0; j < sampleItems.length ;j++){
+					curGroupSamples.push($(sampleItems[j]).text().replace(/(^\s*)|(\s*$)/g, ""));
+				}
+				groupSamples[curGroup]= curGroupSamples;
+			}
+			groupCompareVenn['groupSamples']= groupSamples;
+		}
+		
+		//检查比较组
+		var compares = $('#compareList').find('div');
+		if(compares.length>0){
+			var compareGroups = {};
+			for(var i=0; i<compares.length; i++){
+				var groupItems = $($(compares[i]).find('ul')[0]).find('li');
+				if(groupItems.length==0){
+					continue;
+				}
+				//比较组名
+				var curCompare = $($(compares[i]).find('span')).text().replace(/(^\s*)|(\s*$)/g, "");
+				var curCompareGroups = new Array();
+				for(var j=0; j<groupItems.length; j++){
+					curCompareGroups.push($(groupItems[j]).text().replace(/(^\s*)|(\s*$)/g, ""));
+				}
+				compareGroups[curCompare] = curCompareGroups;
+			}
+			groupCompareVenn['compareGroups']= compareGroups;
+		}
+		//检查venn图
+		var venns = $('#vennList').find('div');
+		if(venns.length>0){
+			var vennCompares= new Array();
+			for(var i=0; i<venns.length; i++){
+				var compareItems = $($(venns[i]).find('ul')[0]).find('li');
+				if(compareItems.length==0){
+					continue;
+				}
+				//维恩图没有命名,仅存在数组中
+				var curVennCompares = new Array();
+				for(var j=0; j<compareItems.length; j++){
+					curVennCompares.push($(compareItems[j]).text().replace(/(^\s*)|(\s*$)/g, ""));
+				}
+				vennCompares.push(curVennCompares);
+			}
+			groupCompareVenn['vennCompares'] = vennCompares;
+		}
+
+
+		//groupCompareVenn = JSON.stringify(groupCompareVenn);
+//		$('#groupCompareVenn').val(JSON.stringify(groupCompareVenn));
+
+//全部的参数	
+		var samplesStr=""
+		for(var j=0;j<samples.length;j++ ){  
+			if(samplesStr == ""){
+				samplesStr += samples[j];
+				}
+			else{
+				samplesStr += ","+samples[j];
+				}
+		};
+
+		var resultPara={"taskPara":taskPara,
+						"nodePara":nodePara,
+						"unselectNode":unselectNode,
+						"samples":samplesStr,
+						"groupCompareVenn":groupCompareVenn
+						};   
+		resultPara = JSON.stringify(resultPara);
+				//console.log(resultPara)
+//向后台传送数据
+		 $.ajax({
+				    url:"__MODULE__/Task/addUpdateTask/submitType/job",  
+				    type:'post',
+				    data:{parameter:resultPara},
+				    dataType: "json",
+				    success:function(data) {
+				    	if(data['status']=='ERROR'){    //请求成功但没有执行成功
+				    		alert(data['data']);
+				    	}else{
+				    		$('#id').val(data['data']);
+							alert("执行成功！");
+							window.location.href= "__MODULE__/Task/getTask/id/"+data['data'];
+				    	}
+				     },    
+				     error : function(XMLHttpRequest) {
+				       alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText); 
+				     }
+				});  
+		}; //检查参数
+	  });
+	
+}
+
+</script>
+
+
+</body>
+
+</html>

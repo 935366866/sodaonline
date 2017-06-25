@@ -1,0 +1,135 @@
+{
+    "cwd": {
+        "isowner": false,
+        "ts": 1453298938,
+        "mime": "directory",
+        "read": 1,
+        "write": 0,
+        "size": 0,
+        "hash": "l1_RG93bmxvYWRzL0V4YW1wbGU",
+        "name": "Example",
+        "phash": "l1_RG93bmxvYWRz",
+        "volumeid": "l1_",
+        "locked": 1,
+        "url": "#elf_l1_RG93bmxvYWRzL0V4YW1wbGU"
+    },
+    "options": {
+        "path": "Demo/Downloads/Example",
+        "url": "//hypweb.net/elFinder-nightly/demo/Demo/",
+        "tmbUrl": "//hypweb.net/elFinder-nightly/demo/Demo/.tmb/",
+        "disabled": [
+            "archive",
+            "extract",
+            "upload",
+            "paste",
+            "rm",
+            "edit",
+            "mkfile",
+            "mkdir",
+            "cut",
+            "rename",
+            "duplicate",
+            "getfile",
+            "resize",
+            "chmod"
+        ],
+        "separator": "/",
+        "copyOverwrite": 1,
+        "uploadOverwrite": 1,
+        "uploadMaxSize": 9223372036854776000,
+        "uploadMaxConn": 3,
+        "uploadMime": {
+            "firstOrder": "deny",
+            "allow": [],
+            "deny": []
+        },
+        "dispInlineRegex": "^(?:(?:image|text)|application/x-shockwave-flash$)",
+        "jpgQuality": 100,
+        "archivers": {
+            "create": [
+                "application/x-tar",
+                "application/x-gzip",
+                "application/x-bzip2",
+                "application/x-xz",
+                "application/zip",
+                "application/x-7z-compressed"
+            ],
+            "extract": [
+                "application/x-tar",
+                "application/x-gzip",
+                "application/x-bzip2",
+                "application/x-xz",
+                "application/zip",
+                "application/x-7z-compressed"
+            ],
+            "createext": {
+                "application/x-tar": "tar",
+                "application/x-gzip": "tgz",
+                "application/x-bzip2": "tbz",
+                "application/x-xz": "xz",
+                "application/zip": "zip",
+                "application/x-7z-compressed": "7z"
+            }
+        },
+        "uiCmdMap": [],
+        "syncChkAsTs": 1,
+        "syncMinMs": 30000,
+        "i18nFolderName": 1,
+        "tmbCrop": 1
+    },
+    "files": [
+        {
+            "isowner": false,
+            "mime": "application/zip",
+            "ts": 1453298890,
+            "read": 1,
+            "write": 0,
+            "locked": 1,
+            "size": "5161",
+            "hash": "l1_RG93bmxvYWRzL0V4YW1wbGUvQmFzaWNBdXRoRXhhbXBsZUFkZG9uLnppcA",
+            "name": "BasicAuthExampleAddon.zip",
+            "phash": "l1_RG93bmxvYWRzL0V4YW1wbGU"
+        }
+    ],
+    "debug": {
+        "connector": "php",
+        "phpver": "5.5.38",
+        "time": 0.063136100769043,
+        "memory": "2404Kb / 1031Kb / 256M",
+        "upload": "",
+        "volumes": [
+            {
+                "id": "l1_",
+                "name": "localfilesystem",
+                "mimeDetect": "finfo",
+                "imgLib": "imagick"
+            },
+            {
+                "id": "g1_",
+                "name": "group",
+                "mimeDetect": "finfo",
+                "imgLib": "imagick"
+            },
+            {
+                "id": "l2_",
+                "name": "localfilesystem",
+                "mimeDetect": "finfo",
+                "imgLib": "imagick"
+            },
+            {
+                "id": "l3_",
+                "name": "localfilesystem",
+                "mimeDetect": "finfo",
+                "imgLib": "imagick"
+            },
+            {
+                "id": "g2_",
+                "name": "group",
+                "mimeDetect": "finfo",
+                "imgLib": "imagick"
+            }
+        ],
+        "mountErrors": [],
+        "phpErrors": []
+    }
+}

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>查看任务</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="content-type" content="text/html" ; charset="utf-8">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--流程图 gojs-->
+	<script src="js/go.js"></script>
+	<!--表格js-->
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<script src="js/bootstrap-table.js"></script>
+	<!-- form中选择 -->
+	<script src="js/bootstrap-select.js"></script>
+	<link href="css/bootstrap-select.css" rel="stylesheet">
+	<!-- 拖拽模块 -->
+	<script src="js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="css/jquery-ui-1.9.2.custom.css" />
+	<!--遮罩-->
+	<script src="js/jquery.blockUI.js" type="text/javascript"></script>
+	<!-- 引入通用的文件 -->
+	<script src="js/common.js"></script>
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/new_common.css">
+
+</head>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="10">
+	<include file='Application/Home/View/navigation.html' />
+	<input style="display:none;" id="taskId" />
+	<!--该任务的ID-->
+	
+	<div class="bigbox">
+
+		<div class="panel panel-default" style="padding-left: 0px; padding-right:0px;">
+			<!--heading-->
+			<div class="panel-heading" style="height:50px;">
+				<div style="float:left;">
+				<p class="navbar-left" style="font-size:20px;margin-top:0;margin-bottom:0;">任务: <span id="TaskName">Mouse_transcript</span></p>
+				</div>
+				<div style="margin-right:30px;float:right;">
+					<button id="taskStatus" class="btn btn-success" style="margin-left:20px;">
+						任务运行中
+					</button>
+					<a href="#" id="refresh">
+						<span class="glyphicon glyphicon-refresh" style="font-size:20px;margin-left: 10px; padding-left:10px; top: 5px;"></span>
+					</a>
+					<img onclick="stopTask('{$id}');" src="image/stop.png" style="height:26px;width:26px;margin-left: 10px;">
+					<a href="#" id="delete">
+						<span class="glyphicon glyphicon-trash" style="font-size:20px; top: 5px;padding-left:10px;"></span>
+					</a>
+					<button id="taskRerun" class="btn btn-primary" style="margin-left:20px;">
+						rerun
+					</button>					
+				</div>
+			</div>
+
+			<!--左边导航-->
+			<nav id="myScrollspy">
+				<ul class="nav nav-pills nav-stacked" style="background-color:#F5F5F5;border-radius: 4px;">
+					<li class="active"><a href="#taskSummary">概要</a></li>
+					<li><a href="#taskConfig">配置</a></li>
+					<li><a href="#taskFlowInfo">流程</a></li>
+					<li><a href="#modStatus">状态</a></li>
+					<li><a href="#taskReport">报告</a></li>
+				</ul>
+			</nav>
+			<!--panel  body-->
+			<div class="panel-body" style="padding-left:90px;">
+
+				<!--第一部分 任务概要-->
+				<div id="taskSummary" class="col-sm-12">
+					<h4><strong>任务概要：</strong></h4>
+					<div class="col-sm-10 col-sm-push-1">
+						<p class="task_font">任务名称： <span id="task_name"></span></p>
+						<p class="task_font">项目：
+							<a id="project_name"></a>
+						</p>
+						<p class="task_font">创建人： <span id="create_man"></span></p>
+						<p class="task_font">创建时间： <span id="create_time"></span></p>
+						<p class="task_font">流程/APP：
+							<a id="task_type"></a>
+						</p>
+
+						<!--  <p class="task_font">任务说明：</p> -->
+						<p class="task_font indent" id="task_remark"></p>
+					</div>
+				</div>
+				<!--第二部分 任务配置-->
+				<div id="taskConfig" class="col-sm-12">
+					<h4><strong>任务配置：</strong></h4>
+					<div class="col-sm-10 col-sm-push-1">
+						<p class="task_font">任务目录：
+							<a id="dir_path" onclick="openSftp('{$username}','{$cluster_ip}','{$cluster_port}','dir_path')"></a>
+						</p>
+						<p class="task_font">物种： <span id="species"></span></p>
+						<p class="task_font">参考基因组文件： <span id="fa"></span></p>
+						<p class="task_font">注释文件： <span id="gtf"></span></p>
+						<p class="task_font">测序类型：<span id="seq_type"></span></p>
+						<p class="task_font">链特异性： <span id="is_sslib"></span></p>
+						<p class="task_font">样本信息：</p>
+						<!-- 展示sample的表格 -->
+						<div class="col-sm-12" style="padding-left:0px; padding-right:0px; padding-bottom: 20px;">
+							<table data-toggle="table" data-show-footer="false" data-height="250" data-click-to-select="true" id="sampleTable">
+								<thead>
+									<tr>
+										<th data-field="sample" data-align="left" data-sortable="true">样本名称</th>
+										<th data-field="fq" data-align="center" data-sortable="true">FastQ文件 </th>
+										<th data-field="adap" data-align="center" data-sortable="true">Adaptor文件</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+
+						<p class="task_font">样本分组比较信息：</p>
+						<!--拖拽分组的还原-->
+						<div class="panel panel-default">
+							<div class="panel-heading" style="height: 40px">
+								<p class="col-sm-3" style="text-align: center;"><strong>样本名称</strong></p>
+								<p class="col-sm-3" style="text-align: center;"><strong>Group</strong></p>
+								<p class="col-sm-3" style="text-align: center;"><strong>Compare</strong></p>
+								<p class="col-sm-3" style="text-align: center;"><strong>Venn</strong></p>
+							</div>
+							<div class="panel-body">
+								<!--样本名称-->
+								<div id="samplesSelected" class="col-sm-3"></div>
+								<!--Group-->
+								<div id="Group" class="col-sm-3"></div>
+								<!--Compare-->
+								<div id="Compare" class="col-sm-3"></div>
+								<!--Venn-->
+								<div id="Venn" class="col-sm-3"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--第三部分 流程信息  流程图展示 -->
+				<div id="taskFlowInfo" class="col-sm-12">
+					<h4><strong>流程信息：</strong></h4>
+					<div class="col-sm-10 col-sm-push-1">
+						<p class="task_font">分析模块：</p>
+						<div class="col-sm-12" style=" padding:0px; padding-top:30px;">
+							<!--流程图的div-->
+							<div id="myDiagramDiv" class="col-sm-12" style="width:800px; height:470px; background-color:#FFF; position:relative;">
+							</div>
+							<!--用来遮盖水印-->
+							<!-- 	<div style="width:210px; height:100px; background-color:#FFF; position:absolute; z-index:1000; top:0px;left:0px"></div> -->
+						</div>
+
+						<p class="task_font">模块参数：</p>
+						<!--模块参数展示-->
+						<div class="col-sm-12" style=" padding:0px;">
+							<!--点击展开参数-->
+							<div class="panel-group col-sm-12" id="parasPanel">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--第四部分 运行状态-->
+				<div id="modStatus" class="col-sm-12">
+					<h4><strong>运行状态：</strong></h4>
+					<div class="col-sm-10 col-sm-push-1">
+						<div class="col-sm-12" style="padding-left:0px; padding-right:0px; padding-bottom: 20px;">
+							<!----------------------------------------------------------------------------------------------------->
+
+							<table data-toggle="table" data-height="200" data-show-footer="false" data-sort-name="id" id="modStatusTable">
+								<thead>
+									<tr>
+										<th data-field="flow_mod" data-sortable="true">模块名称</th>
+										<th data-field="task_name" data-sortable="true">程序名称</th>
+										<th data-field="status" data-sortable="true" data-align="center" data-formatter="taskState">状态</th>
+										<th data-field="submit_time" data-sortable="true" data-align="center">任务提交时间</th>
+										<th data-field="done_time" data-sortable="true" data-align="center">任务结束时间</th>
+										<th data-field="consume_time" data-sortable="true" data-align="center">时长</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!--第五部分 分析报告的下载-->
+				<div id="taskReport" class="col-sm-12">
+					<h4><strong>分析报告：</strong></h4>
+					<div class="col-sm-10 col-sm-push-1">
+						<div class="col-sm-2"><button id="showReport" class="btn btn-primary ">查看</button></div>
+						<div class="col-sm-2"><button id="downloadReport" class="btn btn-danger ">下载</button></div>
+					</div>
+				</div>
+			</div>
+			<!------------------>
+		</div>
+
+	</div>
+
+
+	<!-------------------------------拖拽模块-------------------------------------->
+	<script>
+//页面加载完成之后，填充数据
+$(document).ready(function(e) {
+    getTaskData("__MODULE__/Task/getTaskDetail/id/{$id}");
+    
+    
+//点击刷新的时候
+	$("#refresh").click(function(){
+//		getTaskData("json/taskDetail.json");
+		window.location.reload();
+    });
+//删除
+	$("#delete").click(function(){
+		
+		var r=confirm("您确定要删除该任务吗？");
+		if (r==true)
+		  {
+			 var id = $("#taskId").val();
+			 $.ajax({
+				    url:url,  
+				    type:'post',
+				    data:{id:id},
+				    dataType: "json",
+				    success:function(data) {
+				    	if(data['status']=='ERROR'){    //请求成功但没有执行成功
+				    		alert(data['data']);
+				    	}else{
+							alert("删除成功！");	
+				    	}
+				     },    
+				     error : function(XMLHttpRequest) {
+				       alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);    
+				     }
+				});  
+		  }
+		
+    });
+//rerun
+	$("#taskRerun").click(function(){
+		var r=confirm("您确定要rerun该任务吗？");
+		if (r==true)
+		  {
+			 var id = $("#taskId").val();
+			 $.ajax({
+				    url:"",    //甄伟波，rerun的地址  
+				    type:'post',
+				    data:{id:id},
+				    dataType: "json",
+				    success:function(data) {
+				    	if(data['status']=='ERROR'){    //请求成功但没有执行成功
+				    		alert(data['data']);
+				    	}else{
+							alert("rerun成功！");	
+				    	}
+				     },    
+				     error : function(XMLHttpRequest) {
+				       alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);    
+				     }
+				});  
+		  };
+	});
+	
+});
+function openSftp(user,ip,port, eid){
+	window.open('sftp://'+user+'@'+ip+':'+port+$("#"+eid).text());
+}
+	
+function stopTask(taskid){
+	if (typeof(taskStatus)=='undefined' || taskStatus == 'finished' || taskStatus =='failed' ){
+		return false;
+	}
+	
+	if(!confirm("您确定要终止任务吗？")){
+		return false;
+	}
+	
+	$.ajax({
+		url:"__MODULE__/Task/stopTasks",
+		type:'post',
+		data:{id:taskid},
+		dataType: "json",
+		success:function(data){
+			if(data['status']=='SUCCESS'){    
+	    		$("#taskStatus").removeClass('btn-primary').addClass("btn-warning").text("任务已终止");
+	    	}
+			alert(data['data']);
+			window.location.reload();
+		},
+		error : function(XMLHttpRequest) {
+	       	alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);   
+	    }
+	});
+}
+	
+function getTaskData(url){
+	 $.ajax({
+			url:url,  
+			type:'post',
+			dataType: "json",
+			success:function(data) {
+				if(data['status']=='ERROR'){    //请求成功但没有执行成功
+					alert(data['data']);
+				}else{
+					
+					for(var key in data){
+						if(key == "samples"){   
+							//根据样本名填入table
+							var dataJson = [];   //用来存放填写样本表格的数据
+							var arr = data[key].split(",");
+
+							if(data["taskSeqType"] == "PE"){    //判断是双端   （注意：必须是PE）
+								for(var i=0;i<arr.length;i++){
+									var one = {};
+									one["sample"]=arr[i];
+									one["fq"]= arr[i]+"_1.fq.gz"
+									one["adap"] = arr[i]+"_1.adaptor.list"
+									
+									var two = {}
+									two["sample"]=arr[i];
+									two["fq"]= arr[i]+"_2.fq.gz"
+									two["adap"] = arr[i]+"_2.adaptor.list"
+								//	console.log(two)
+									dataJson.push(one);
+									dataJson.push(two);
+								};
+								
+							}
+							else{								//不是双端
+								for(var i=0;i<arr.length;i++){
+									var one = {};
+									one["sample"]=arr[i];
+									one["fq"]= arr[i]+".fq.gz"
+									one["adap"] = arr[i]+".adaptor.list"
+									dataJson.push(one);
+								};	
+							};
+
+							$('#sampleTable').bootstrapTable('load',dataJson);   //载入数据
+							
+							//样本分组比较，填入样本
+							var arr = data[key].split(",");
+							for(var i=0;i<arr.length;i++){
+								
+								$("#samplesSelected").append('<div class="samplesDIV"><span style="color:#FFF;">'+arr[i]+'</span></div>')
+								};
+							}
+						else if(key == "group_samples" || key == "compare_groups" || key=="venn_compares"){  //样本分组比较的其他信息填写
+							if(data[key] == null || data[key] == 'null' ||data[key] == ''){
+								data[key]=[];
+							}else if(typeof(data[key])!='object'){
+								data[key]= JSON.parse(data[key]);
+							}
+							
+							if(key == "group_samples"){
+								var group_samples = data["group_samples"];  //填入group信息
+								if(group_samples == null || group_samples == 'null' ||data[key] == ''){
+									data[key]=[];
+								}
+								for(var group in group_samples){
+									var str='';
+									for(var each=0;each<group_samples[group].length;each++){
+										 str += '<div class="samplesDIV"><span style="color:#FFF;">'+group_samples[group][each]+'</span></div>';
+										};
+									$("#Group").append('<div class="groupDIV"><span style="color:#FFF;">'+group+'</span>'+str+'</div>')
+									};
+							}
+							
+							if(key == "compare_groups"){
+								var compare_groups = data["compare_groups"];  //填入compare信息
+								for(var com in compare_groups){
+									var str='';
+									for(var each=0;each<compare_groups[com].length;each++){
+										 str += '<div class="samplesDIV"><span style="color:#FFF;">'+compare_groups[com][each]+'</span></div>';
+										};
+									$("#Compare").append('<div class="groupDIV"><span style="color:#FFF;">'+com+'</span>'+str+'</div>');
+									};
+							}
+							
+							if(key == "venn_compares"){
+								var venn_compares = data["venn_compares"];   //填入venn信息
+								for(var i=0;i<venn_compares.length;i++){
+									var str='';
+								//	console.log(venn_compares[i])
+									for(var j=0;j<venn_compares[i].length;j++){
+										str += '<div class="samplesDIV"><span style="color:#FFF;">'+venn_compares[i][j]+'</span></div>';
+										};
+									$("#Venn").append('<div class="groupDIV"><span style="color:#FFF;"></span>'+str+'</div>')
+									};
+								}
+							}
+							
+						else if(key == "unselectNode"){
+							var unselectNode = data.unselectNode.split(",");
+							for(var i=0;i<unselectNode.length;i++){
+								if(!diagram.findNodeForKey(unselectNode[i])){
+									continue;
+								}
+								diagram.findNodeForKey(unselectNode[i]).elt(0).fill=unselectColor;	//未选中模块变成灰色
+								nodeStatus[unselectNode[i]] = 0;
+							};
+
+							var runMod = data.runMod.split(",");
+							for(var i=0;i<runMod.length;i++){
+								if(!diagram.findNodeForKey(runMod[i])){
+									continue;
+								}
+								diagram.findNodeForKey(runMod[i]).elt(0).fill=runningColor;	//运行中模块变成绿色
+							};
+							var failedMod = data.failedMod.split(",");
+							for(var i=0;i<failedMod.length;i++){
+								if(!diagram.findNodeForKey(failedMod[i])){
+									continue;
+								}
+								diagram.findNodeForKey(failedMod[i]).elt(0).fill=failedColor;	//运行中模块变成红色
+							};
+							selectedNode(); 
+
+							var nodePara = data.nodePara   //填充模块参数
+							for(var i=0;i<nodePara.length;i++){
+								$("#"+nodePara[i].name).val(nodePara[i].value)
+								};
+							 }
+						else if(key == "modStatus"){  //填充任务状态table
+							$('#modStatusTable').bootstrapTable('load',data[key]);
+							}
+						else if(key == "status"){
+							taskStatus = data.status;
+							if(data.status == "finished"){
+								$("#showReport").attr("onclick","window.open('__MODULE__/Report/showReport/id/{$id}')");
+								$("#downloadReport").attr("onclick","window.open('__MODULE__/Report/downReport/id/{$id}')");
+								$("#taskStatus").removeClass("btn-success");
+								$("#taskStatus").addClass("btn-primary").text('任务已完成');
+								
+							}else if(data.status == "failed"){
+								$("#taskStatus").addClass("btn-warning").text('任务已终止');
+								$("#showReport").hide();
+								$("#downloadReport").hide();
+								$("#taskReport h4").after('<p>任务终止，报告未生成。</p>');
+							}
+							else{
+									$("#showReport").hide();
+									$("#downloadReport").hide();
+									$("#taskReport h4").after('<p>报告尚未生成，请耐心等待</p>');
+								}
+							}
+						else{
+								$("#"+key).text(data[key])
+							};
+					};
+				};
+			 },    
+			 error : function(XMLHttpRequest) {
+			   alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);    
+			 }
+		}); 
+	};
+//任务的状态
+function taskState(State) {
+	
+    if ( State == 'done'){
+			return  '<button class="btn btn-primary btn-xs" style="width:100px;">完成</button>';
+		}else	if ( State == 'failed'){
+			return '<button class="btn btn-warning btn-xs" style="width:100px;">中止</button>';
+		}else if (State == 'ready'){
+			return '<button class="btn  btn-xs" style="width:100px;">就绪/重运行</button>';
+		}else if (State == 'pending'){
+			return '<button class="btn btn-xs" style="width:100px;">等待中</button>';
+		}
+		else{
+			return '<button class="btn btn-success btn-xs" style="width:100px;">运行中</button>';
+		}
+};	
+	
+//判断是否是草稿，加载任务参数填写时option的值
+var nodeStatus=
+{
+	'QC':1,
+	'Alignment':1,
+	'SNP_calling':1,
+	"SNP_index":1,
+	"TraitLoca":1,
+	"Reports":1
+};
+//各种默认参数的url
+var nodeParaUrl="__MODULE__/Task/getTaskInfo/id/{$id}";  // 节点参数的默认值的url
+var samplesDataUrl = "__MODULE__/Data/remoteDirView"; //像后台发送目录的地址
+
+//设置每个节点的状态
+var selectColor="rgb(142,217,255)";
+var unselectColor="lightgray";
+var runningColor="rgb(68,157,68)";
+var failedColor="rgb(255,0,0)"
+var arrowColor="rgb(100,100,100)";
+var nodeNameColor="rgb(255,255,255)";
+var nodeBorderColor="rgb(167,167,167)";
+$(function() {
+
+	 var $ = go.GraphObject.make;  // for conciseness in defining templates
+//	var diagram = new go.Diagram("myDiagramDiv");
+//---------------
+
+diagram =
+      $(go.Diagram, "myDiagramDiv",  // must name or refer to the DIV HTML element
+        {
+          initialContentAlignment: go.Spot.Center,
+          allowDrop: false,  // must be true to accept drops from the Palette
+ //         "LinkDrawn": showLinkLabel,  // this DiagramEvent listener is defined below
+//          "LinkRelinked": showLinkLabel,
+          "animationManager.duration": 800, // slightly longer than default (600ms) animation
+          "undoManager.isEnabled": false  // enable undo & redo
+        });
+
+//----------------
+	
+//节点的样式
+		diagram.nodeTemplate =
+			$(go.Node, "Auto",
+ 
+			  new go.Binding("location", "loc", go.Point.parse),
+			  $(go.Shape, "RoundedRectangle", { fill: selectColor ,
+			  									parameter1: 5,  // the corner has a large radius
+			  									stroke:nodeBorderColor,
+												
+												},
+												new go.Binding("fill", "color")
+												),     
+										
+			  {
+				  selectionAdornmentTemplate:
+				  $(go.Adornment, "Auto",
+					$(go.Shape, "RoundedRectangle",
+					{ fill: null, stroke: selectColor, strokeWidth: 1 }),
+					$(go.Placeholder)
+				  )  // end Adornment
+			  },
+				
+				
+			  $(go.TextBlock,{ font: "bold 14px sans-serif",
+							   stroke: nodeNameColor,
+							   margin: 10 },
+				new go.Binding("text", "key"))
+			);
+
+		
+//连线的样式
+	   diagram.linkTemplate =
+		  $(go.Link,  // the whole link panel
+			{ curve: go.Link.Bezier, reshapable: true },
+			// don't need to save Link.points, so don't need TwoWay Binding on "points"
+			new go.Binding("curviness", "curviness").makeTwoWay(),  // but save "curviness" automatically
+			$(go.Shape,  // the link shape
+			  { strokeWidth: 2 ,stroke:arrowColor }),
+	//		  new go.Binding("stroke", "color"),
+			$(go.Shape,  // the arrowhead
+			  { toArrow: "standard", stroke: null, fill:arrowColor })
+			
+		  );  
+
+
+		
+  var nodeDataArray = [
+		{key: "QC", loc:"0 0"},
+		{key: "Alignment", loc:"-25 80"},
+		{key: "SNP_calling", loc:"-28 160"},
+		{key: "SNP_index", loc:"-23 240"},
+		{key: "TraitLoca", loc:"-18 320"},
+		{key: "Reports", loc:"-13 400"}
+	  ];
+  
+  var linkDataArray = [
+		{from: "QC", to:"Alignment", "curviness":0},
+		{from: "Alignment", to:"SNP_calling", "curviness":0},
+		{from: "SNP_calling", to:"SNP_index", "curviness":0},
+		{from: "SNP_index", to:"TraitLoca", "curviness":0},
+		{from: "TraitLoca", to: "Reports", "curviness":0}
+	  ];
+ 
+	 diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);	
+	 diagram.initialContentAlignment = go.Spot.Center; //整个图居中		
+	});
+
+
+//选定的模块参数
+function selectedNode(){
+	$("#parasPanel").html(""); //清空现有的参数
+	for(var key in nodeStatus){
+		if (nodeStatus[key] == 1){
+			//添加该模块的面板
+			//添加该模块的面板
+			if(! defaultRefParams[key]){
+				continue;
+			}
+			$("#parasPanel").append('<div class="panel panel-default"  id="' + key + '"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" data-parent="#' + key + '" href="#' + key + '_panel_body">' + key + ' 参数设置</a></h4></div><div id="' + key + '_panel_body" class="panel-collapse collapse in"><div class="panel-body"><form class="form-horizontal" role="form"></form></div></div></div>');
+			addPara(key); //添加面板中的参数
+
+		};
+	};
+	
+};
+//在参数设置中 给node名字为key的模块 添加input或dropdown参数
+function addPara(key){
+				var data = defaultRefParams;
+				items = data[key];   //找到参数中键为key的node项目
+				if(typeof(items)=='undefined'){
+					return false;
+				}
+					
+				for (var i=0; i < items.length; i++){   //遍历其中的许多参数
+				   //添加一个input框
+						var name = items[i]["name"]
+						var id = items[i]["id"]
+						var value = items[i]["value"]
+						var info = items[i]["illustration"]
+						//添加input的代码
+						$("#" + key + " form").append('<div class="form-group"><label class="col-sm-3 control-label">' + name + '</label><div class="col-sm-7"><input type="text"  class="form-control" readonly id="'+ id +'" name="'+ id +'" title="' + info + '"></div></div>');
+				
+				};					
+	
+	};
+//与后台交互时冻结
+//$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+[
+        {
+            "projectName": "Mouse_transcriptMouse_transcript",
+            "creater": "轩然大波",
+            "creatTime": "16:20-0302-16",
+			"itemDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"projectId":"0001",
+			"running":"2",
+			"done":"2",
+			"stop":"0"
+        },
+		{
+            "projectName": "Mouse_transcriptMouse_transcript",
+            "creater": "轩然大波",
+            "creatTime": "16:20-0302-16",
+			"itemDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"projectId":"0002",
+			"running":"2",
+			"done":"2",
+			"stop":"0"
+        },
+		{
+            "projectName": "Mouse_transcriptMouse_transcript",
+            "creater": "轩然大波",
+            "creatTime": "16:20-0302-12",
+			"itemDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"projectId":"0003",
+			"running":"2",
+			"done":"2",
+			"stop":"0"
+        },
+		{
+            "projectName": "Mouse_transcriptMouse_transcript",
+            "creater": "轩然大波",
+            "creatTime": "16:20-0302-13",
+			"itemDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"projectId":"0004",
+			"running":"2",
+			"done":"2",
+			"stop":"0"
+        },
+		{
+            "projectName": "Mouse_transcriptMouse_transcript",
+            "creater": "轩然大波",
+            "creatTime": "16:20-0302-13",
+			"itemDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"projectId":"0005",
+			"running":"2",
+			"done":"2",
+			"stop":"0"
+        },
+		{
+            "projectName": "Mouse_transcriptMouse_transcript",
+            "creater": "轩然大波",
+            "creatTime": "16:20-0302-14",
+			"itemDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"projectId":"0006",
+			"running":"2",
+			"done":"2",
+			"stop":"0"
+        },
+		{
+            "projectName": "Mouse_transcriptMouse_transcript",
+            "creater": "轩然大波",
+            "creatTime": "16:20-0302-14",
+			"itemDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"projectId":"0007",
+			"running":"2",
+			"done":"2",
+			"stop":"0"
+        },
+		{
+            "projectName": "Mouse_transcriptMouse_transcript",
+            "creater": "轩然大波",
+            "creatTime": "16:20-0302-14",
+			"itemDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"projectId":"0008",
+			"running":"2",
+			"done":"2",
+			"stop":"0"
+        },
+		{
+            "projectName": "Mouse_transcriptMouse_transcript",
+            "creater": "轩然大波",
+            "creatTime": "16:20-0302-15",
+			"itemDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"projectId":"0009",
+			"running":"2",
+			"done":"2",
+			"stop":"0"
+        },
+		{
+            "projectName": "Mouse_transcriptMouse_transcript",
+            "creater": "轩然大波",
+            "creatTime": "16:20-0302-15",
+			"itemDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"projectId":"0010",
+			"running":"2",
+			"done":"2",
+			"stop":"0"
+        },
+		{
+            "projectName": "Mouse_transcriptMouse_transcript",
+            "creater": "轩然大波",
+            "creatTime": "16:20-0302-15",
+			"itemDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"projectId":"0011",
+			"running":"2",
+			"done":"2",
+			"stop":"0"
+        }
+	
+]		

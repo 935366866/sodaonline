@@ -1,0 +1,46 @@
+[
+        {
+            "jobName": "Mouse_transcript",
+            "creatTime": "16:20-0302-16",
+			"jobDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"jobId":"0001",
+			"jobProcedureApp":"有参",
+			"runTime":"30:20",
+			"jobModule":"质控",
+			"jobStatus":"0",
+			"jobOperate":"0"
+        },
+		{
+            "jobName": "human_transcript",
+            "creatTime": "16:20-0302-16",
+			"jobDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"jobId":"0002",
+			"jobProcedureApp":"有参",
+			"runTime":"30:20",
+			"jobModule":"--",
+			"jobStatus":"1",
+			"jobOperate":"1"
+        },
+		{
+            "jobName": "Mousefsfs",
+            "creatTime": "16:20-0302-16",
+			"jobDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"jobId":"0003",
+			"jobProcedureApp":"有参",
+			"runTime":"30:20",
+			"jobModule":"质控",
+			"jobStatus":"2",
+			"jobOperate":"1"
+        },
+		{
+            "jobName": "human_transcript",
+            "creatTime": "16:20-0302-16",
+			"jobDescription":"基因组特征评估（Genome Survey），主要是针对于没有参考基因组的全新物种或者亚种，基于基因组小片段文库（≤ 800bp）数据进行K-mer分析，全面评估基因组的大小、GC含量、杂合度、重复度等特征，从而确定最佳的基因组de novo的建库测序策略。同时，可对测序数据进行基因组的初步组装，获得简单的参考序列，为基因组转座子分析、转录组、遗传图谱、关联分析、群体进化等提供参考。",
+			"jobId":"0004",
+			"jobProcedureApp":"有参",
+			"runTime":"-",
+			"jobModule":"-",
+			"jobStatus":"3",
+			"jobOperate":"1"
+        }
+]		

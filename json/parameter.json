@@ -1,0 +1,244 @@
+{
+    "QC": [
+        {
+            "id": "qcpara1",
+            "name": "QC一",
+            "type": "input",
+			"value":"QC",
+			"illustration":"QC此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"qcpara2",
+            "name": "QC2",
+            "type": "dropdown",
+			"value":"yes,no",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"qcpara3",
+            "name": "QC参数三",
+            "type": "dropdown",
+			"value":"001,002,003",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示"
+        }],
+    "Density": [
+        {
+            "id": "depara1",
+            "name": "Density参数一",
+            "type": "input",
+			"value":"Density",
+			"illustration":"Density此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"Densitypara2",
+            "name": "Density参数二",
+            "type": "dropdown",
+			"value":"yes,no",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"Densitypara3",
+            "name": "Density参数三",
+            "type": "dropdown",
+			"value":"001,002,003",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示"
+        }],
+    "Saturation": [
+        {
+            "id": "Saturationpara1",
+            "name": "Saturation参数一",
+            "type": "input",
+			"value":"Saturation",
+			"illustration":"Saturation此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"Saturationpara2",
+            "name": "参数二",
+            "type": "dropdown",
+			"value":"yes,no",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"Saturationpara3",
+            "name": "参数三",
+            "type": "dropdown",
+			"value":"001,002,003",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示"
+        }],
+	"SNP_INDEL": [
+        {
+            "id": "SNP_INDELpara1",
+            "name": "SNP_INDEL参数一",
+            "type": "input",
+			"value":"SNP_INDEL",
+			"illustration":"SNP_INDEL此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"SNP_INDELpara2",
+            "name": "参数二",
+            "type": "dropdown",
+			"value":"yes,no",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"SNP_INDELpara3",
+            "name": "参数三",
+            "type": "dropdown",
+			"value":"001,002,003",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示"
+        }],
+	"Assemble": [
+        {
+            "id": "Assemblepara1",
+            "name": "Assemble参数一",
+            "type": "input",
+			"value":"Assemble",
+			"illustration":"Assemble此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"Assemblepara2",
+            "name": "参数二",
+            "type": "dropdown",
+			"value":"yes,no",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"Assemblepara3",
+            "name": "参数三",
+            "type": "dropdown",
+			"value":"001,002,003",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示"
+        }],
+	"AS": [
+        {
+            "id": "ASpara1",
+            "name": "AS参数一",
+            "type": "input",
+			"value":"test",
+			"illustration":"AS此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"ASpara2",
+            "name": "参数二",
+            "type": "dropdown",
+			"value":"yes,no",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"ASpara3",
+            "name": "参数三",
+            "type": "dropdown",
+			"value":"001,002,003",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示"
+        }],
+	"Novel": [
+        {
+            "id": "Novelpara1",
+            "name": "Novel参数一",
+            "type": "input",
+			"value":"test",
+			"illustration":"Novel此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"Novelpara2",
+            "name": "参数二",
+            "type": "dropdown",
+			"value":"yes,no",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"Novelpara3",
+            "name": "参数三",
+            "type": "dropdown",
+			"value":"001,002,003",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示"
+        }],
+	"DE": [
+        {
+            "id": "DEpara1",
+            "name": "DE参数一",
+            "type": "input",
+			"value":"test",
+			"illustration":"DE此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"DEpara2",
+            "name": "参数二",
+            "type": "dropdown",
+			"value":"yes,no",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"DEpara3",
+            "name": "参数三",
+            "type": "dropdown",
+			"value":"001,002,003",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示"
+        }],
+	"PPI": [
+        {
+            "id": "PPIpara1",
+            "name": "PPI参数一",
+            "type": "input",
+			"value":"test",
+			"illustration":"PPI此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"PPIpara2",
+            "name": "参数二",
+            "type": "dropdown",
+			"value":"yes,no",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"PPIpara3",
+            "name": "参数三",
+            "type": "dropdown",
+			"value":"001,002,003",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示"
+        }],
+	"GO": [
+        {
+            "id": "GOpara1",
+            "name": "GO参数一",
+            "type": "input",
+			"value":"test",
+			"illustration":"GO此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"GOpara2",
+            "name": "参数二",
+            "type": "dropdown",
+			"value":"yes,no",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"GOpara3",
+            "name": "参数三",
+            "type": "dropdown",
+			"value":"001,002,003",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示"
+        }],
+	"KEGG": [
+        {
+            "id": "KEGGpara1",
+            "name": "KEGG参数一",
+            "type": "input",
+			"value":"test",
+			"illustration":"KEGG此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"KEGGpara2",
+            "name": "参数二",
+            "type": "dropdown",
+			"value":"yes,no",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示此参数表示"
+        },
+        {
+            "id":"KEGGpara3",
+            "name": "参数三",
+            "type": "dropdown",
+			"value":"001,002,003",
+			"illustration":"此参数表示：此参数表示此参数表示此参数表示此参数表示"
+        }]
+}

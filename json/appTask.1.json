@@ -1,0 +1,23 @@
+{
+    "input": "/whx/abc/1.txt",
+    "title": "title1",
+    "title_size": "13",
+    "title_font": "normal",
+    "xlab": "xxx",
+    "xlab_size": "12",
+    "xlab_font": "bold",
+    "ylab": "yyy",
+    "ylab_size": "14",
+    "ylab_font": "normal",
+    "qval": "222",
+    "qval_log": "log2",
+    "foldchange": "333",
+    "foldchange_log": "log10",
+    "upcolor": "#ea5f5b",
+    "upcolor_DIY": "#333",
+    "downcolor": "#55a9fa",
+    "downcolor_DIY": "",
+    "pointcolor": "#73bd49",
+    "pointcolor_DIY": "",
+    "pointsize": "99"
+}

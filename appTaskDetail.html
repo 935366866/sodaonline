@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>查看APP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html" ; charset="utf-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--引入该页面的js-->
+    <script>
+		module = "__MODULE__";
+		appTaskId = "{$id}";
+	</script>
+    <script src="js/appTaskDetail.js"></script>
+    <!--表格js-->
+    <link rel="stylesheet" href="css/bootstrap-table.css">
+    <script src="js/bootstrap-table.js"></script>
+    <!-- form中选择 -->
+    <script src="js/bootstrap-select.js"></script>
+    <link href="css/bootstrap-select.css" rel="stylesheet">
+    <!--遮罩-->
+    <script src="js/jquery.blockUI.js" type="text/javascript"></script>
+    <!-- 引入通用的文件 -->
+    <script src="js/common.js"></script>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/soda_common.css">
+
+</head>
+
+<body style="background-color:#f8f8f8;">
+	<div class="top" style="float:left;width:100%;">
+		<div class="main_nav1">
+			<div class="change_box">
+				<ul class="main_nav1_left">
+					<li class="dodo"><a  href="#">DODOGENE</a></li>
+					<li class="nav_b1"><a href="#">云中漫步</a></li>
+					<li class="other_nav nav1_list1">
+						<a href="#" style="padding-left:15px;padding-right:15px;">新闻快讯<img src="img/01.png" alt=""></a>
+						<ul class="" >
+							<li><a href="#">前沿研究</a></li>
+							<li><a href="#">市场活动</a></li>
+						</ul>
+					</li>			
+				</ul>
+				
+				<ul class="main_nav1_right">
+					<li><a href="#"><img src="img/分析报告_03.png" alt="通知" /></a></li>
+					<li><a href="#"><img src="img/分析报告_05.png" alt="帮助" /></a></li>
+					<li><a href="#"><img src="img/分析报告_07.png" alt="个人中心" /></a></li>
+				</ul>
+			</div>
+		</div>
+	
+		<div class="main_nav2">
+			<div class="change_box">
+				<ul class="main_nav2_left">
+					<li style="width:110px;text-align:center;"><img src="img/nav_cloud.png" alt="" /></li>
+					<li class="nav2_list1" style="margin-right:0px;" >
+						<a href="#" style="padding-left:15px;padding-right:15px;">分析流程<img src="img/02.png" alt=""></a>
+						<ul class="">
+							<li><a href="">DNA流程</a></li>
+							<li><a href="">RNA流程</a></li>
+							<li><a href="">健康医学流程</a></li>
+						</ul>				
+					</li>
+					<li class="nav2_list2" style="margin-right:0px;">
+						<a href="#" style="padding-left:15px;padding-right:15px;color:#000;">小工具<img src="img/02.png" alt=""></a>
+						<ul class="">
+							<li><a href="">计算统计</a></li>
+							<li><a href="">绘图软件</a></li>
+						</ul>
+					</li>
+					<li class=""><a href="#">我的项目</a></li>
+					<li class=""><a href="#">我的目录</a></li>
+					<li class=""><a href="#">回收站</a></li>
+				</ul>
+
+			</div>
+		</div>
+
+        <div class="nav_line"></div>
+
+        <div class="main_nav3" style="box-shadow:-2px 3px 9px 0px #ccc;">
+            <div class="change_box">
+                <ul class="main_nav3_left_report">
+                    <li><span><a href="report.html">查看报告</a></span></li>
+                    <li><span><a href="#">下载报告</a></span></li><!--云超，下载报告的链接-->
+                    <li><span><a id="taskRerun" href="#">重跑一次</a></span></li>
+                </ul>
+                <ul class="main_nav3_right_report">
+                    <li class="report_success"><span><a href="#">任务已完成</a></span></li>
+                    <!--
+                    <li class="report_running"><span><a href="#">任务运行中</a></span></li>
+                    <li class="report_end"><span><a href="#">任务已终止</a></span></li>
+                    -->
+                    <li id="refresh"><a href="#"><img src="img/分析报告_18.png" alt="刷新" /></a></li>
+                    <li id="stop"><a href="#"><img src="img/分析报告_20.png" alt="停止" /></a></li>
+                    <li id="delete"><a href="#"><img src="img/分析报告_22.png" alt="删除" /></a></li>
+        
+                </ul>
+            </div>
+        </div>
+	</div>
+
+    <input style="display:none;" id="appId" />
+
+    <div style="float:left;width:100%;padding-top: 130px;">
+
+        <div class="change_box" style="padding-left: 0px; padding-right:0px;padding-bottom:50px;" id='taskPanel'>
+            <!--第一部分表格的填写-->
+             <div class="part_box" style=" padding-top:0px; ">
+                <form class="form-horizontal" id="creatApp" role="form" style="margin-top: 30px;" action="newAPP" method="post" onsubmit="return submitForm(this)">
+                    <input type='hidden' id='tool_id' name='tool_id' value='{$tool_id}' />
+    
+    
+                    <div class="task_form_height">
+                        <label class="task_label"><span>1</span>任务名称</label>              
+                        <div class="task_box">
+                            <input type="text" class="form-control" readonly id="task_name" name="task_name" placeholder="请填写任务名称">
+                        </div>
+                    </div>
+
+                    <div class="task_form_height">
+                        <label class="task_label"><span>2</span>任务目录</label>
+                        <div class="task_box">
+                            <input type="url" class="form-control" id="dir_path" name="dir_path" placeholder="请选择任务目录" readonly>
+                        </div>
+                    </div>
+
+                    <div class="task_form_height">
+                        <label class="task_label"><span>3</span>所属项目</label>                   
+                        <div class="task_box">
+                            <input class="form-control" id="project_id" name="project_id" placeholder="请选择任务目录" readonly>
+                        </div>
+                    </div>
+
+                    <div class="task_form_height">
+                        <label class="task_label"><span>4</span>运行方式</label>
+                        <div class="task_box">
+                            <input class="form-control" id="appRunMode" name="appRunMode" placeholder="请选择任务目录" readonly>
+                        </div>
+                    </div>
+
+                    <input type="text" class="form-control" id="allAppParams" name="allAppParams" style="display:none;">
+                </form>
+             </div>
+            <!--第二部分 模块参数设置  点击展开参数-->
+             
+            <div class="part_box">
+
+                <div class="task_form_height">
+                    <label class="task_label"><span>5</span>具体参数</label>  
+                
+                    <div class="panel-group task_box" id="parasPanel">
+                        <div class="panel panel-default" id="appParams">
+                            <div id="appParams_panel_body" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <form class="form-horizontal" role="form" id="appParamsForm">
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            <!--参数设置结束-->
+            <!--第三部分 运行状态-->
+            <div id="appStatus" class="task_form_height">
+                <label class="task_label"><span>6</span>运行状态</label>
+                <div class="task_box">
+                    <div class="col-sm-12" style="padding-left:0px; padding-right:0px; padding-bottom: 20px;">
+
+                        <table data-toggle="table" data-height="200" data-show-footer="false" data-sort-name="id" id="appStatusTable">
+                            <thead>
+                                <tr>
+                                    <th data-field="task_name">程序名称</th>
+                                    <th data-field="status" data-align="center" data-formatter="appState">状态</th>
+                                    <th data-field="submit_time" data-align="center">开始时间</th>
+                                    <th data-field="done_time" data-align="center">结束时间</th>
+                                    <th data-field="consume_time" data-align="center">时长</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--第四部分 运行时间-->
+             <div class="part_box">
+
+                <div class="task_form_height">
+                    <label class="task_label"><span>7</span>运行时间</label>  
+                
+                    <!--等待加入-->
+                
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <!--页脚-->
+    <div id="footer_style">
+        <footer class="footerstyle">
+            <p>版权所有 © 2016 京ICP备15033925号</p>
+            <p>北京拓美科基因科技有限公司</p>
+        </footer>
+    </div>
+</body>
+
+</html>

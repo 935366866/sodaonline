@@ -1,0 +1,259 @@
+
+var appDefaultParams //定义全局变量方便修改默认值
+var paramUrl = 'json/jobUrl.json';  //选择路径的模态框，向后台请求的地址
+
+//页面完全加载完，执行
+$(function(){
+
+	//获得数据填入页面的参数当中
+	$.getJSON(module+"/FlowApp/getToolParams/tool_id/"+tool_id,function(data){
+		var items = data;    
+		var uploadUrl = "'json/uploadUrl.json'";  //上传时请求地址
+		appDefaultParams = JSON.parse(JSON.stringify(data));	
+	//在参数设置中添加input或dropdown参数
+		
+		for (var i=0; i < items.length; i++){   //遍历其中的许多参数
+			var type = items[i]["param_type"];
+			var mark = "";
+			if(items[i]["flag"] == -1){
+				continue;
+			}
+			else{
+				if(items[i]["flag"] == 1){
+					mark = "required"
+					};
+				if(type== "text" || type == "number"){   //添加一个input框
+				
+					var name = items[i]["param_name"]
+					var id = items[i]["id"]
+					var value = items[i]["default_value"]
+					var info = items[i]["param_desc"]
+					//添加input的代码
+				
+					$("#appParams form").append('<div class="form-group"><label class="col-md-3 control-label">' + name + '</label><div class="col-md-7"><input type="text"  class="form-control" ' + mark　+ ' id="'+ id +'" name="'+ id +'" title="' + info + '"></div><a class="col-md-2 control-label"  style=" text-align:left;cursor:pointer; " onclick="paraDefult('+id+')">默认值</a></div>');
+				
+					//向input中添加默认值
+					$("#" + id).val(value);
+				};
+				
+				if(type == "select"){   //添加一个下拉框
+					var name = items[i]["param_name"]
+					var id = items[i]["id"]
+					var value = items[i]["sel_val"].split(";")
+					var info = items[i]["param_desc"]
+					var opts = ""
+					for (var j=0;j < value.length; j++){
+						opts += '<option>' + value[j] + '</option>';
+						};
+				
+					//添加dropdown的代码
+					$("#appParams form").append('<div class="form-group"><label class="col-md-3 control-label">' + name + '</label><div class="col-md-7" ><select class="form-control"  ' + mark　+ '  id="'+ id +'" name="'+ id +'"  title="' + info + '">' + opts + '</select></div></div>');
+				};	
+				
+				if(type == "upload"){   //本地上传
+					var name = items[i]["param_name"]
+					var id = items[i]["id"]
+					var info = items[i]["param_desc"]
+					var uploadId = "'upload" + items[i]["id"] + "'"
+					var sqm = "'"   //单引号
+					
+					$("#appParams form").append('<div class="form-group"><label class="col-md-3 control-label">' + name + '</label><div class="col-md-7"><input type="text" readonly class="form-control" ' + mark + ' id="'+ id +'" name="'+ id +'" title="' + info + '"></div><span class="btn btn-success fileinput-button btn-sm col-md-2" style="width: 60px;"><i class="glyphicon glyphicon-upload"></i><span>上传</span><input type="file" id="upload'+ id +'" name="upload'+ id +'" onClick="uploadFile(' + uploadUrl + ','+ uploadId +','+sqm+'#'+ id +sqm+')" ></span></div>');
+				
+				};
+				
+				if(type == "dir"){   //添加一个从集群上选择的目录
+					var name = items[i]["param_name"]
+					var id = items[i]["id"]
+					var value = items[i]["default_value"]
+					var info = items[i]["param_desc"]
+					var sqm = "'"   //单引号
+					
+					$("#appParams form").append('<div class="form-group"><label class="col-md-3 control-label">' + name + '</label><div class="col-md-7"><input type="text"  class="form-control" ' + mark + ' id="'+ id +'" name="'+ id +'" title="' + info + '" readonly></div><div class="col-sm-1"><a onclick="openUrl('+sqm+'#'+id+sqm+')"><span class="glyphicon glyphicon-folder-open" style="font-size:20px; top: 5px; cursor:pointer; "></span></a></div></div>');
+					//向input中添加默认值
+					$("#" + id).val(value);
+				};
+				
+			};
+					
+		};
+});
+
+				
+
+//提交参数
+$("#taskRun").click(function(){
+	var nullNum = checkInput()
+	if(nullNum==0){
+		
+		var data =  allParams();
+		console.log(data)
+		$.ajax({
+				url:"json/job.json",  
+				type:'post',
+				data:{data:data},
+				dataType: "json",
+				success:function(data) {
+					if(data['status']=='ERROR'){    //请求成功但没有执行成功
+						alert(data['data']);
+					}else{
+						alert("运行成功！");	
+					}
+				 },    
+				 error : function(XMLHttpRequest) {
+				   alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);    
+				 }
+			});
+	};
+});
+
+//与后台交互时冻结窗口
+$(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
+});
+
+
+//---------------------------------------------------函数---------------------------
+//点击恢复默认值
+function paraDefult(id){
+	var id = id.id
+	var items = appDefaultParams;
+	for (var i=0; i < items.length; i++){ 
+		if(items[i]["id"] == id){
+			//console.log()
+			$("#"+id).val(items[i]["default_value"]);
+			};
+		};
+};
+
+//参数组装
+function allParams(){
+
+	var params = $("#appParamsForm").serializeArray();
+	var json2 = {};
+	for(var i=0;i<params.length;i++){
+		var name = params[i].name;
+		var value = params[i].value;
+		json2[name] = value;
+		}
+
+	var app = $("#creatApp").serializeArray();
+	var json1 = {};
+	for(var i=0;i<app.length;i++){
+			var name = app[i].name;
+			var value = app[i].value;
+			json1[name] = value;
+	}
+	json1["allAppParams"]=json2
+
+	Params = JSON.stringify(json1);
+	return Params
+};
+
+
+//检查参数填写情况
+function checkInput(){
+	
+	var checkInput=$("input[required]");
+	var checkSelect=$("select[required]");
+
+	var count=0; //计数
+	for(var i=0;i<checkInput.length;i++){
+	  if(checkInput[i].value==""){
+		$(checkInput[i]).attr("style","border-color:red;")
+		count += 1;
+	  }
+	  else{
+		$(checkInput[i]).attr("style","border-color:#ccc;") 
+		  };
+	};
+	
+	for(var i=0;i<checkSelect.length;i++){
+	  if(checkSelect[i].value==""){
+		$(checkSelect[i]).attr("style","border-color:red;")
+		count += 1;
+	  }
+	  else{
+		$(checkSelect[i]).attr("style","border-color:#ccc;")  
+		  };
+	}; 
+
+	if(count != 0){
+		alert("还有未填写的参数！");
+		};
+		
+	return count
+	};
+
+//-----------------------------------模态框-----------------------------------
+//回车查目录是否存在
+$(function(){
+	
+	dblCilck('urlTable','inputUrl',paramUrl);  //双击行，判断是否是目录，若是，则进入目录。（三个参数：模态框中table的ID， input的ID， url为后台地址。）
+
+	$('#inputUrl').bind('keypress',function(event){
+		if(event.keyCode == "13")    
+		{
+			newUrl = $("#inputUrl").val();
+			checkUrl(newUrl,paramUrl,"inputUrl","urlTable"); //参数依次为需要检查的URL， 后台的地址， 需要更新的输入框id， 需要刷新的bootstrap table
+		}
+	});
+//点击右边箭头，检查	
+	$("#search").click(function(){  
+    	  newUrl = $("#inputUrl").val();
+		  checkUrl(newUrl,paramUrl,"inputUrl","urlTable");
+    });  
+//后退按钮
+	$("#back").click(function(){  
+    	   Url= $("#inputUrl").val();
+		   
+		   lastLen =Url.split('/').pop().length
+		   newUrl = Url.substring(0,Url.length - lastLen-1);
+		   checkUrl(newUrl,paramUrl,"inputUrl","urlTable");
+    }); 
+	
+});
+//打开任务目录
+function openUrl(id){
+	var inputValue = $(id).val();  //当前input的值
+	
+	$('#selectUrl').modal('show');
+	$('#selectUrl').on('show.bs.modal', function () {    //加载当前目录的表格
+ 		checkUrl(inputValue,paramUrl,"inputUrl","urlTable");
+	})
+	$('#selectUrl').on('shown.bs.modal', function () {    //模态框完全显示之后把根目录放入
+		$("#inputUrl").val(inputValue);
+		
+	});
+    $("#selected").attr("onClick","geturl('"+id+"')")   //给选择按钮添加事件
+
+};
+//选择目录时添加文件或者目录的图标
+function addIcon(State, row) {
+	var typeChr = row.type.charAt(0);
+		
+	if(typeChr == 'd'){
+		return '<span class="glyphicon glyphicon-folder-open"></span>';
+		}
+	else{
+		return '<span class="glyphicon glyphicon-file"></span> ';
+		}
+};
+
+//点击选择关闭模态框，将当前模态框input中的路径取出放入表单中
+function geturl(formInputId){
+	var singleName = ""   //选择一个文件夹或者文件的名字，单选
+	$.map($('#urlTable').bootstrapTable('getSelections'), function (row) {
+		singleName = row.name
+	});
+	if(singleName){
+			newUrl = $("#inputUrl").val() + "/"+ singleName;    //点击选择时取input中当前的路径，在加上此时选择的
+	}
+	else{
+		newUrl = $("#inputUrl").val()
+		};
+//	console.log(newUrl)
+	sequencingType = $("#sequencingType").val();
+	$("#selected").removeAttr("onClick");
+	$("#selectUrl").modal('hide');
+	$(formInputId).val(newUrl);
+};

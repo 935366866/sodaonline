@@ -1,0 +1,130 @@
+@charset "utf-8";
+/* 圆形按钮 */
+.btn-round{ color:#F00; width: 15px; height: 15px; -moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%; }
+/* 首行缩进 */
+.indent{text-indent:2em; }
+/* 隐藏超出列宽的文字 */
+.contents_hide{overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis; max-width:200px;}
+
+/* 首页消息弹出的样式 */
+#newsShow span{ color:#666; }
+#infoDetialBox{ color:#666; line-height:1.5; height:300px; overflow-y: scroll; overflow:auto;}
+/* 页脚样式 */
+.footerstyle span{color:#666; float:center}
+.footerstyle{ text-align:center; padding-bottom:10px;}
+
+/* job界面-----------------------------------------------------------------------------------------*/
+.jobImg{ heignt:22px;
+			width:22px;
+}
+/*新建任务界面*/
+#creatTask label{ font-size:18px; font-weight:500;}
+.task_form_height{ height:45px;}
+/* 星星靠左 */
+.star_left{color:#F00; float:left; padding-left:50px;}
+
+/*新建APP界面*/
+#creatApp label{ font-size:18px; font-weight:500;}
+
+/* 任务查看界面-----------------------------------------------------------------------------------------*/
+.task_font{ font-size:16px;}
+.samplesDIV{
+	background-color:rgb(140,220,255);
+	text-align: left;
+	overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis;
+	height:30px; padding-left:5px; padding-right:5px; padding-top:5px;margin-bottom: 5px;
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */
+}
+.groupDIV{
+	background-color:#359fff;
+	text-align:center;
+	overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis;
+	padding-left:5px; padding-right:5px; padding-top:5px;margin-bottom: 5px;
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */
+}
+ body {
+      position: relative;
+  }
+  ul.nav-pills {
+      top: 130px;
+      position: fixed;
+  }
+/*流程和APP的选择界面----------------------------------------------------------------------------*/
+/*流程和app的圆角div*/
+.flow_div{
+	background:url(../image/flow.png);
+	border: 2px solid #CCC;
+	width:210px;
+	height:140px;
+	margin:0 auto; 
+	margin-top:20px;
+	margin-bottom:10px;
+	padding-top: 20px; 
+	padding-left: 10px;
+	box-shadow: 5px 5px 5px #999;
+    -moz-border-radius: 15px; 
+    -webkit-border-radius: 15px; 
+    border-radius:15px;      
+}
+.app_div{
+	background:url(../image/app.png);
+	border: 2px solid #CCC;
+	width:210px;
+	height:140px;
+	margin:0 auto; 
+	margin-top:20px;
+	margin-bottom:10px;
+	padding-top: 20px; 
+	padding-left: 10px;
+	box-shadow: 5px 5px 5px #999;
+    -moz-border-radius: 15px; 
+    -webkit-border-radius: 15px; 
+    border-radius:15px;       
+}
+/*名称，版本号等字体*/
+.nameVersion{
+	font-size: 15px;
+    padding: 0px;
+	}
+/*当div超过一定长度时开始滚动*/
+.autoScroll{  
+	height:450px;  
+	overflow:auto;             
+}  
+/*管理界面----------------------------------------------------------------------------*/
+/*左边的导航*/
+.sys_nav_div{
+	background:#fff;
+	border: 1px solid #CCC;
+	height:200px;
+	margin:0 auto; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border-radius:5px;       
+}
+.mouseUp{background:red;}
+/*导航每一项的样式*/
+.list_style{
+	text-align:center;
+	line-height:40px;
+	background:#FFF;
+	color:#09C;
+	height: 40px;
+	font-size:16px;
+	cursor:pointer;
+}
+/*用户界面的css*/
+/*列表中每一行的高*/
+.user_form_height{ height:25px; padding:0px;}
+/*列表中label的样式*/
+.user_label{
+	line-height: 25px;
+}
+/*隐藏列中多出的文字*/
+.appList_hide{overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis; max-width:200px;}
+.appParams_hide{overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis; max-width:90px;}
+.appType_hide{overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis; max-width:90px;}

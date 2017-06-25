@@ -1,0 +1,113 @@
+{
+    "task_name": "dkd",
+    "dir_path": "/home/data1/data01/soda_test/flow1",
+    "species": "Oryza_sativa_Japonica",
+    "is_sslib": "no",
+    "seq_type": "pe",
+    "data_dir": "/home/data1/data01/test_data/rice_part_data",
+    "task_type": "ref",
+    "task_remark": "",
+    "project_id": "72627F01-89DA-FDFA-7D5F-A9CD3771368B",
+    "create_man_id": "74F2DB1B-3AFE-6DE5-D4AC-18CDD9786DF3",
+    "group_samples": "{\"1\":[\"ck\"],\"2\":[\"wll\"]}",
+    "compare_groups": "{\"12\":[\"1\",\"2\"]}",
+    "venn_compares": "null",
+    "exclude_modules": "PPI,KEGG",
+    "status": "failed",
+    "create_time": "2016-08-01 15:39:51",
+    "unselectNode": "",
+    "create_man": "soda",
+    "project_name": "testabc123",
+    "samples": "ck,wll",
+    "fa": "/database/Reference/Plant/Oryza_sativa/Oryza_sativa.IRGSP-1.0.26.dna.toplevel.fa",
+    "gtf": "/database/Reference/Plant/Oryza_sativa/Oryza_sativa.IRGSP-1.0.26.exon.gtf",
+    "nodePara": [
+        {
+            "name": "go",
+            "value": "/database/Reference/Plant/Oryza_sativa/go.txt"
+        },
+        {
+            "name": "gtf",
+            "value": "/database/Reference/Plant/Oryza_sativa/Oryza_sativa.IRGSP-1.0.26.exon.gtf"
+        },
+        {
+            "name": "fa",
+            "value": "/database/Reference/Plant/Oryza_sativa/Oryza_sativa.IRGSP-1.0.26.dna.toplevel.fa"
+        },
+        {
+            "name": "qval",
+            "value": "0.005"
+        },
+        {
+            "name": "foldchange",
+            "value": "1"
+        },
+        {
+            "name": "abbr",
+            "value": ""
+        },
+        {
+            "name": "ppi",
+            "value": "0"
+        }
+    ],
+    "sql": "SELECT `task_name`,`flow_mod`,`status`,`job_number`,`submit_time`,`done_time`,timediff(done_time,submit_time) AS `consume_time` FROM `sjm_tasks` WHERE ( task_id='6A667226-0D80-5CB1-3DA6-A51A337D472A' ) ",
+    "modStatus": [
+        {
+            "task_name": "ck_rRNA_CHECK",
+            "flow_mod": "QC",
+            "status": "failed",
+            "job_number": "536",
+            "submit_time": "2016-08-01 15:40:30",
+            "done_time": null,
+            "consume_time": null
+        },
+        {
+            "task_name": "ck_rRNA_CHECK",
+            "flow_mod": "QC",
+            "status": "failed",
+            "job_number": "536",
+            "submit_time": "2016-08-01 15:40:30",
+            "done_time": null,
+            "consume_time": null
+        },
+        {
+            "task_name": "ck_rRNA_CHECK",
+            "flow_mod": "QC",
+            "status": "failed",
+            "job_number": "536",
+            "submit_time": "2016-08-01 15:40:30",
+            "done_time": null,
+            "consume_time": null
+        },
+        {
+            "task_name": "ck_rRNA_CHECK",
+            "flow_mod": "QC",
+            "status": "failed",
+            "job_number": "536",
+            "submit_time": "2016-08-01 15:40:30",
+            "done_time": null,
+            "consume_time": null
+        },
+        {
+            "task_name": "ck_rRNA_CHECK",
+            "flow_mod": "QC",
+            "status": "failed",
+            "job_number": "536",
+            "submit_time": "2016-08-01 15:40:30",
+            "done_time": null,
+            "consume_time": null
+        },
+        {
+            "task_name": "wll_rRNA_CHECK",
+            "flow_mod": "QC",
+            "status": "failed",
+            "job_number": "537",
+            "submit_time": "2016-08-01 15:40:30",
+            "done_time": null,
+            "consume_time": null
+        }
+    ],
+    "runMod": "",
+    "failedMod": "Saturation"
+}

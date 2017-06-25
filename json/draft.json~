@@ -1,0 +1,86 @@
+{
+	"taskId":"123",
+    "taskPara": [
+        {
+            "name": "task_name",
+            "value": "wanghuixuan"
+        },
+        {
+            "name": "project_id",
+            "value": "cat"
+        },
+        {
+            "name": "dir_path",
+            "value": "/home/agloom/wanghuixuan"
+        },
+        {
+            "name": "species",
+            "value": "lion"
+        },
+        {
+            "name": "is_sslib",
+            "value": "yes"
+        },
+        {
+            "name": "seq_type",
+            "value": "PE(Pair-End)"
+        },
+        {
+            "name": "data_dir",
+            "value": "/home/agloom"
+        }
+    ],
+    "nodePara": [
+        {
+            "name": "qcpara2",
+            "value": "no"
+        },
+        {
+            "name": "qcpara3",
+            "value": "001"
+        },
+        {
+            "name": "Assemblepara2",
+            "value": "yes"
+        },
+        {
+            "name": "Assemblepara3",
+            "value": "002"
+        },
+        {
+            "name": "Novelpara2",
+            "value": "no"
+        },
+        {
+            "name": "Novelpara3",
+            "value": "003"
+        },
+        {
+            "name": "DEpara2",
+            "value": "no"
+        },
+        {
+            "name": "DEpara3",
+            "value": "001"
+        },
+        {
+            "name": "qcpara1",
+            "value": "QC"
+        },
+        {
+            "name": "Assemblepara1",
+            "value": "Assemble"
+        },
+        {
+            "name": "Novelpara1",
+            "value": "kiara"
+        },
+        {
+            "name": "DEpara1",
+            "value": "test"
+        }
+    ],
+    "unselectNode": "Density,Saturation,SNP_INDEL,AS,PPI,GO,KEGG",
+    "samples": "s1,s2,s3.fq.gz,s3,s4.fq.gz,s4"
+    
+}

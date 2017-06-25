@@ -1,0 +1,212 @@
+{	"status":"SUCCESS",
+	"data":
+	[
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "1846",
+        "mtime": "2016-02-19/17:30:08",
+        "name": "s1_1.fq.gz"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "4537",
+        "mtime": "2016-03-10/16:07:39",
+        "name": "s1_2.fq.gz"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "2506",
+        "mtime": "2016-02-18/21:02:21",
+        "name": "s1_2.adaptor.list"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "1796",
+        "mtime": "2016-01-08/15:32:43",
+        "name": "s2_1.fq.gz"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "7767",
+        "mtime": "2016-03-14/17:49:44",
+        "name": "s3.fq.gz"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "2044",
+        "mtime": "2016-03-23/11:05:06",
+        "name": "cuff_gtf_trans.py"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "139",
+        "mtime": "2016-03-10/20:05:25",
+        "name": "editConfig.py"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "1652",
+        "mtime": "2016-02-25/09:59:48",
+        "name": "extract_gene_seq.py"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "1148",
+        "mtime": "2016-01-14/21:42:49",
+        "name": "extractGeneSeq.py"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "1168",
+        "mtime": "2016-01-14/21:41:50",
+        "name": "s3_1.fq.gz"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "1269",
+        "mtime": "2016-01-14/21:56:55",
+        "name": "s4.fq.gz"
+    },
+    {
+        "type": "drwxrwxr-x.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "1269",
+        "mtime": "2016-01-14/21:56:46",
+        "name": "s4_2.fq.gz"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "1265",
+        "mtime": "2016-01-26/21:47:45",
+        "name": "filterById.py"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "8416",
+        "mtime": "2016-02-24/10:31:35",
+        "name": "generate_kegg_html.py"
+    },
+    {
+        "type": "drwxrwxr-x.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "1069",
+        "mtime": "2016-02-01/16:46:14",
+        "name": "getPassV"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "218",
+        "mtime": "2016-02-15/10:10:40",
+        "name": "kegg_test.py"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "2054",
+        "mtime": "2016-02-23/14:32:32",
+        "name": "merge_as_num.py"
+    },
+    {
+        "type": "drwxrwxr-x.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "2715",
+        "mtime": "2016-01-08/11:46:40",
+        "name": "merge_readcou"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "4598",
+        "mtime": "2016-03-09/15:57:46",
+        "name": "ppi.py"
+    },
+    {
+        "type": "drwxrwxr-x.",
+        "inodeNum": "14",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "4096",
+        "mtime": "2016-02-01/10:45:43",
+        "name": "qcproject"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "2703",
+        "mtime": "2016-03-10/10:10:16",
+        "name": "qc_summary.py"
+    },
+    {
+        "type": "-rwxrwxr-x.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "35081",
+        "mtime": "2016-03-15/17:35:07",
+        "name": "test.py"
+    },
+    {
+        "type": "-rw-rw-r--.",
+        "inodeNum": "1",
+        "owner": "agloom",
+        "group": "agloom",
+        "size": "764",
+        "mtime": "2016-01-26/21:46:03",
+        "name": "trans.py"
+    }
+]
+}

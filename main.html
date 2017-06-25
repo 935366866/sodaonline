@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>欢迎使用SODA平台</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="content-type" content="text/html" ; charset="utf-8">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--表格js-->
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<script src="js/bootstrap-table.js"></script>
+	<!-- 编辑表格中的元素 -->
+	<link rel="stylesheet" href="css/bootstrap-editable.css">
+	<script src="js/bootstrap-editable.js"></script>
+	<!-- 引入通用的文件 -->
+	<script src="js/common.js"></script>
+	<link rel="stylesheet" href="css/soda_common.css">
+</head>
+
+<body style="background-color: #f8f8f8;">
+	<div class="top" style="float:left;width:100%;">
+		<div class="main_nav1">
+			<div class="change_box">
+				<ul class="main_nav1_left">
+					<li class="dodo"><a  href="#">DODOGENE</a></li>
+					<li class="nav_b1"><a href="#">云中漫步</a></li>
+					<li class="other_nav nav1_list1">
+						<a href="#" style="padding-left:15px;padding-right:15px;">新闻快讯<img src="img/01.png" alt=""></a>
+						<ul class="" >
+							<li><a href="#">前沿研究</a></li>
+							<li><a href="#">市场活动</a></li>
+						</ul>
+					</li>			
+				</ul>
+				
+				<ul class="main_nav1_right">
+					<li><a href="#"><img src="img/分析报告_03.png" alt="通知" /></a></li>
+					<li><a href="#"><img src="img/分析报告_05.png" alt="帮助" /></a></li>
+					<li><a href="#"><img src="img/分析报告_07.png" alt="个人中心" /></a></li>
+				</ul>
+			</div>
+		</div>
+	
+		<div class="main_nav2" style="box-shadow:-2px 3px 9px 0px #ccc;">
+			<div class="change_box">
+				<ul class="main_nav2_left">
+					<li style="width:110px;text-align:center;"><img src="img/nav_cloud.png" alt="" /></li>
+					<li class="nav2_list1" style="margin-right:0px;" >
+						<a href="#" style="padding-left:15px;padding-right:15px;">分析流程<img src="img/02.png" alt=""></a>
+						<ul class="">
+							<li><a href="">DNA流程</a></li>
+							<li><a href="">RNA流程</a></li>
+							<li><a href="">健康医学流程</a></li>
+						</ul>				
+					</li>
+					<li class="nav2_list2" style="margin-right:0px;">
+						<a href="#" style="padding-left:15px;padding-right:15px;">小工具<img src="img/02.png" alt=""></a>
+						<ul class="">
+							<li><a href="">计算统计</a></li>
+							<li><a href="">绘图软件</a></li>
+						</ul>
+					</li>
+					<li class=""><a href="#" style="color:#000;">我的项目</a></li>
+					<li class=""><a href="#">我的目录</a></li>
+					<li class=""><a href="#">回收站</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+	
+	<div  style="width:100%;float: left;padding-top:120px;">
+
+			<div  class="change_box">
+				<div class=" panel panel-default container " style="width:100%">
+
+					<div id="toolbar">
+						<button class="btn btn-primary " data-target="#newProject" data-toggle="modal">
+                                新建项目&nbsp;&nbsp;<i style="color: rgb( #FFF); font-size: 12px;"  class="glyphicon glyphicon-plus"></i>
+                        </button>
+						<button class="btn btn-danger" id="removeProject">
+                                删除项目&nbsp;&nbsp;<i style="color: rgb( #FFF); font-size: 12px;"  class="glyphicon glyphicon-remove"></i>
+                        </button>
+						<!----------------------------------------------------------------------------------------------------->
+						<!-- 添加项目的模态框 -->
+						<div class="modal fade" id="newProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content col-md-10 col-md-push-1">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+											&times;
+										</button>
+										<h4 class="modal-title" id="myModalLabel">
+											新建项目
+										</h4>
+									</div>
+									<form class="form-horizontal" id="submitNewPro" role="form" action="test" method="post">
+										<div class="modal-body" style=" text-align:center">
+											<!---------------------------------------------------------------------------------->
+											<div class="form-group">
+												<label class="col-sm-3">项目名称*</label>
+												<div class="col-sm-8">
+													<input type="text" class="form-control col-md-7" id="project_name" name="project_name" placeholder="请输入项目名称" required>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-md-3" for="inputfile">项目说明</label>
+												<div class="col-sm-8" style="height: 150px">
+													<textarea class="form-control col-md-7" style="height:150px; resize:none" placeholder="请输入项目说明" id="project_remark" name="project_remark"> </textarea>
+												</div>
+											</div>
+										</div>
+										<!-- ------------------------------------------------------------------- -->
+										<div class="modal-footer">
+											<button type="button" onClick="submitProject()" class="btn btn-primary">
+												新建
+											</button>
+											<button type="button" id="cancel" class="btn btn-default" data-dismiss="modal">
+											取消
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- ---------------------------------------------------------------------- -->
+					</div>
+
+					<table data-toggle="table" data-url="__MODULE__/Project/listProj" data-toolbar="#toolbar" data-search="true" data-click-to-select="true"
+						data-show-refresh="true" data-show-columns="true" data-height="600" data-show-export="true" data-detail-view="true"
+						data-detail-formatter="detailFormatter" data-after-detail-formatter="edit" data-side-pagination="server" data-minimum-count-columns="2"
+						data-show-pagination-switch="true" data-pagination="true" data-id-field="id" data-page-list="[10, 25, 50, 100, ALL]"
+						data-show-footer="false" data-sort-name="create_time" data-sort-order="desc" id="maintable">
+						<thead>
+							<tr>
+								<th data-field="state" data-checkbox="true"></th>
+								<th data-field="project_name" data-halign="center" data-formatter="linkJob" data-sortable="true">项目名</th>
+								<th data-field="create_man" data-align="center" data-sortable="true">创建人</th>
+								<th data-field="create_time" data-align="center" data-sortable="true">创建时间</th>
+								<th data-field="project_remark" data-visible="false">项目说明</th>
+								<th data-field="id" data-visible="false">项目ID</th>
+								<th data-field="run_num" data-align="center" data-formatter="runFormatter" data-sortable="false">运行任务</th>
+								<th data-field="done_num" data-align="center" data-formatter="doneFormatter" data-sortable="false">完成任务</th>
+								<th data-field="stop_num" data-align="center" data-formatter="stopFormatter" data-sortable="false">终止任务</th>
+							</tr>
+						</thead>
+					</table>
+
+					<p>已选中<span id="now_ck_num">0</span>项</p>
+				</div>
+			</div>
+
+	</div>
+<!--页脚-->
+<div id="footer_style">
+	<footer class="footerstyle">
+		<p>版权所有 © 2016 京ICP备15033925号</p>
+		<p>北京拓美科基因科技有限公司</p>
+	</footer>
+</div>
+	<script>
+//正在运行中
+function runFormatter(index, row) {
+    return '<button class="btn btn-success btn-xs">' + row.run_num + '</button>';
+};
+//完成任务
+function doneFormatter(index, row) {
+    return '<button class="btn btn-primary btn-xs">' + row.done_num + '</button>';
+};
+//终止任务
+function stopFormatter(index, row) {
+    return '<button class="btn btn-warning btn-xs">' + row.stop_num + '</button>';
+};
+
+//下拉箭头展开
+function detailFormatter(index, row) {
+	var html = [];
+	
+	$.each(row, function (key, value) {
+		if($.inArray(key,["create_man"]) != -1){
+			html.push('<p><b>创建人:</b> ' + value + '</p>');
+			};
+		if($.inArray(key,["create_time"]) != -1){
+			html.push('<p><b>创建时间:</b> ' + value + '</p>');
+			};
+
+		if( key=="project_name" ){
+			html.push('<p><b>项目名称:</b> '+ '<a class="editable editable-pre-wrapped editable-click" data-name="project_name" data-pk='+ row["id"] + '  href="#" >' + value + '</a>'+ '</p>');
+			};
+			
+		if(key == "project_remark"){
+			html.push('<p><b>项目说明:</b> ' +'</p>' + '<a class="editable editable-pre-wrapped editable-click "  data-name="project_remark" href="#" data-pk='+ row["id"] + ' data-type="textarea" data-original-title="修改项目说明"><p class="indent">' + value + '</p></a>');
+			};	
+	});
+	$.fn.editable.defaults.mode = 'inline';
+	return html.join('');
+};
+
+//项目可编辑
+function edit(arr){
+	item = arr.next('.detail-view');
+	
+	pjname = item.find("a[data-name=project_name]");
+	pjinfo = item.find("a[data-name=project_remark]");
+	$(pjname).editable({
+	    type: 'text',
+	    url: '__MODULE__/Project/updateProjField',
+	    success: function(data){
+	    	if(data.status=='ERROR'){
+	    		alert(data.data);
+	    	}
+	    },
+		error: function(response, newValue) {
+            alert(response.status +' '+ response.statusText);
+    }
+	});
+	$(pjinfo).editable({
+	    type: 'text',
+	    url: '__MODULE__/Project/updateProjField',
+	    success: function(data){
+	    	if(data.status=='ERROR'){
+	    		alert(data.data);
+	    	}
+	    },
+		error: function(response, newValue) {
+            alert(response.status +' '+ response.statusText);
+    }
+	});
+
+};
+
+//删除选中的行
+$("#removeProject").click(function(){
+	num = checkedNum("maintable")					//选中个数
+	remove_confirm("maintable","id",num,'__MODULE__/Project/updateStatProj/optflag/delete');	//删除
+});
+
+//新建项目
+function submitProject(){
+	proData = $("#submitNewPro").serialize()
+	$.post('__MODULE__/Project/addProj',
+			proData,
+			function(data,status){	
+					if(data['status']=='ERROR'){
+						alert(data['data']);
+						return false;
+					}
+					alert("提交成功！");
+					$("#maintable").bootstrapTable('refresh');
+					$("#newProject").modal('hide');
+					$(".modal-content").find("input").val("");
+					$(".modal-content").find("textarea").val("");
+				},
+			'json')
+		.error(function(XMLHttpRequest){
+					alert(XMLHttpRequest.status+' '+ XMLHttpRequest.statusText);
+					$("#newProject").modal('hide');
+					$(".modal-content").find("input").val("");
+					$(".modal-content").find("textarea").val("");
+						});
+		};
+//实时统计选中checkbox的个数		
+$(function () {
+	checkedNow('maintable','now_ck_num');
+});
+
+//模态框点击关闭的时候清空表单
+$(function () {
+	$(".close").bind("click",function(){
+		$(".modal-content").find("input").val("");
+		$(".modal-content").find("textarea").val("");
+	});
+	$("#cancel").bind("click",function(){
+		$(".modal-content").find("input").val("");
+		$(".modal-content").find("textarea").val("");
+	});	
+});
+
+function infState(State, row) {
+	if ( State == "0"){
+		return '<img src="image/red.png">';
+		};	
+    if ( State == "1"){
+		return '<img src="image/blue.png">';
+		};
+	if ( State == "2"){
+		return '<img src="image/orange.png">';
+		};
+};
+//添加跳转到任务界面的连接
+function linkJob(name,row) {
+//	console.log(row.id)//ID
+	return '<a href="__MODULE__/Project/listProjTasks/project_id/'+row.id+'" >'+ name +'</a>'
+};
+
+
+//给首页设置定时器
+$(function(){
+	setInterval("rf_bsTable('maintable')", 300000);
+});
+
+	
+</script>
+</body>
+
+</html>

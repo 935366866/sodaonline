@@ -1,0 +1,264 @@
+@charset "utf-8";
+//--------------------参数--------------------
+//1.表格颜色
+@thead_border: #686c73;
+//链接的颜色设置
+.a_style(@a_color,@a_hover){
+    a{
+        text-decoration: none;
+        color:@a_color;
+        cursor:pointer;
+    };
+    a:hover{
+        text-decoration: none;
+        color: @a_hover;
+        cursor:pointer;
+    };
+};
+
+//标签页的样式
+.myTab{
+    min-width: 1000px;
+    float: left;
+    height: 67px;
+    width:100%;
+    background-color: #f8f8f8;
+    border-bottom: solid 1px #c7c7c7; 
+    .tabs{
+        width: 52%;
+        height: 67px;
+        float: right;
+        text-align: center;
+        #appTab{
+            float: left;
+            height: 39px;
+            margin-top: 28px;
+            a{
+                color: #656565!important;
+            };
+            li{
+                width:106px;
+                height: 100%;
+                float: right;
+                &.active{
+                    a{
+                        background-color: #fff;
+                        border-bottom: solid 1px #fff; 
+                    };
+                };
+                a{
+                    height: 100%;
+                    line-height: 39px;
+                    font-size: 15px;
+                    //font-weight: bold;
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                    margin-right: 5px;
+                    background-color: #eee;
+                    border: solid 1px #c7c7c7; 
+                    -moz-border-radius: 3px 3px 0px 0px;
+                    -webkit-border-radius: 3px 3px 0px 0px;
+                    border-radius: 3px 3px 0px 0px;
+                };
+
+            };
+
+        };
+    };
+};
+
+//标签中具体内容
+#myTabContent{
+    
+    margin: 0 auto;
+    padding-top: 120px;
+    h3{
+        font-size: 16px;
+        line-height: 30px;
+        color: #333;
+    };
+    //1.输入页面
+    .input_l{
+        float: left;
+        width: 47%;
+        .panel-heading{
+            height: 51px;
+            .a_style(#337ab7,#337ab7);
+            a{
+                float: right;
+                line-height: 30px;
+            }
+            h3{
+                float: left;
+            }
+        }
+        .panel-body{
+            height: 490px;
+            padding: 10px 0px 10px 0px;
+
+            overflow-y:auto;
+        }
+
+    };
+    .input_r{
+        float: right;
+        width: 52%;
+        .panel-heading{
+            height: 51px;
+            h3{
+                float: left;
+            }
+            .download_button{
+                float: right;
+                button{
+                    line-height: 21px;
+                    font-weight: bold;
+                    padding: 3px 10px; 
+                    margin-left: 5px;
+                };
+                img{
+                    width: 19px;
+                    margin-right: 4px;
+                };
+                
+            };
+        };
+        .panel-body{
+            height: 490px;
+            overflow-y:auto;
+            background-color: #fff!important;
+        }
+    };
+};
+//文件参数
+#parameter{
+    height: auto;
+    .part{
+        float:left;
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .title_base{
+        width: 18%;
+        height: 100%;
+        color: #333;
+        font-size: 15px;
+        line-height: 34px;
+        vertical-align: middle;
+    }
+    .input_base{
+        height: 100%;
+        p{
+            color: #999;
+        };
+    }
+    .input_a_l{
+        float: left;        
+        .title_base;
+        width: 18%;
+    };
+    .input_a_m{
+        float: left;
+        width:60%;
+    }
+    .input_a_r{
+        float: right;
+        width: 16%;
+    }
+    .input_b_t1{
+        float: right;        
+        .title_base;
+        width: 50px;
+        padding-left: 5px;
+    }
+    .input_b_2{
+        float: left;
+        .input_base;
+        width:30%;
+    }
+    .input_b_3{
+        float: right;
+        .input_base;
+        width:70px;
+    }
+    .input_c_1{
+        float: left;        
+        .title_base;
+        width: 20%;
+    }
+    .input_c_2{
+        float: left;
+        width:45%;
+    }
+    .input_c_3{
+        float: right;        
+        .title_base;
+        width: 65px;
+        padding-left: 5px;
+    }
+    .input_c_4{
+        float: right;
+        .input_base;
+        width:82px;
+    }
+    .input_d_1{
+        float: left;        
+        .title_base;
+        width: 40%;
+    }
+    .input_d_2{
+        float: left;
+        width:25%;
+    }
+    .input_e_1{
+        float: left;        
+        .title_base;
+        width: 33%;
+    }
+    .input_e_2{
+        float: left;
+        width:22%;
+    }
+    .input_e_3{
+        float: right;        
+        .title_base;
+        width: 113px;
+        padding-left: 5px;
+    }
+    .input_f_2{
+        float: left;
+        width:30%;
+    }
+
+};
+.line{
+    float: left;
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+#submit_paras{
+    float: right;
+    width:130px;
+}
+
+
+.img_box{
+    text-align:center!important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    img{
+        max-width: 80%;
+    }
+    p{
+        color:#333!important;
+        text-align:center!important;
+        font-weight: bold;
+        letter-spacing: 2px;
+    };
+};

@@ -1,0 +1,29 @@
+[
+        {	"newsId": "0001",
+            "newsName": "Human_transcript_10981028908",
+            "newsType": 1,
+			"newsMan": "tempo",
+			"newsTime":"16:30 16/03/2016"
+        },
+		{
+			"newsId": "0002",
+            "newsName": "Human_transcript_10981028909",
+            "newsType": 1,
+			"newsMan": "tempo",
+			"newsTime":"16:30 16/03/2016"
+        },
+		{
+			"newsId": "0003",
+            "newsName": "Human_transcript_10981028910",
+            "newsType": 2,
+			"newsMan": "tempo",
+			"newsTime":"16:30 16/03/2016"
+        },
+		{
+			"newsId": "0004",
+            "newsName": "Human_transcript_10981028911",
+            "newsType": 0,
+			"newsMan": "tempo",
+			"newsTime":"16:30 16/03/2016"
+        }
+]		

@@ -1,0 +1,568 @@
+@charset "utf-8";
+//--------------------参数--------------------
+//主题色，用于导航栏等
+@main_nav1:#242c34;
+//字体
+//--------------------通用--------------------
+//段落的基本设置
+.p_style(@size:16px,@color:#666,@line-height:27px){
+    font-size:@size;
+    color:@color;
+    line-height: @line-height;    
+};
+//左右内边距内0
+.p_rl(@l:0px,@r:0px){
+    padding-right: @l;
+    padding-left: @r;
+};
+
+//链接的颜色设置
+.a_style(@a_color,@a_hover){
+    a{
+        text-decoration: none;
+        color:@a_color;
+        cursor:pointer;
+    };
+    a:hover{
+        text-decoration: none;
+        color: @a_hover;
+        cursor:pointer;
+    };
+};
+//div，设置为圆角
+.div_rounded(@w:5px){
+    -moz-border-radius: @w;
+    -webkit-border-radius: @w;
+    border-radius: @w;
+};
+
+//缩进
+.indent{
+    text-indent: 2em;
+};
+/* 隐藏超出列宽的文字 */
+.contents_hide{overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis; max-width:200px;}
+
+//--------------------页面整体大小的通用设计--------------------
+html{
+    min-width: 800px;
+    overflow-x:scroll;
+};
+.bigbox{
+    width:90%;
+    margin: 0 auto;
+    .p_rl();
+};
+.bigbox_1200{
+    margin: 0 auto;
+    width:90%;
+    max-width: 1200px;
+    .p_rl();
+}
+
+//------------------------导航----------------------------
+//1.导航部分
+.top{
+    float:left;
+    width:100%;
+    position: fixed;
+    z-index: 999;
+}
+//1.1导航1
+.main_nav1{
+    float: left;
+    .p_rl();
+    width:100%;
+    height: 45px;
+    background-color: @main_nav1;
+    ul{
+        list-style: none;
+    };
+    .main_nav1_right{
+        float:right;
+        height: 100%;
+        line-height: 40px;
+        .p_rl();
+        li{
+            float: left;
+            margin-left: 15px;
+            height: 45px;
+            span{
+                color: #fff;
+                margin-top: 2px;
+                .div_rounded(@w:15px); 
+                padding: 3px 20px;
+                border: 1px solid #fff;
+            };
+        };
+        img{
+            width: 37px;
+            height: 37px;
+            margin-top: 2px;
+        }
+        
+    };
+    .main_nav1_left{
+        float: left;
+        height: 100%;
+        line-height: 45px;
+        .a_style(#ddd,#fff);
+        .p_rl();
+        li{
+            background: @main_nav1;
+            float: left;
+            font-size: 16px;
+            .p_rl(15px,15px);
+            margin-right: 40px;
+            letter-spacing: 1px;
+            &.listshow ul{
+                display: block;
+            };
+        };
+
+        ul{
+            display: none;
+            padding-left: 0px;
+            li{
+                .p_rl(30px,15px);
+                float:none;
+                border-top: 1px solid #666;
+                display: block;
+                height: 45px;
+                margin-left: 0px;
+                margin-right: 0px;
+            };
+        };
+
+        //1.链接到首页的dodogene
+        .dodo{
+            width:100px;
+            padding-left:0px;
+            letter-spacing:0px;
+            .a_style(#46a2f9,#46a2f9);
+        };
+        //2.导航上面的蓝色条代表当前所处页面，字体为白色
+        .nav_b1{
+            background-image:url('../img/main_nav_01.png');
+            background-repeat: repeat-x;
+        };
+        //3.未被选中的其他链接样式
+        .other_nav{
+            z-index: 102;
+            position:relative;
+            padding-left: 0px!important;
+            padding-right: 0px!important;
+            margin-right: 0px;
+        };
+    };
+};
+//1.2导航2
+.main_nav2{
+    float: left;
+    .p_rl();
+    width:100%;
+    height: 45px;
+    background-color: #fff;
+    ul{
+        list-style: none;
+    };    
+    .main_nav2_left{
+        .a_style(#666,#000);
+        float: left;
+        height: 100%;
+        line-height: 45px;
+        .p_rl();
+        li{
+            z-index: 101;
+            position:relative;
+            background: #fff;
+            float: left;
+            font-size: 16px;
+            .p_rl();
+            margin-right: 30px;
+            letter-spacing: 1px;
+            &.listshow ul{
+                display: block;
+            };
+        };
+
+        ul{
+            display: none;
+            padding-left: 0px;
+            width:150px;
+            box-shadow:4px 4px 16px -11px #000;
+            li{ 
+                width:150px;
+                .p_rl(30px,15px);
+                float:none;
+                display: block;
+                height: 45px;
+                margin-left: 0px;
+                margin-right: 0px;
+                border-top: 1px solid #ccc;
+            };
+        };
+        .nav2_search{
+            float:left;
+            width: 550px;
+            font-size:20px;
+            margin-top: 10px;
+            input{
+                height: 28px;
+                width:470px;
+                float:left;
+            };
+            button{
+                padding-top: 3px;
+                height: 28px;
+                float: left;
+                margin-left: 0px;
+            };
+            //蓝色按钮
+            .btn-blue{
+                background-color: #2289e5;
+                color:#fff;
+                margin-left:10px;
+                &:hover{ 
+                    color: #fff;
+                };
+            };
+        };
+        .nav2_list1,.nav2_list2{
+            width: 120px;
+        };
+    };    
+};
+//1.3分割线
+.nav_line{
+    float: left;
+    width:100%;
+    height: 12px;
+    background-image:url('../img/分析报告_15.png');
+    background-repeat: no-repeat;
+    -moz-background-size:100% 12px;
+    background-size:100% 12px;
+};
+//1.4导航3
+.main_nav3{
+    float: left;
+    .p_rl();
+    width:100%;
+    height: 45px;
+    background-color: #fff;
+    ul{
+        list-style: none;
+    };    
+    .main_nav3_left{
+        .a_style(#777,#000);
+        float: left;
+        display: block;
+        line-height: 45px;
+        .p_rl();
+        li{
+            z-index: 100;
+            background: #fff;
+            float: left;
+            font-size: 14px;
+            .p_rl(5px,5px);
+            letter-spacing: 1px;
+            span{
+                .div_rounded(@w:15px); 
+                padding: 3px 15px;
+                border: 1px solid #777;
+            };
+        };
+    };    
+    .main_nav3_right{
+        float:right;
+        .a_style(#777,#000);
+        display: block;
+        line-height: 45px;
+        .p_rl();
+        li{
+            z-index: 100;
+            background: #fff;
+            float: left;
+            font-size: 14px;
+            .p_rl(5px,5px);
+            letter-spacing: 1px;
+            span{
+                .div_rounded(@w:8px); 
+                padding: 6px 8px;
+                border: 1px solid #777;
+            };
+        };
+    };    
+};
+/*===============report导航样式==============*/
+.main_nav3_left_report{
+    .a_style(#fff,#eee);
+    float: left;
+    display: block;
+    line-height: 45px;
+    .p_rl();
+    li{
+        z-index: 100;
+        
+        float: left;
+        font-size: 14px;
+        .p_rl(5px,5px);
+        letter-spacing: 1px;
+        span{
+            .div_rounded(@w:15px); 
+            background: #0379e7;
+            padding: 3px 15px;
+            border: 1px solid #0379e7;
+        };
+    };
+
+};
+.main_nav3_right_report{
+    float:right;
+    .a_style(#fff,#eee);
+    display: block;
+    line-height: 45px;
+    .p_rl();
+    li{
+        z-index: 100;
+        
+        margin-left:13px;
+        float: left;
+        font-size: 14px;
+        .p_rl(0px,0px);
+        letter-spacing: 1px;
+        span{
+            .div_rounded(@w:8px); 
+            padding: 6px 8px;
+        };
+        a{
+            img{
+                width: 37px;
+                height: 37px;
+            }
+        }
+    };
+    .report_success{
+        span{
+            background-color:#0379e7;
+            border:1px solid #0379e7;
+        };
+    };
+    .report_running{
+        span{
+            background-color:#32ae4e ;
+            border:1px solid #32ae4e ;
+        };
+    };
+    .report_end{
+        span{
+            background-color:#ec5743 ;
+            border:1px solid #ec5743 ;
+        };
+    };
+};
+
+//-------------------------页脚-------------------------
+#footer_style{
+    margin:10px 0;
+    float:left;
+    width:100%;
+    .footerstyle{
+        font-size: 12px;
+        line-height: 10px;
+        text-align: center;
+        color:#999;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    };
+};
+//----------------------main------------------
+#main_right{
+    float:right;
+    width:30%;
+}
+#box_left{
+    float:left;
+    width:68%;
+}
+//---------------------task-----------------------
+.center_box{
+    margin-top:90px;
+}
+//流程的标题
+.flow_title{
+    float: left;
+    background-color: #2baf4a;
+    width:100%;
+    height: 120px;
+    text-align: center;
+    p{
+        font-size: 28px;
+        font-weight: bold;
+        color: #fff;
+        margin:15px 0px ;
+        letter-spacing: 1px;
+        text-indent: 0em;
+    };
+    .btn_title{
+        background-color: #fff;
+        color: #333;
+    };
+};
+//流程的标题
+.app_title{
+    float: left;
+    background-color: #3b3f42;
+    width:100%;
+    height: 75px;
+    text-align: center;
+    p{
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        line-height: 75px;
+        letter-spacing: 1px;
+        text-indent: 0em;
+    };
+    .btn_title{
+        background-color: #fff;
+        color: #333;
+    };
+};
+//圆形按钮
+.round_Button{
+    .div_rounded(20px);
+    font-size: 16px!important;
+    padding:5px 40px!important;    
+};
+
+.btn_orange{
+    background-color: #f39019;
+    color: #fff;
+};
+.btn_white{
+    background-color: #fff;
+    color: #f39019;
+    border: 1px solid #f39019;
+};
+//序号
+.bg_01{
+    background-image: url('../img/bg_01.png');
+    background-repeat:no-repeat;
+    background-position: 4px 4px;
+};
+//提交的盒子
+.run_style{
+        float:left;
+        width:62%;
+        margin-right:15px;
+};
+//分组比较的格式
+
+//每一部分的盒子
+.part_box{
+    float:left;
+    width:100%;
+    .p_rl();
+}
+.task_form_height{ 
+    padding-top:0px;
+    height:60px;
+    width: 80%;
+    margin:0 auto;
+    .task_label{
+        float: left;
+        font-size: 17px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        line-height: 45px;
+        min-width: 180px;
+        margin-top: 10px;
+        width: 25%;
+
+        span{
+            color: #0179e9;
+            float: left;
+            font-size: 20px;
+            margin-right: 10px;
+            text-align: center;
+            width: 45px;
+            height: 45px;
+            .bg_01;
+        };
+    };
+    .task_box{
+        float:left;
+        width:62%;
+        margin-top: 15px;
+        margin-right:15px;
+    };
+    a{
+        span{
+            margin-top: 15px;
+        }
+    }
+};
+
+//流程图
+#myDiagramDiv{
+    width:80%; 
+    margin: 0 auto;
+    height:470px; 
+    margin-bottom: 20px;
+    background-color:#f8f8f8;
+}
+.select_width{
+    width:100% !important;
+}
+
+//模块参数设置
+.params_part{
+    margin-top: 20px;
+    float: left;
+    margin-right: 15px;
+    width: 62%;    
+};
+//样本比较
+.sample_part{
+    margin-top: 20px;
+    float: left;
+    margin-right: 15px;
+    width: 70%;  
+    //width: 80%;
+    //margin:0 auto;
+};
+
+//=============================小工具新建===============================
+//小工具新建的中的参数
+#appParamsForm{
+    a{
+        span{
+            margin-top: 0px;
+        }
+    }
+};
+.taskRunDiv{
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+};
+.span_sample{
+    margin:5px 5px 5px 0px;
+    float:left;
+    a{
+        color:#fff;
+        font-size:10px;
+        line-height:15px;
+        margin-left:5px; 
+        cursor:pointer
+    };
+    a:hover {text-decoration: none;};
+};
+//===================taskDetail================
+#modStatus{
+    background-color: #fff;
+    float: left;
+    margin-right: 15px;
+    width: 62%;
+}

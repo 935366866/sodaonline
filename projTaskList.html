@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>项目页面</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="content-type" content="text/html" ; charset="utf-8">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!--表格js-->
+	<link rel="stylesheet" href="css/bootstrap-table.css">
+	<script src="js/bootstrap-table.js"></script>
+	<!-- 编辑表格中的元素 -->
+	<link rel="stylesheet" href="css/bootstrap-editable.css">
+	<script src="js/bootstrap-editable.js"></script>
+
+	<!-- 引入通用的文件 -->
+	<script src="js/common.js"></script>
+	<link rel="stylesheet" href="css/soda_common.css">
+</head>
+
+<body style="background-color: #f8f8f8;">
+	<div class="top" style="float:left;width:100%;">
+		<div class="main_nav1">
+			<div class="change_box">
+				<ul class="main_nav1_left">
+					<li class="dodo"><a  href="#">DODOGENE</a></li>
+					<li class="nav_b1"><a href="#">云中漫步</a></li>
+					<li class="other_nav nav1_list1">
+						<a href="#" style="padding-left:15px;padding-right:15px;">新闻快讯<img src="img/01.png" alt=""></a>
+						<ul class="" >
+							<li><a href="#">前沿研究</a></li>
+							<li><a href="#">市场活动</a></li>
+						</ul>
+					</li>			
+				</ul>
+				
+				<ul class="main_nav1_right">
+					<li><a href="#"><img src="img/分析报告_03.png" alt="通知" /></a></li>
+					<li><a href="#"><img src="img/分析报告_05.png" alt="帮助" /></a></li>
+					<li><a href="#"><img src="img/分析报告_07.png" alt="个人中心" /></a></li>
+				</ul>
+			</div>
+		</div>
+	
+		<div class="main_nav2"  style="box-shadow:-2px 3px 9px 0px #ccc;">
+			<div class="change_box">
+				<ul class="main_nav2_left">
+					<li style="width:110px;text-align:center;"><img src="img/nav_cloud.png" alt="" /></li>
+					<li class="nav2_list1" style="margin-right:0px;" >
+						<a href="#" style="padding-left:15px;padding-right:15px;">分析流程<img src="img/02.png" alt=""></a>
+						<ul class="">
+							<li><a href="">DNA流程</a></li>
+							<li><a href="">RNA流程</a></li>
+							<li><a href="">健康医学流程</a></li>
+						</ul>				
+					</li>
+					<li class="nav2_list2" style="margin-right:0px;">
+						<a href="#" style="padding-left:15px;padding-right:15px;">小工具<img src="img/02.png" alt=""></a>
+						<ul class="">
+							<li><a href="">计算统计</a></li>
+							<li><a href="">绘图软件</a></li>
+						</ul>
+					</li>
+					<li class=""><a href="#" style="color:#000;">我的项目</a></li>
+					<li class=""><a href="#">我的目录</a></li>
+					<li class=""><a href="#">回收站</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+
+	<div style="width:100%;float: left;padding-top: 120px;">
+		<div class="change_box">
+			<div class="pull-left" style="font-size:16px; padding:0px; float:left;">项目：&nbsp;{$project_name} <span id="proName"> </span></div>
+
+			<div class=" panel panel-default" style="width:100%;float:left;padding-left:15px;padding-right:15px;">
+
+				<div id="toolbar">
+					<button class="btn btn-primary  " onclick='javascript:window.location.href="__MOD
+					ULE__/FlowApp/showFlowApp/project_id/{$project_id}"'>  <!-- 点击新建任务时，跳转至新建项目的页面 -->
+								新建任务&nbsp;&nbsp;<i style="color: rgb( #FFF); font-size: 12px;"  class="glyphicon glyphicon-plus"></i>
+							</button>
+					<button class="btn btn-danger " id="removeTask">
+								删除任务&nbsp;&nbsp;<i style="color: rgb( #FFF); font-size: 12px;"  class="glyphicon glyphicon-remove"></i>
+							</button>
+
+				</div>
+				<!-- ------------------------------------------------------------------------------------------------- -->
+
+				<table data-toggle="table" data-url="__MODULE__/Task/listTasks/project_id/{$project_id}" data-toolbar="#toolbar" data-search="true"
+					data-click-to-select="true" data-show-refresh="true" data-show-columns="true" data-height="480" data-show-export="true"
+					data-detail-view="true" data-detail-formatter="detailFormatter" data-after-detail-formatter="edit" data-side-pagination="server"
+					data-minimum-count-columns="2" data-show-pagination-switch="true" data-pagination="true" data-id-field="id" data-page-list="[10, 25, 50, 100, ALL]"
+					data-show-footer="false" data-sort-name="create_time" data-sort-order="desc" id="maintable">
+					<thead>
+						<tr>
+							<th data-field="checkState" data-checkbox="true"></th>
+							<th data-field="task_name" data-align="center" data-formatter="linkJobDetial" data-sortable="true">任务名</th>
+							<th data-field="create_time" data-align="center" data-sortable="true">创建时间</th>
+							<th data-field="task_remark" data-visible="false">任务说明</th>
+							<th data-field="id" data-visible="false">任务ID</th>
+							<th data-field="task_type" data-align="center" data-sortable="true">流程/APP</th>
+							<th data-field="consume_time" data-align="center" data-sortable="true">运行时间</th>
+							<!--  <th data-field="jobModule" data-align="center">当前模块</th> -->
+							<th data-field="status" data-align="center" data-formatter="jobState" data-sortable="true">状态</th>
+							<th data-field="jobOperate" data-align="center" data-formatter="jobOper" data-sortable="true">操作</th>
+						</tr>
+					</thead>
+				</table>
+
+				<p>已选中<span id="now_ck_num">0</span>项</p>
+
+			</div>
+		</div>
+
+	</div>
+<!--页脚-->
+<div id="footer_style">
+	<footer class="footerstyle">
+		<p>版权所有 © 2016 京ICP备15033925号</p>
+		<p>北京拓美科基因科技有限公司</p>
+	</footer>
+</div>
+	<script>
+
+//任务的状态
+function jobState(state) {
+	if ( state == "running"){
+		return '<button class="btn btn-success btn-xs" style="width:100px;">任务正在运行</button>';
+		};	
+    if ( state == "finished"){
+		return  '<button class="btn btn-primary btn-xs" style="width:100px;">任务完成</button>';
+		};
+	if ( state == "failed"){
+		return '<button class="btn btn-warning btn-xs" style="width:100px;">任务中断</button>';
+		};
+	if ( state == "normal"){
+		return '<button class="btn btn-default btn-xs" style="color:#333; width:100px ;">草稿</button>';
+		};
+};
+//任务的操作
+function jobOper(Operate,row) {
+	id = row.id
+    if ( Operate == "0"){
+		return '<img class="jobImg" onclick="operate(id)" src="image/stop.png"></img>';
+		};
+	if ( Operate == "1"){
+		return '<img class="jobImg" onclick="operate(id);" src="image/run.png"></img>';
+		};
+};
+function operate(id){
+	$.ajax({
+				    url:'json/job.json',  
+				    type:'post',
+				    data:{id:id},
+				    dataType: "json",
+				    success:function(data) {
+				    	if(data['status']=='ERROR'){    //请求成功但没有执行成功
+				    		alert(data['data']);
+				    	}else{
+							alert("操作成功！");	
+				    	}
+				     },    
+				     error : function(XMLHttpRequest) {
+				       alert(XMLHttpRequest.status +' '+ XMLHttpRequest.statusText);    
+				     }
+				});  
+};
+//点击具体任务跳转链接 linkJobDetial
+function linkJobDetial(name,row) {
+//	obj = row;
+//	console.log(row.id)//ID
+	if(row.task_type=='app'){
+		return '<a target="_blank" href="__MODULE__/Task/showAppTaskDetail/id/'+row.id+'" >'+ name +'</a>'
+	}else{
+		return '<a target="_blank" href="__MODULE__/Task/getTask/id/'+row.id+'" >'+ name +'</a>'
+	}
+	
+};
+
+//下拉箭头展开
+function detailFormatter(index, row) {
+	var html = [];
+	$.each(row, function (key, value) {
+		
+		if( key=="task_name" ){
+			html.push('<p><b>任务名称:</b> '+ '<a class="editable editable-pre-wrapped editable-click" data-name="task_name" data-pk='+ row["id"] + '  href="#">' + value + '</a>'+ '</p>');
+			};
+		if($.inArray(key,["create_time"]) != -1){
+			html.push('<p><b>创建时间:</b> ' + value + '</p>');
+			};
+			
+		if(key == "task_remark"){
+			html.push('<p><b>任务说明:</b> ' +'</p>' + '<a class="editable editable-pre-wrapped editable-click " data-name="task_remark" data-pk='+ row["id"] + '  href="#" data-type="textarea" data-original-title="修改任务说明"><p class="indent">' + value + '</p></a>');
+			};	
+	});
+	$.fn.editable.defaults.mode = 'inline';
+	return html.join('');
+}
+//项目可编辑
+function edit(arr,a){
+
+	item = arr.next('.detail-view');
+	
+	task_name = item.find("a[data-name=task_name]");
+	jobinfo = item.find("a[data-name=task_remark]");
+	$(task_name).editable({
+	    type: 'text',
+	    url: '__MODULE__/Task/updateTaskField',
+	    success: function(data){
+	    	if(data.status=='ERROR'){
+	    		alert(data.data);
+	    	}
+	    },
+		error: function(response, newValue) {
+            alert(response.status +' '+ response.statusText);
+    }
+	});
+	$(jobinfo).editable({
+	    type: 'text',
+	    url: '__MODULE__/Task/updateTaskField',
+	    success: function(data){
+	    	if(data.status=='ERROR'){
+	    		alert(data.data);
+	    	}
+	    },
+		error: function(response, newValue) {
+            alert(response.status +' '+ response.statusText);
+    }
+	});
+
+}
+/*
+function edit(arr){
+	item = arr.next('.detail-view');
+	pjname = item.find('a')[0];
+	pjinfo = item.find(ID)[0];
+	$(pjname).editable();
+	$(pjinfo).editable();
+}
+*/
+
+//删除选中的行
+$("#removeTask").click(function(){
+	num = checkedNum("maintable")					//选中个数
+	remove_confirm("maintable","id",num,"__MODULE__/Task/updateStatTask/delflag/recycle");	//删除
+});
+
+//实时统计选中checkbox的个数		
+$(function () {
+	checkedNow('maintable','now_ck_num');
+});
+
+//给项目页设置定时器
+$(function(){
+	setInterval("rf_bsTable('maintable')", 300000);
+});
+</script>
+</body>
+
+</html>

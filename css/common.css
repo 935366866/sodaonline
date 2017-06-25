@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+
+/* job界面-----------------------------------------------------------------------------------------*/
+.jobImg{ heignt:22px;
+			width:22px;
+}
+
+/* 星星靠左 */
+.star_left{color:#F00; float:left; padding-left:50px;}
+
+/*新建APP界面*/
+#creatApp label{ font-size:18px; font-weight:500;}
+
+/* 任务查看界面-----------------------------------------------------------------------------------------*/
+.task_font{ font-size:16px;}
+.samplesDIV{
+	background-color:rgb(140,220,255);
+	text-align: left;
+	overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis;
+	height:30px; padding-left:5px; padding-right:5px; padding-top:5px;margin-bottom: 5px;
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */
+}
+.groupDIV{
+	background-color:#359fff;
+	text-align:center;
+	overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis;
+	padding-left:5px; padding-right:5px; padding-top:5px;margin-bottom: 5px;
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius:5px;            /* W3C syntax */
+}
+ body {
+      position: relative;
+  }
+  ul.nav-pills {
+      top: 130px;
+      position: fixed;
+  }
+
+/*用户界面的css*/
+/*列表中每一行的高*/
+.user_form_height{ height:25px; padding:0px;}
+/*列表中label的样式*/
+.user_label{
+	line-height: 25px;
+}
+/*隐藏列中多出的文字*/
+.appList_hide{overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis; max-width:200px;}
+.appParams_hide{overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis; max-width:90px;}
+.appType_hide{overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis; max-width:300px;}
+.allApp_hide{overflow-x:hidden;white-space:nowrap;text-overflow:ellipsis; max-width:300px;}

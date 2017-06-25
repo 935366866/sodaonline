@@ -1,0 +1,33 @@
+{
+    "task_name": "kegg_pathway",
+    "dir_path": "/tmp/test/app/kegg_pathway",
+    "task_type": "app",
+    "task_remark": "",
+    "project_id": "1BD80AE1-0980-09EC-E392-495780D444BE",
+    "create_man_id": "74F2DB1B-3AFE-6DE5-D4AC-18CDD9786DF3",
+    "status": "finished",
+    "tool_name": "kegg pathway",
+    "create_time": "2016-06-14 15:04:51",
+    "create_man": "soda",
+    "project_name": "soda_project",
+    "allAppParams": {
+        "dbDir": "/pub/database/KEGG/kegg_pathway_data",
+        "result": "/tmp/test/app/kegg_pathway/kegg_enrich_result.xls",
+        "upGene": "/tmp/test/app/kegg_pathway/ckvswll.upGeneID",
+        "downGene": "/tmp/test/app/kegg_pathway/ckvswll.downGeneID",
+        "tpDir": "/pub/template/kegg_template",
+        "abbr": "osa",
+        "outDir": "/tmp/test/app/kegg_pathway"
+    },
+    "appStatus": [
+        {
+            "task_name": "task",
+            "flow_mod": "APP",
+            "status": "done",
+            "job_number": "498",
+            "submit_time": "2016-06-14 15:04:52",
+            "done_time": "2016-07-27 10:11:44",
+            "consume_time": "838:59:59"
+        }
+    ]
+}

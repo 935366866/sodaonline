@@ -1,0 +1,147 @@
+{
+    "hosts": {
+        "node02": {
+            "loadavg": {
+                "loadfive": "0.05",
+                "loadone": "0.07"
+            },
+            "cpu": {
+                "cores": 80,
+                "idle": "99.9",
+                "used": 31
+            },
+            "memory": {
+                "memused": 1212392,
+                "memtotal": 99186064,
+                "mpercent": "0.01"
+            }
+        },
+        "node03": {
+            "loadavg": {
+                "loadfive": "0.03",
+                "loadone": "0.03"
+            },
+            "cpu": {
+                "cores": 80,
+                "idle": "99.9",
+                "used": 16
+            },
+            "memory": {
+                "memused": 1381504,
+                "memtotal": 99186064,
+                "mpercent": "0.01"
+            }
+        },
+        "node01": {
+            "loadavg": {
+                "loadfive": "3.16",
+                "loadone": "3.01"
+            },
+            "cpu": {
+                "cores": 80,
+                "idle": "95.8",
+                "used": 16
+            },
+            "memory": {
+                "memused": 25294440,
+                "memtotal": 99186064,
+                "mpercent": "0.26"
+            }
+        },
+        "console": {
+            "loadavg": {
+                "loadfive": "7.27",
+                "loadone": "7.21"
+            },
+            "cpu": {
+                "cores": 80,
+                "idle": "93.8",
+                "used": 48
+            },
+            "memory": {
+                "memused": 27183856,
+                "memtotal": 99186064,
+                "mpercent": "0.27"
+            }
+        },
+        "node04": {
+            "loadavg": {
+                "loadfive": "0.02",
+                "loadone": "0.01"
+            },
+            "cpu": {
+                "cores": 80,
+                "idle": "99.9",
+                "used": 16
+            },
+            "memory": {
+                "memused": 1316564,
+                "memtotal": 99186064,
+                "mpercent": "0.01"
+            }
+        },
+        "node05": {
+            "loadavg": {
+                "loadfive": "0.03",
+                "loadone": "60.42"
+            },
+            "cpu": {
+                "cores": 80,
+                "idle": "98.5",
+                "used": 55
+            },
+            "memory": {
+                "memused": 1894236,
+                "memtotal": 99186064,
+                "mpercent": "0.02"
+            }
+        },
+        "nodes_total": {
+            "cluster_cpus": {
+                "cores": 480,
+                "cpercent": "0.38",
+                "used": 182
+            },
+            "cluster_memory": {
+                "memused": 58282992,
+                "memtotal": 595116384,
+                "mpercnet": "0.10"
+            }
+        }
+    },
+    "storage": {
+        "disks": {
+            "/DATA01": {
+                "dsize": 10704788045824,
+                "dused": 7302161956864,
+                "dpercent": "0.68"
+            },
+            "/PROJ": {
+                "dsize": 37497862094848,
+                "dused": 33101557772288,
+                "dpercent": "0.88"
+            },
+            "/BACKUP": {
+                "dsize": 2165343813632,
+                "dused": 1690462486528,
+                "dpercent": "0.78"
+            },
+            "/WORK": {
+                "dsize": 1082605510656,
+                "dused": 691604475904,
+                "dpercent": "0.64"
+            },
+          
+            "/PUBLIC": {
+                "dsize": 3248083951616,
+                "dused": 2640614510592,
+                "dpercent": "0.81"
+            }
+        },
+        "disks_total": {
+            "utotal": 57826359236608,
+            "dtotal": 71214814447616,
+            "tpercent": "0.81"
+        }
+    }
+}

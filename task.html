@@ -43,6 +43,7 @@
 					</li>			
 				</ul>
 				
+				
 				<ul class="main_nav1_right">
 					<li><a href="#"><img src="img/分析报告_03.png" alt="通知" /></a></li>
 					<li><a href="#"><img src="img/分析报告_05.png" alt="帮助" /></a></li>
@@ -343,7 +344,7 @@
 										<div style="float:left;width:18%;margin-right:15px;">
 											<br>
 											<div>
-											<ol id="sampleNames" class="list-group sampleNames ui-helper-reset ui-helper-clearfix">
+											<ol id="sampleNames" class="list-group sampleNames ui-helper-reset ui-helper-clearfix" style="height: 100%;">
 											</ol>
 											</div>
 										</div>
@@ -1069,7 +1070,7 @@ function dragInit() {
 	      cursor: "move"
 	    });
 	//分组拖动
-	$( ".ui-widget-header", $sampleGroup ).draggable({
+	$( ".sampleGroup" ).draggable({
 	      cancel: "a.ui-icon", 
 	      revert: "invalid", 
 	      containment: "document",
@@ -1078,7 +1079,7 @@ function dragInit() {
 	   });
 	
 	//比较组拖动
-	$( ".ui-widget-header", $compareGroup ).draggable({
+	$(".goupCompare").draggable({
 	      cancel: "a.ui-icon", 
 	      revert: "invalid", 
 	      containment: "document",
@@ -1087,7 +1088,7 @@ function dragInit() {
 	    });
 	//维恩图接收比较组名
 	$venn.droppable({
-	      accept: ".goupCompare  span",
+	      accept: ".goupCompare",
 	      activeClass: "ui-state-highlight",
 	      drop: function( event, ui ) {
 	        dropItem( ui.draggable ,$(this),'red', 5);
@@ -1095,8 +1096,9 @@ function dragInit() {
 	    });
 	//比较组接收组名
 	$compareGroup.droppable({
-	      accept: ".sampleGroup  span",
+	      accept: ".sampleGroup",
 	      activeClass: "ui-state-highlight",
+	      tolerance:"intersect",
 	      drop: function( event, ui ) {
 	        dropItem( ui.draggable ,$(this),'green',2);
 	      }
@@ -1135,7 +1137,7 @@ function dragInit() {
 	      }
 	    curcontainer= null;
 	    function dropItem($item ,$container,$color,maxNum){
-	    	var itemName = $item.text();
+	    	var itemName = $item.children("span").text();
 	    	//遍历container查看已包含哪些元素
 	    	var containItems= new Array();
 	    	var items = $container.find('li');
@@ -1156,7 +1158,7 @@ function dragInit() {
 		    $('<li class="list-group-item ui-widget-content ui-corner-tr ui-draggable" style="display: block; width: 90px;color:'+$color+'">'
 		    	+itemName+'</li>').appendTo($list).fadeIn(function() {
 		            $item
-		              .animate({ width: "90px" })
+		              .animate({ width: "160px" })
 		              .find( "img" )
 		                .animate({ height: "36px" });
 		          });;
@@ -1183,6 +1185,8 @@ function dragInit() {
 				var value=$(this).siblings("span").text();
 				var index=$.inArray(value,allgroups);
 				allgroups.splice(index,1);
+				recycleItem($(this).parent('div').find("li"));
+				dragInit();
 			})
 		});
 		$("#compareList .glyphicon-remove").each(function(){
@@ -1216,7 +1220,7 @@ function addGroup(){
 		return false;
 	}
 	$("#groupName").val('');
-	var html='<div name="sampleGroup" class="ui-widget-content ui-state-default sampleGroup" style=border-radius:3px;><span class="ui-widget-header">'+gname+'</span><button class="ui-widget-header glyphicon glyphicon-remove pull-right closeBorder" ></span></div>';
+	var html='<div name="sampleGroup" class="ui-widget-content ui-state-default sampleGroup" style=border-radius:3px;><span class="ui-widget-header" style=height:28px;display:inline-block;>'+gname+'</span><button class="ui-widget-header glyphicon glyphicon-remove pull-right closeBorder" ></span></div>';
 	$(html).appendTo('#groupList');
 	allgroups.push(gname);
 	dragInit();
@@ -1238,7 +1242,7 @@ function addCompare(){
 		return false;
 	}
 	$('#compareName').val('');
-	var html='<div name="goupCompare" class="ui-widget-content ui-state-default goupCompare" style=border-radius:3px;><span class="ui-widget-header" style="color:green" >'+cname+'</span><span class="ui-widget-header glyphicon glyphicon-remove pull-right closeBorder" ></span></div>';
+	var html='<div name="goupCompare" class="ui-widget-content ui-state-default goupCompare" style=border-radius:3px;><span class="ui-widget-header" style="color:green;height:28px;display:inline-block;" >'+cname+'</span><span class="ui-widget-header glyphicon glyphicon-remove pull-right closeBorder" ></span></div>';
 	$(html).appendTo('#compareList');
 	allCompares.push(cname);
 	dragInit();
@@ -1248,7 +1252,7 @@ function addVenn(){
 		alert("维恩图至少需要两个比较组，请先填写比较组信息！");
 		return false;
 	}
-	var html='<div name="venn" class="ui-widget-content ui-state-default venn" style=border-radius:3px;><span class="ui-widget-header glyphicon glyphicon-remove closeBorder" style="left: 90%;"></span></div>'
+	var html='<div name="venn" class="ui-widget-content ui-state-default venn" style=border-radius:3px;><span style="height:28px;display:inline-block;"></span><span class="ui-widget-header glyphicon glyphicon-remove closeBorder" style="left: 90%;top:-10px;"></span></div>'
 	$(html).appendTo('#vennList');
 	dragInit();
 }

@@ -308,7 +308,7 @@
 								<div class="panel-heading">
 									<h4><span class="glyphicon glyphicon-edit"></span> Sample Group</h4>
 								</div>
-								<div class="panel-body">
+								<div class="panel-body" style="padding: 15px 2px 15px 36px !important;">
                   
 									<div>
 									<div style="float:left;width:18%;margin-right:15px;">
@@ -316,21 +316,21 @@
 										<label class='control-label'><b>样本名称：</b></label>
 										</div>
 									</div>
-									<div style="float:left;width:25%;margin-right:14px;">
+									<div style="float:left;width:23%;margin-right:14px;">
 										<div>
 											<button class="btn btn-default" data-target='#groupModal' data-toggle='modal' style="outline: none;">
 												<span class="glyphicon glyphicon-plus ">Group</span>
 											</button><br />
 										</div>
 									</div>
-									<div style="float:left;width:25%;margin-right:14px;">
+									<div style="float:left;width:23%;margin-right:14px;">
 										<div>
 											<button class="btn btn-default" data-target='#compareModal' data-toggle='modal'style="outline: none;">
 												<span class="glyphicon glyphicon-plus ">Compare</span>
 											</button>
 										</div>
 									</div>
-									<div style="float:left;width:25%">
+									<div style="float:left;width:23%">
 										<div>
 											<button class="btn btn-default" id='addVenn' style="outline: none;">
 												<span class="glyphicon glyphicon-plus ">Venn</span>
@@ -348,9 +348,9 @@
 											</ol>
 											</div>
 										</div>
-										<div id='groupList' style="float:left;width:25%;margin-right:14px;"><br></div>
-										<div id='compareList' style="float:left;width:25%;margin-right:14px;"><br></div>
-										<div id='vennList' style="float:left;width:25%"><br></div>
+										<div id='groupList' style="float:left;width:23%;margin-right:14px;"><br></div>
+										<div id='compareList' style="float:left;width:23%;margin-right:14px;"><br></div>
+										<div id='vennList' style="float:left;width:22%"><br></div>
 										</div>
 									</div>
 									</div>
@@ -1158,7 +1158,7 @@ function dragInit() {
 		    $('<li class="list-group-item ui-widget-content ui-corner-tr ui-draggable" style="display: block; width: 90px;color:'+$color+'">'
 		    	+itemName+'</li>').appendTo($list).fadeIn(function() {
 		            $item
-		              .animate({ width: "160px" })
+//		              .animate({ width: "147px" })
 		              .find( "img" )
 		                .animate({ height: "36px" });
 		          });;

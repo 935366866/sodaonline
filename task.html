@@ -1071,7 +1071,7 @@ function dragInit() {
 	    });
 	//分组拖动
 	$( ".sampleGroup" ).draggable({
-	      cancel: "a.ui-icon", 
+	      cancel: "a.ui-icon",
 	      revert: "invalid", 
 	      containment: "document",
 	      helper: "clone",
@@ -1090,6 +1090,7 @@ function dragInit() {
 	$venn.droppable({
 	      accept: "#compareList>div",
 	      activeClass: "ui-state-highlight",
+	      tolerance:"touch",
 	      drop: function( event, ui ) {
 	        dropItem( ui.draggable ,$(this),'red', 5);
 	      }
@@ -1098,7 +1099,7 @@ function dragInit() {
 	$compareGroup.droppable({
 	      accept: ".sampleGroup",
 	      activeClass: "ui-state-highlight",
-	      tolerance:"intersect",
+	      tolerance:"touch",
 	      drop: function( event, ui ) {
 	        dropItem( ui.draggable ,$(this),'green',2);
 	      }
@@ -1107,6 +1108,7 @@ function dragInit() {
 	$sampleGroup.droppable({
 	      accept: "#sampleNames > li, .sampleGroup li",
 	      activeClass: "ui-state-highlight",
+	      tolerance:"touch",
 	      drop: function( event, ui ) {
 	        deleteItem( ui.draggable ,$(this));
 	      }
@@ -1155,10 +1157,9 @@ function dragInit() {
 	    	var $list = $( "ul", $container ).length ?
 		            $( "ul", $container ) :
 		            $( "<ul class='goupCompare ui-helper-reset'/>" ).appendTo($container);
-		    $('<li class="list-group-item ui-widget-content ui-corner-tr ui-draggable" style="display: block; width: 90px;color:'+$color+'">'
+		    $('<li class="list-group-item ui-widget-content ui-corner-tr ui-draggable" style="display: block;border:none;background:none; width: 90px;color:'+$color+'">'
 		    	+itemName+'</li>').appendTo($list).fadeIn(function() {
 		            $item
-//		              .animate({ width: "147px" })
 		              .find( "img" )
 		                .animate({ height: "36px" });
 		          });;
@@ -1215,12 +1216,12 @@ function addGroup(){
 		return false;
 	}
 	
-	if($('#sampleNames li').length <= allgroups.length){
+	if($('#sampleNames li').length<allgroups.length){
 		alert("分组数不能超过样本数！");
 		return false;
 	}
 	$("#groupName").val('');
-	var html='<div name="sampleGroup" class="ui-widget-content ui-state-default sampleGroup" style=border-radius:3px;><span class="ui-widget-header" style=height:28px;display:inline-block;>'+gname+'</span><button class="ui-widget-header glyphicon glyphicon-remove pull-right closeBorder" ></span></div>';
+	var html='<div name="sampleGroup" class="ui-widget-content ui-state-default sampleGroup" style=border-radius:3px;><span class="ui-widget-header" style=height:28px;border:none;background:none;display:inline-block;>'+gname+'</span><button class="ui-widget-header glyphicon glyphicon-remove pull-right closeBorder" ></span></div>';
 	$(html).appendTo('#groupList');
 	allgroups.push(gname);
 	dragInit();
@@ -1242,7 +1243,7 @@ function addCompare(){
 		return false;
 	}
 	$('#compareName').val('');
-	var html='<div name="goupCompare" class="ui-widget-content ui-state-default goupCompare" style=border-radius:3px;><span class="ui-widget-header" style="color:green;height:28px;display:inline-block;" >'+cname+'</span><span class="ui-widget-header glyphicon glyphicon-remove pull-right closeBorder" ></span></div>';
+	var html='<div name="goupCompare" class="ui-widget-content ui-state-default goupCompare" style=border-radius:3px;><span class="ui-widget-header" style="color:green;border:none;background:none;height:28px;display:inline-block;" >'+cname+'</span><span class="ui-widget-header glyphicon glyphicon-remove pull-right closeBorder" ></span></div>';
 	$(html).appendTo('#compareList');
 	allCompares.push(cname);
 	dragInit();
